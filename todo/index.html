@@ -6,93 +6,108 @@
     <title>To do list</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="boards">
-            <div class="hero">
-                <h2>To do </h2>
-                <h2 class="grey">0</h2>
-            </div>
-            <button class="har">
+    <div class="">
+        <div class="container">
+            <div class="boards">
                 <div class="hero">
-                    <p>+</p>
-                    <p>Add card</p>
+                    <h2>To do </h2>
+                    <h2 class="grey">0</h2>
                 </div>
-            </button>
-        </div>
-        <div class="boards">
-            <div class="hero">
-                <h2>In progess </h2>
-                <h2 class="grey">0</h2>
+                <div class="create ">
+                    <button>/</button>
+                    <div class="create-text">
+                        <h3>Todo</h3>
+                        <p>This is a todo card</p>
+                        <h5>High</h5>
+                    </div>
+                    <div>
+                        <button>x</button>
+                        <button>/</button>
+                    </div>
+                </div>
+                <button class="add-card">
+                    <div class="hero">
+                        <p>+</p>
+                        <p>Add card</p>
+                    </div>
+                </button>
             </div>
-            <button class="har">
+            <div class="boards">
                 <div class="hero">
-                    <p>+</p>
-                    <p>Add card</p>
+                    <h2>In progess </h2>
+                    <h2 class="grey">0</h2>
                 </div>
-            </button>
-        </div>
-        <div class="boards">
-            <div class="hero">
-                <h2>Stuck </h2>
-                <h2 class="grey">0</h2>
+                <button class="add-card">
+                    <div class="hero">
+                        <p>+</p>
+                        <p>Add card</p>
+                    </div>
+                </button>
             </div>
-            <button>
+            <div class="boards">
                 <div class="hero">
-                    <p>+</p>
-                    <p>Add card</p>
+                    <h2>Stuck </h2>
+                    <h2 class="grey">0</h2>
                 </div>
-            </button>
-        </div>
-        <div class="boards">
-            <div class="hero">
-                <h2>Done </h2>
-                <h2 class="grey">0</h2>
+                <button class="add-card">
+                    <div class="hero">
+                        <p>+</p>
+                        <p>Add card</p>
+                    </div>
+                </button>
             </div>
-            <button>
+            <div class="boards">
                 <div class="hero">
-                    <p>+</p>
-                    <p>Add card</p>
+                    <h2>Done </h2>
+                    <h2 class="grey">0</h2>
                 </div>
-            </button>
+                <button class="add-card">
+                    <div class="hero">
+                        <p>+</p>
+                        <p>Add card</p>
+                    </div>
+                </button>
+            </div>
+            
         </div>
-        
+        <div class="taskcontainer">
+            <div class="away"></div>
+            <div class="task">
+                <h1>Add task</h1>
+                <div class="title">
+                    <p>Title</p>
+                    <input type="text">
+                </div>
+                <div class="Description">
+                    <p>Description</p>
+                    <input type="text">
+                </div>
+                <div class="title">
+                    <p>Status</p>
+                    <select name="" id="">
+                        <option value=" To do"> To do</option>
+                        <option value=" In progress"> In progress</option>
+                        <option value=" Stuck"> Stuck</option>
+                        <option value=" Priority"> Priority</option>
+                    </select>
+                    
+                </div>
+                <div class="title">
+                    <p>Priority</p>
+                    <select name="" id="">
+                        <option value=" Low"> Low</option>
+                        <option value=" Medium"> Medium</option>
+                        <option value=" High"> High</option>
+                    </select>
+                </div>
+                <button class="addtask">Add task</button>
+            </div>
+            
+        </div>
     </div>
-    <div class="taskcontainer">
-        <div class="task">
-            <h1>Add task</h1>
-            <div class="title">
-                <p>Title</p>
-                <input type="text">
-            </div>
-            <div class="Description">
-                <p>Description</p>
-                <input type="text">
-            </div>
-            <div class="title">
-                <p>Status</p>
-                <select name="" id="">
-                    <option value=" To do"> To do</option>
-                    <option value=" In progress"> In progress</option>
-                    <option value=" Stuck"> Stuck</option>
-                    <option value=" Priority"> Priority</option>
-                </select>
-                
-            </div>
-            <div class="title">
-                <p>Priority</p>
-                <select name="" id="">
-                    <option value=" Low"> Low</option>
-                    <option value=" Medium"> Medium</option>
-                    <option value=" High"> High</option>
-                </select>
-            </div>
-            <button>Add task</button>
-        </div>
-        
-    </div>
+    
     <script src="./index.js"></script>
 </body>
 </html>
