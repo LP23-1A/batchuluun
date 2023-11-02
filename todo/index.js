@@ -16,10 +16,9 @@ const data = [];
 
 function render(data) {
     const cards = document.getElementsByClassName("cards")[0];
-    const done = []
     cards.innerHTML = ""
     for (let i = 0; i < data.length; i++) {
-    cards.innerHTML += createCard(data[i]);
+        cards.innerHTML += createCard(data[i]);
     }
 }
 function addCard() {
@@ -38,25 +37,26 @@ function addCard() {
     mockData.priority = select.value;
     data.push(mockData);
     render(data);
-    console.log(data);
-
+    taskcontainer.style.display = "none"
 }
 function createCard(card) {
+    cards.innerHTML = ""
     const { title, desc, priority } = card;
-    return ` <div class="card">
-<button class="done">v</button>
+    return ` <div class="card" draggable="true">
+<button class="done"><img src="https://icons8.com/icon/OyGfrOzh4XAT/select-checkmark-symbol-to-choose-true-answer" width="24px" height="4px" alt=""></button>
 <div class="info">
 <p>${title}</p>
 <span>${desc}</span>
 <div class="priority">${priority}</div>
 </div>
-<button class="close">x</button>
+<button class="close" onclick="closeBtn()">x</button>
 </div>`;
+
 }
 render(data);
 let cards = document.querySelector(".cards")
 let empty = document.querySelector(".empty")
-cards.addEventListener("dragstart", function(event){
+card.addEventListener("dragstart", function(event){
     console.log(event);
 })
 empty.addEventListener("dragover", function(event){
@@ -65,3 +65,9 @@ empty.addEventListener("dragover", function(event){
 empty.addEventListener("drop", function(event){
     empty.prepend(cards)
 })
+let card = document.querySelector(".card")
+let close = document.querySelectorAll(".close")
+
+function closeBtn() {
+    cards.style.display = "none"
+}
