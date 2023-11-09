@@ -1,6 +1,7 @@
 const taskcontainer = document.querySelector(".taskcontainer");
 const dark = document.querySelector(".dark");
 let buttons = document.querySelectorAll(".addbtn");
+const addtask = document.querySelector(".addtask")
 
 function add() {
   taskcontainer.style.display = "block";
@@ -22,10 +23,10 @@ let count = {
 
 function render(data) {
   const cards = document.getElementsByClassName("cards");
-  cards[0].innerHTML = []
-  cards[1].innerHTML = []
-  cards[2].innerHTML = []
-  cards[3].innerHTML = []
+  cards[0].innerHTML = "",
+  cards[1].innerHTML = "",
+  cards[2].innerHTML = "",
+  cards[3].innerHTML = ""
   for (let i = 0; i < data.length; i++) {
     if (data[i].status === "To do") {
       cards[0].innerHTML += createCard(data[i]);
@@ -42,7 +43,8 @@ let input = document.querySelector("input");
 let textarea = document.querySelector("textarea");
 let select = document.querySelectorAll("select");
 
-function addCard() {
+function addCard(isEdit, id) {
+  cards.innerHTML = ""
   const uid = "id-"+Math.random();
   const mockData = {
     id: uid,
@@ -70,11 +72,23 @@ function addCard() {
   inProgress.innerHTML = count.inprogress
   stuckNumber.innerHTML = count.stuck
   doneNumber.innerHTML = count.done
-  data.push(mockData);
-  render(data);
+  // data.push(mockData);
   taskcontainer.style.display = "none";
   input.value = ""
   textarea.value = ""
+  if (isEdit) {
+    console.log("test");
+    data = data.map((el) => {
+      if (el.id === id) {
+        mockData.id = id;
+        return mockData;
+      }
+      return el;
+    });
+  } else {
+    data.push(mockData);
+  }
+  render(data);
   
 }
 function createCard(card) {
@@ -88,7 +102,7 @@ function createCard(card) {
 <div class="priority">${priority}</div>
 </div>
 <button class="close" onclick= "closeBtn(${id})">x</button>
-<button class="edit" onclick = "setData('${id}')">b</button>
+<button class="edit" onclick = "setData('${id}', true)">b</button>
 </div>`;
 }
 render(data);
@@ -128,10 +142,10 @@ function closeBtn(id) {
   } else if (element.status === "done"){
     count.done -= 1
   }
-  todoNumber.innerHTML = count.todo
-  inProgress.innerHTML = count.inprogress
-  stuckNumber.innerHTML = count.stuck
-  doneNumber.innerHTML = count.done
+  todoNumber.innerHTML = count.todo;
+  inProgress.innerHTML = count.inprogress;
+  stuckNumber.innerHTML = count.stuck;
+  doneNumber.innerHTML = count.done;
   render(data);
 
 }
@@ -146,8 +160,8 @@ function setData(id) {
   const findEl = data.find((el) => el.id == id)
   input.value = findEl.title
   textarea.value = findEl.desc
-  findEl.title = input.value
-
+  addtask.onclick = () => addCard(true, id);
+  
 }
 
 
