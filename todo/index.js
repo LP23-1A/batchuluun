@@ -26,28 +26,24 @@ function render(data) {
   cards[1].innerHTML = []
   cards[2].innerHTML = []
   cards[3].innerHTML = []
-  
-
   for (let i = 0; i < data.length; i++) {
     if (data[i].status === "To do") {
       cards[0].innerHTML += createCard(data[i]);
-      let todoNumber = document.querySelector("#todoNumber")
     } else if (data[i].status === "Inprogress"){
       cards[1].innerHTML += createCard(data[i]);
-      let inProgress = document.querySelector("#inProgress")
     } else if (data[i].status === "Stuck"){
       cards[2].innerHTML += createCard(data[i])
-      let stuck = document.querySelector("#stuck")
     } else if (data[i].status === "done"){
       cards[3].innerHTML += createCard(data[i])
-     let Done = document.querySelector("#done")
     } 
   }
 }
+let input = document.querySelector("input");
+let textarea = document.querySelector("textarea");
+let select = document.querySelectorAll("select");
 
 function addCard() {
   const uid = "id-"+Math.random();
-  console.log(uid);
   const mockData = {
     id: uid,
     title: "",
@@ -56,10 +52,7 @@ function addCard() {
     status: "",
   };
 
-  let input = document.querySelector("input");
-  let textarea = document.querySelector("textarea");
-  let select = document.querySelectorAll("select");
-  let priority = document.querySelector("priority")
+  
   mockData.title = input.value;
   mockData.desc = textarea.value;
   mockData.priority = select[1].value;
@@ -80,11 +73,14 @@ function addCard() {
   data.push(mockData);
   render(data);
   taskcontainer.style.display = "none";
+  input.value = ""
+  textarea.value = ""
+  
 }
 function createCard(card) {
   const { title, desc, priority, id } = card;
-  return ` <div  class="card">
-<button class="done">v</button>
+  return ` <div  class="card" id = "${id}">
+<button class="done" onclick="addDone()" >v</button>
 <div class="info">
 <p>${title}</p>
 <span>${desc}</span>
@@ -92,27 +88,26 @@ function createCard(card) {
 <div class="priority">${priority}</div>
 </div>
 <button class="close" onclick= "closeBtn(${id})">x</button>
-<button class="edit" onclick = "edit()">b</button>
+<button class="edit" onclick = "setData('${id}')">b</button>
 </div>`;
 }
 render(data);
 let cards = document.querySelector(".cards");
 let empty = document.querySelector(".empty");
-for (let i = 0; i < data.length; i++) {
-  cards[0].addEventListener("dragstart", function (event) {
-    console.log(event);
-  });
-  box[1].addEventListener("dragover", function (event) {
-    event.preventDefault();
-  });
-  box[1].addEventListener("drop", function (event) {
-    box.prepend(box);
-  });
-}
+// for (let i = 0; i < data.length; i++) {
+//   cards[0].addEventListener("dragstart", function (event) {
+//     console.log(event);
+//   });
+//   box[1].addEventListener("dragover", function (event) {
+//     event.preventDefault();
+//   });
+//   box[1].addEventListener("drop", function (event) {
+//     box.prepend(box);
+//   });
+// }
 
 function closeBtn(id) {
-  let elementId = "id" + id
-  console.log(elementId);
+  let elementId = "id" + id  
   let element = null
   const a = data.filter((e) => {
    if (e.id === elementId) {
@@ -140,11 +135,20 @@ function closeBtn(id) {
   render(data);
 
 }
-// function edit(id) {
-//   taskcontainer.style.display = "block"
-//   const a = data.filter((e) => e.id === id);
-//   data = a;
-//   render(data)
+
+// let card = document.getElementsByClassName("card")
+// function addDone(id) {
+  
 // }
+
+function setData(id) {
+  taskcontainer.style.display = "block"
+  const findEl = data.find((el) => el.id == id)
+  input.value = findEl.title
+  textarea.value = findEl.desc
+  findEl.title = input.value
+
+}
+
 
 

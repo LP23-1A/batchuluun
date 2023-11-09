@@ -32,7 +32,6 @@ p{
     height: fit-content;
     border-radius: 10px;
     padding: 10px;
-    
 }
 button{
     background-color:transparent;
@@ -88,7 +87,6 @@ button:hover{
     position: fixed;
     top: 0;
     height: 0;
-    
 } 
 .task{
     width: 400px;
