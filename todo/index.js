@@ -5,12 +5,14 @@ const addtask = document.querySelector(".addtask")
 
 function add() {
   taskcontainer.style.display = "block";
+  addtask.onclick = () => addCard(false);
 }
 function closedark() {
   taskcontainer.style.display = "none";
 }
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].onclick = add;
+  
 }
 let data = [];
 
@@ -45,7 +47,7 @@ let select = document.querySelectorAll("select");
 
 function addCard(isEdit, id) {
   cards.innerHTML = ""
-  const uid = "id-"+Math.random();
+  const uid = "id-" + Math.random();
   const mockData = {
     id: uid,
     title: "",
@@ -53,31 +55,14 @@ function addCard(isEdit, id) {
     priority: "",
     status: "",
   };
-
-  
   mockData.title = input.value;
   mockData.desc = textarea.value;
   mockData.priority = select[1].value;
   mockData.status = select[0].value;
-  if (mockData.status === "To do") {
-    count.todo += 1
-  } else if (mockData.status === "Inprogress"){
-    count.inprogress += 1
-  } else if (mockData.status === "Stuck"){
-    count.stuck += 1
-  } else if (mockData.status === "done"){
-    count.done += 1
-  }
-  todoNumber.innerHTML = count.todo
-  inProgress.innerHTML = count.inprogress
-  stuckNumber.innerHTML = count.stuck
-  doneNumber.innerHTML = count.done
-  // data.push(mockData);
   taskcontainer.style.display = "none";
   input.value = ""
   textarea.value = ""
   if (isEdit) {
-    console.log("test");
     data = data.map((el) => {
       if (el.id === id) {
         mockData.id = id;
@@ -87,14 +72,27 @@ function addCard(isEdit, id) {
     });
   } else {
     data.push(mockData);
+    if (mockData.status === "To do") {
+      count.todo += 1
+    } else if (mockData.status === "Inprogress"){
+      count.inprogress += 1
+    } else if (mockData.status === "Stuck"){
+      count.stuck += 1
+    } else if (mockData.status === "done"){
+      count.done += 1
+    }
+    todoNumber.innerHTML = count.todo
+    inProgress.innerHTML = count.inprogress
+    stuckNumber.innerHTML = count.stuck
+    doneNumber.innerHTML = count.done
   }
-  render(data);
   
+  render(data);
 }
 function createCard(card) {
   const { title, desc, priority, id } = card;
   return ` <div  class="card" id = "${id}">
-<button class="done" onclick="addDone()" >v</button>
+<button class="done" onclick="addDone()" id="${id}" >v</button>
 <div class="info">
 <p>${title}</p>
 <span>${desc}</span>
@@ -106,19 +104,6 @@ function createCard(card) {
 </div>`;
 }
 render(data);
-let cards = document.querySelector(".cards");
-let empty = document.querySelector(".empty");
-// for (let i = 0; i < data.length; i++) {
-//   cards[0].addEventListener("dragstart", function (event) {
-//     console.log(event);
-//   });
-//   box[1].addEventListener("dragover", function (event) {
-//     event.preventDefault();
-//   });
-//   box[1].addEventListener("drop", function (event) {
-//     box.prepend(box);
-//   });
-// }
 
 function closeBtn(id) {
   let elementId = "id" + id  
@@ -149,11 +134,19 @@ function closeBtn(id) {
   render(data);
 
 }
-
+let cards = document.querySelectorAll(".cards")
 // let card = document.getElementsByClassName("card")
-// function addDone(id) {
-  
-// }
+function addDone(id) {
+  console.log("is working");
+  let Element1 = "id" + id
+  const b = data.filter((el) => {
+    if (el.id === Element1) {
+      el.push(cards[3])
+    }
+  })
+  data = b
+
+}
 
 function setData(id) {
   taskcontainer.style.display = "block"
@@ -161,7 +154,6 @@ function setData(id) {
   input.value = findEl.title
   textarea.value = findEl.desc
   addtask.onclick = () => addCard(true, id);
-  
 }
 
 
