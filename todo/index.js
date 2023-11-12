@@ -46,7 +46,7 @@ let textarea = document.querySelector("textarea");
 let select = document.querySelectorAll("select");
 
 function addCard(isEdit, id) {
-  cards.innerHTML = ""
+  // cards.innerHTML = ""
   const uid = "id-" + Math.random();
   const mockData = {
     id: uid,
@@ -86,13 +86,12 @@ function addCard(isEdit, id) {
     stuckNumber.innerHTML = count.stuck
     doneNumber.innerHTML = count.done
   }
-  
   render(data);
 }
 function createCard(card) {
   const { title, desc, priority, id } = card;
-  return ` <div  class="card" id = "${id}">
-<button class="done" onclick="addDone()" id="${id}" >v</button>
+  return ` <div  class="card" id = "${id}" draggable="true">
+<button class="done" onclick="addDone(${id})" >v</button>
 <div class="info">
 <p>${title}</p>
 <span>${desc}</span>
@@ -104,7 +103,6 @@ function createCard(card) {
 </div>`;
 }
 render(data);
-
 function closeBtn(id) {
   let elementId = "id" + id  
   let element = null
@@ -132,21 +130,46 @@ function closeBtn(id) {
   stuckNumber.innerHTML = count.stuck;
   doneNumber.innerHTML = count.done;
   render(data);
-
 }
-let cards = document.querySelectorAll(".cards")
-// let card = document.getElementsByClassName("card")
-function addDone(id) {
-  console.log("is working");
-  let Element1 = "id" + id
-  const b = data.filter((el) => {
-    if (el.id === Element1) {
-      el.push(cards[3])
+const card = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".cards");
+let draggedItem = null;
+card.forEach((card) => {
+  card.addEventListener("dragstart", (event) => {
+  event.target.value;
+  draggedItem = event.target;
+  event.dataTransfer.setData(
+    "text",
+    event.target.getAttribute("id")
+  );
+  console.log("dragstart");
+  });
+  card.addEventListener("dragend", () => {
+    draggedItem = null;
+  });
+});
+cards.forEach((card) => {
+  card.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    console.log("dragging");
+  });
+  card.addEventListener("dragenter", (event) => {
+    event.preventDefault();
+    if (draggedItem) {
+      const draggingBoard = draggedItem.parentNode;
+      if (draggingBoard === event.currentTarget) {
+        event.currentTarget.appendChild(draggedItem);
+      }
+      
     }
-  })
-  data = b
-
-}
+    cards.appendChild(draggedItem)
+      console.log(cards1[1]);
+  });
+  card.addEventListener("dragleave", () => {});
+  card.addEventListener("drop", (event) => {
+    event.preventDefault();
+  });
+});
 
 function setData(id) {
   taskcontainer.style.display = "block"
@@ -157,4 +180,15 @@ function setData(id) {
 }
 
 
-
+function addDone(id) {
+  let doneElement = "id" + id
+  element = null
+  const b = data.filter((el) => {
+     if (el.id === doneElement) {
+      el = element
+     }
+  })
+  data = b
+  el.push(cards[3])
+  console.log("is working");
+}
