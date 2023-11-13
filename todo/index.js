@@ -1,7 +1,7 @@
 const taskcontainer = document.querySelector(".taskcontainer");
 const dark = document.querySelector(".dark");
 let buttons = document.querySelectorAll(".addbtn");
-const addtask = document.querySelector(".addtask")
+const addtask = document.querySelector(".addtask");
 
 function add() {
   taskcontainer.style.display = "block";
@@ -12,7 +12,6 @@ function closedark() {
 }
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].onclick = add;
-  
 }
 let data = [];
 
@@ -20,26 +19,27 @@ let count = {
   todo: 0,
   inprogress: 0,
   stuck: 0,
-  done: 0
-}
+  done: 0,
+};
 
 function render(data) {
   const cards = document.getElementsByClassName("cards");
-  cards[0].innerHTML = "",
-  cards[1].innerHTML = "",
-  cards[2].innerHTML = "",
-  cards[3].innerHTML = ""
+  (cards[0].innerHTML = ""),
+    (cards[1].innerHTML = ""),
+    (cards[2].innerHTML = ""),
+    (cards[3].innerHTML = "");
   for (let i = 0; i < data.length; i++) {
     if (data[i].status === "To do") {
       cards[0].innerHTML += createCard(data[i]);
-    } else if (data[i].status === "Inprogress"){
+    } else if (data[i].status === "Inprogress") {
       cards[1].innerHTML += createCard(data[i]);
-    } else if (data[i].status === "Stuck"){
-      cards[2].innerHTML += createCard(data[i])
-    } else if (data[i].status === "done"){
-      cards[3].innerHTML += createCard(data[i])
-    } 
+    } else if (data[i].status === "Stuck") {
+      cards[2].innerHTML += createCard(data[i]);
+    } else if (data[i].status === "done") {
+      cards[3].innerHTML += createCard(data[i]);
+    }
   }
+  dragAndDrop();
 }
 let input = document.querySelector("input");
 let textarea = document.querySelector("textarea");
@@ -60,8 +60,8 @@ function addCard(isEdit, id) {
   mockData.priority = select[1].value;
   mockData.status = select[0].value;
   taskcontainer.style.display = "none";
-  input.value = ""
-  textarea.value = ""
+  input.value = "";
+  textarea.value = "";
   if (isEdit) {
     data = data.map((el) => {
       if (el.id === id) {
@@ -73,24 +73,24 @@ function addCard(isEdit, id) {
   } else {
     data.push(mockData);
     if (mockData.status === "To do") {
-      count.todo += 1
-    } else if (mockData.status === "Inprogress"){
-      count.inprogress += 1
-    } else if (mockData.status === "Stuck"){
-      count.stuck += 1
-    } else if (mockData.status === "done"){
-      count.done += 1
+      count.todo += 1;
+    } else if (mockData.status === "Inprogress") {
+      count.inprogress += 1;
+    } else if (mockData.status === "Stuck") {
+      count.stuck += 1;
+    } else if (mockData.status === "done") {
+      count.done += 1;
     }
-    todoNumber.innerHTML = count.todo
-    inProgress.innerHTML = count.inprogress
-    stuckNumber.innerHTML = count.stuck
-    doneNumber.innerHTML = count.done
+    todoNumber.innerHTML = count.todo;
+    inProgress.innerHTML = count.inprogress;
+    stuckNumber.innerHTML = count.stuck;
+    doneNumber.innerHTML = count.done;
   }
   render(data);
 }
 function createCard(card) {
   const { title, desc, priority, id } = card;
-  return ` <div  class="card" id = "${id}" draggable="true">
+  return ` <div  class="card" id="${id}" draggable="true">
 <button class="done" onclick="addDone(${id})" >v</button>
 <div class="info">
 <p>${title}</p>
@@ -104,26 +104,25 @@ function createCard(card) {
 }
 render(data);
 function closeBtn(id) {
-  let elementId = "id" + id  
-  let element = null
+  let elementId = "id" + id;
+  let element = null;
   const a = data.filter((e) => {
-   if (e.id === elementId) {
-    element = e
-   } else {
-    return true
-   }
-   return false
-
+    if (e.id === elementId) {
+      element = e;
+    } else {
+      return true;
+    }
+    return false;
   });
   data = a;
   if (element.status === "To do") {
-    count.todo -= 1
-  } else if(element.status === "Inprogress") {
-    count.inprogress -= 1
+    count.todo -= 1;
+  } else if (element.status === "Inprogress") {
+    count.inprogress -= 1;
   } else if (element.status === "Stuck") {
-    count.stuck -= 1
-  } else if (element.status === "done"){
-    count.done -= 1
+    count.stuck -= 1;
+  } else if (element.status === "done") {
+    count.done -= 1;
   }
   todoNumber.innerHTML = count.todo;
   inProgress.innerHTML = count.inprogress;
@@ -131,64 +130,59 @@ function closeBtn(id) {
   doneNumber.innerHTML = count.done;
   render(data);
 }
-const card = document.querySelectorAll(".card");
-const cards = document.querySelectorAll(".cards");
-let draggedItem = null;
-card.forEach((card) => {
-  card.addEventListener("dragstart", (event) => {
-  event.target.value;
-  draggedItem = event.target;
-  event.dataTransfer.setData(
-    "text",
-    event.target.getAttribute("id")
-  );
-  console.log("dragstart");
+function dragAndDrop() {
+  const card = document.querySelectorAll(".card");
+  const boxs = document.querySelectorAll(".box");
+  let draggedItem = null;
+  card.forEach((card) => {
+    card.addEventListener("dragstart", (event) => {
+      event.target.value;
+      draggedItem = event.target;
+      console.log(draggedItem);
+      event.dataTransfer.setData("text", event.target.getAttribute("id"));
+    });
+    card.addEventListener("dragend", () => {
+      draggedItem = null;
+    });
   });
-  card.addEventListener("dragend", () => {
-    draggedItem = null;
-  });
-});
-cards.forEach((card) => {
-  card.addEventListener("dragover", (event) => {
-    event.preventDefault();
-    console.log("dragging");
-  });
-  card.addEventListener("dragenter", (event) => {
-    event.preventDefault();
-    if (draggedItem) {
-      const draggingBoard = draggedItem.parentNode;
-      if (draggingBoard === event.currentTarget) {
-        event.currentTarget.appendChild(draggedItem);
+  boxs.forEach((box) => {
+    box.addEventListener("dragover", (event) => {
+      event.preventDefault();
+    });
+    box.addEventListener("dragenter", (event) => {
+      event.preventDefault();
+      if (draggedItem) {
+        const draggingBoard = draggedItem.parentNode;
+        if (draggingBoard !== event.currentTarget) {
+          event.currentTarget.querySelector(".cards").appendChild(draggedItem);
+          console.log(data);
+        }
       }
-      
-    }
-    cards.appendChild(draggedItem)
-      console.log(cards1[1]);
+    });
+    box.addEventListener("dragleave", () => {});
+    box.addEventListener("drop", (event) => {
+      event.preventDefault();
+    });
   });
-  card.addEventListener("dragleave", () => {});
-  card.addEventListener("drop", (event) => {
-    event.preventDefault();
-  });
-});
+}
 
 function setData(id) {
-  taskcontainer.style.display = "block"
-  const findEl = data.find((el) => el.id == id)
-  input.value = findEl.title
-  textarea.value = findEl.desc
+  taskcontainer.style.display = "block";
+  const findEl = data.find((el) => el.id == id);
+  input.value = findEl.title;
+  textarea.value = findEl.desc;
   addtask.onclick = () => addCard(true, id);
 }
 
-
-function addDone(id) {
-  let doneElement = "id" + id
-  element = null
-  const b = data.filter((el) => {
-     if (el.id === doneElement) {
-      el = element
-     }
-  })
-  data = b
-  el.push(cards[3])
-  console.log("is working");
-}
+// function addDone(id) {
+//   let doneElement = "id" + id
+//   element = null
+//   const b = data.filter((el) => {
+//      if (el.id === doneElement) {
+//       el = element
+//      }
+//   })
+//   data = b
+//   data.push(cards1[1])
+//   console.log("is working");
+// }
