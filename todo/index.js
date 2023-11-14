@@ -138,8 +138,7 @@ function dragAndDrop() {
     card.addEventListener("dragstart", (event) => {
       event.target.value;
       draggedItem = event.target;
-      console.log(draggedItem);
-      event.dataTransfer.setData("text", event.target.getAttribute("id"));
+      event.dataTransfer.setData("text", event.target.getAttribute("data-id"));
     });
     card.addEventListener("dragend", () => {
       draggedItem = null;
@@ -155,17 +154,36 @@ function dragAndDrop() {
         const draggingBoard = draggedItem.parentNode;
         if (draggingBoard !== event.currentTarget) {
           event.currentTarget.querySelector(".cards").appendChild(draggedItem);
-          console.log(data);
         }
       }
     });
     box.addEventListener("dragleave", () => {});
     box.addEventListener("drop", (event) => {
       event.preventDefault();
+
+      data.map((el) => {
+        let draggedElementId = box.querySelector(".card").id;
+        if (el.id === draggedElementId) {
+          el.status = box.id;
+          if (el.status === "To do") {
+            count.todo += 1;
+          } else if (el.status === "Inprogress") {
+            count.inprogress += 1;
+          } else if (el.status === "Stuck") {
+            count.stuck += 1;
+          } else if (el.status === "done") {
+            count.done += 1;
+          }
+        }
+        todoNumber.innerHTML = count.todo;
+        inProgress.innerHTML = count.inprogress;
+        stuckNumber.innerHTML = count.stuck;
+        doneNumber.innerHTML = count.done;
+      });
     });
   });
 }
-
+render(data);
 function setData(id) {
   taskcontainer.style.display = "block";
   const findEl = data.find((el) => el.id == id);
@@ -174,15 +192,29 @@ function setData(id) {
   addtask.onclick = () => addCard(true, id);
 }
 
-// function addDone(id) {
-//   let doneElement = "id" + id
-//   element = null
-//   const b = data.filter((el) => {
-//      if (el.id === doneElement) {
-//       el = element
-//      }
-//   })
-//   data = b
-//   data.push(cards1[1])
-//   console.log("is working");
-// }
+function addDone(id) {
+  let addId = "id" + id;
+  const donelist = data.map((item) => {
+    if (item.id === addId) {
+      if (item.status === "To do") {
+        count.todo -= 1;
+      } else if (item.status === "Inprogress") {
+        count.inprogress -= 1;
+      } else if (item.status === "Stuck") {
+        count.stuck -= 1;
+      } else if (item.status === "done") {
+        count.done === count.done;
+      }
+      item.status = "done";
+      if (item.status === "done") {
+        count.done += 1;
+      }
+      doneNumber.innerHTML = count.done;
+      todoNumber.innerHTML = count.todo;
+      stuckNumber.innerHTML = count.stuck;
+      inProgress.innerHTML = count.inprogress;
+    }
+    return item;
+  });
+  render(data);
+}
