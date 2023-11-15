@@ -46,7 +46,6 @@ let textarea = document.querySelector("textarea");
 let select = document.querySelectorAll("select");
 
 function addCard(isEdit, id) {
-  // cards.innerHTML = ""
   const uid = "id-" + Math.random();
   const mockData = {
     id: uid,
@@ -92,7 +91,7 @@ function addCard(isEdit, id) {
 function createCard(card) {
   const { title, desc, priority, id } = card;
   return ` <div  class="card" id="${id}" draggable="true">
-<button class="done" onclick="addDone(${id})" ><img src="./img1/icons8-done-24.png" alt=""></button>
+<button class="done" onclick="addDone(${id})" draggable="false"><img src="./img1/icons8-done-24.png" alt=""></button>
 <div class="info">
 <p>${title}</p>
 <span>${desc}</span>
@@ -103,7 +102,6 @@ function createCard(card) {
 <button class="close" onclick= "closeBtn(${id})"><img src="./img1/icons8-remove-24.png" alt=""></button>
 <button class="edit" onclick = "setData('${id}', true)"><img src="./img1/icons8-edit-24.png" alt=""></button>
 </div>
-
 </div>`;
 }
 render(data);
