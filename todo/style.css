@@ -10,7 +10,7 @@ body {
   background-image: url("https://c1.wallpaperflare.com/path/565/385/156/sunset-brook-green-meadow-june-df867360f0bed19da26bbb3838498c8f.jpg");
 }
 .container {
-  /* width: 1600px; */
+  width: 1600px;
   margin: auto;
 }
 .flex {
@@ -58,6 +58,9 @@ button {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+}
+button img {
+  padding: 2px;
 }
 .doneEdit {
   display: flex;

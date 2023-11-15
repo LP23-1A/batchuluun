@@ -29,13 +29,13 @@ function render(data) {
     (cards[2].innerHTML = ""),
     (cards[3].innerHTML = "");
   for (let i = 0; i < data.length; i++) {
-    if (data[i].status === "To do") {
+    if (data[i].status === "Todo") {
       cards[0].innerHTML += createCard(data[i]);
     } else if (data[i].status === "Inprogress") {
       cards[1].innerHTML += createCard(data[i]);
     } else if (data[i].status === "Stuck") {
       cards[2].innerHTML += createCard(data[i]);
-    } else if (data[i].status === "done") {
+    } else if (data[i].status === "Done") {
       cards[3].innerHTML += createCard(data[i]);
     }
   }
@@ -72,15 +72,16 @@ function addCard(isEdit, id) {
     });
   } else {
     data.push(mockData);
-    if (mockData.status === "To do") {
+    if (mockData.status === "Todo") {
       count.todo += 1;
     } else if (mockData.status === "Inprogress") {
       count.inprogress += 1;
     } else if (mockData.status === "Stuck") {
       count.stuck += 1;
-    } else if (mockData.status === "done") {
+    } else if (mockData.status === "Done") {
       count.done += 1;
     }
+
     todoNumber.innerHTML = count.todo;
     inProgress.innerHTML = count.inprogress;
     stuckNumber.innerHTML = count.stuck;
@@ -91,7 +92,7 @@ function addCard(isEdit, id) {
 function createCard(card) {
   const { title, desc, priority, id } = card;
   return ` <div  class="card" id="${id}" draggable="true">
-<button class="done" onclick="addDone(${id})" ><img src="./img1/icons8-done-24.png" alt="" width= "20px"></button>
+<button class="done" onclick="addDone(${id})" ><img src="./img1/icons8-done-24.png" alt=""></button>
 <div class="info">
 <p>${title}</p>
 <span>${desc}</span>
@@ -118,15 +119,16 @@ function closeBtn(id) {
     return false;
   });
   data = a;
-  if (element.status === "To do") {
+  if (element.status === "Todo") {
     count.todo -= 1;
   } else if (element.status === "Inprogress") {
     count.inprogress -= 1;
   } else if (element.status === "Stuck") {
     count.stuck -= 1;
-  } else if (element.status === "done") {
+  } else if (element.status === "Done") {
     count.done -= 1;
   }
+
   todoNumber.innerHTML = count.todo;
   inProgress.innerHTML = count.inprogress;
   stuckNumber.innerHTML = count.stuck;
@@ -141,19 +143,20 @@ function dragAndDrop() {
     card.addEventListener("dragstart", (event) => {
       event.target.value;
       draggedItem = event.target;
-      event.dataTransfer.setData("text", event.target.getAttribute("data-id"));
+      event.dataTransfer.setData("text", event.target.getAttribute("id"));
     });
     card.addEventListener("dragend", () => {
       draggedItem = null;
     });
   });
-  boxs.forEach((box) => {
+  boxs.forEach((box, index) => {
     box.addEventListener("dragover", (event) => {
       event.preventDefault();
     });
     box.addEventListener("dragenter", (event) => {
       event.preventDefault();
       if (draggedItem) {
+        console.log(draggedItem);
         const draggingBoard = draggedItem.parentNode;
         if (draggingBoard !== event.currentTarget) {
           event.currentTarget.querySelector(".cards").appendChild(draggedItem);
@@ -163,33 +166,53 @@ function dragAndDrop() {
     box.addEventListener("dragleave", () => {});
     box.addEventListener("drop", (event) => {
       event.preventDefault();
-
+      let id = draggedItem.getAttribute("id");
+      console.log(draggedItem.getAttribute("id"));
       data.map((el) => {
-        let draggedElementId = box.querySelector(".card").id;
-        if (el.id === draggedElementId) {
-          el.status = box.id;
-          if (el.status === "To do") {
+        if (el.id === id) {
+          if (el.status === "Todo") {
+            count.todo -= 1;
+          } else if (el.status === "Inprogress") {
+            count.inprogress -= 1;
+          } else if (el.status === "Stuck") {
+            count.stuck -= 1;
+          } else if (el.status === "Done") {
+            count.done -= 1;
+          }
+          el.status = id;
+          if (index === 0) {
+            el.status = "Todo";
+          } else if (index === 1) {
+            el.status = "Inprogress";
+          } else if (index === 2) {
+            el.status = "Stuck";
+          } else if (index === 3) {
+            el.status = "Done";
+          }
+          if (el.status === "Todo") {
             count.todo += 1;
           } else if (el.status === "Inprogress") {
             count.inprogress += 1;
           } else if (el.status === "Stuck") {
             count.stuck += 1;
-          } else if (el.status === "done") {
+          } else if (el.status === "Done") {
             count.done += 1;
           }
+          console.log(index);
         }
-        todoNumber.innerHTML = count.todo;
-        inProgress.innerHTML = count.inprogress;
-        stuckNumber.innerHTML = count.stuck;
-        doneNumber.innerHTML = count.done;
       });
+      todoNumber.innerHTML = count.todo;
+      inProgress.innerHTML = count.inprogress;
+      stuckNumber.innerHTML = count.stuck;
+      doneNumber.innerHTML = count.done;
     });
   });
 }
+
 render(data);
 function setData(id) {
   taskcontainer.style.display = "block";
-  const findEl = data.find((el) => el.id == id);
+  const findEl = data.find((el) => el.id === id);
   input.value = findEl.title;
   textarea.value = findEl.desc;
   addtask.onclick = () => addCard(true, id);
@@ -199,17 +222,17 @@ function addDone(id) {
   let addId = "id" + id;
   const donelist = data.map((item) => {
     if (item.id === addId) {
-      if (item.status === "To do") {
+      if (item.status === "Todo") {
         count.todo -= 1;
       } else if (item.status === "Inprogress") {
         count.inprogress -= 1;
       } else if (item.status === "Stuck") {
         count.stuck -= 1;
-      } else if (item.status === "done") {
-        count.done === count.done;
+      } else if (item.status === "Done") {
+        count.done -= 1;
       }
-      item.status = "done";
-      if (item.status === "done") {
+      item.status = "Done";
+      if (item.status === "Done") {
         count.done += 1;
       }
       doneNumber.innerHTML = count.done;
@@ -219,5 +242,5 @@ function addDone(id) {
     }
     return item;
   });
-  render(data);
+  render(donelist);
 }
