@@ -54,13 +54,22 @@ function addCard(isEdit, id) {
     priority: "",
     status: "",
   };
-  mockData.title = input.value;
-  mockData.desc = textarea.value;
-  mockData.priority = select[1].value;
-  mockData.status = select[0].value;
-  taskcontainer.style.display = "none";
-  input.value = "";
-  textarea.value = "";
+  if (
+    document.getElementById("titleInput").value == "" ||
+    document.getElementById("descriptionTextarea").value == ""
+  ) {
+    document.getElementById("titleInput").placeholder = "error ! ! !";
+    document.getElementById("descriptionTextarea").placeholder = "error!!!";
+  } else {
+    mockData.title = input.value;
+    mockData.desc = textarea.value;
+    mockData.priority = select[1].value;
+    mockData.status = select[0].value;
+    taskcontainer.style.display = "none";
+    input.value = "";
+    textarea.value = "";
+  }
+
   if (isEdit) {
     data = data.map((el) => {
       if (el.id === id) {

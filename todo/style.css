@@ -18,8 +18,8 @@ body {
 }
 .boxs {
   justify-content: center;
-  padding: 120px;
-  gap: 16px;
+  padding: 150px;
+  gap: 30px;
 }
 p {
   font-weight: bold;
