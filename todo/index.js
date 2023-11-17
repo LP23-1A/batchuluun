@@ -222,6 +222,7 @@ function setData(id) {
   const findEl = data.find((el) => el.id === id);
   input.value = findEl.title;
   textarea.value = findEl.desc;
+  select[0].value = findEl.status;
   addtask.onclick = () => addCard(true, id);
 }
 

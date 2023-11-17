@@ -157,3 +157,11 @@ select {
   padding: 5px;
   border-radius: 8px;
 }
+
+@media screen and (max-width: 600px) {
+  .boxs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
