@@ -1,14 +1,13 @@
-import HeroIconGitHub from "./HeroIcongithub";
 import HeroImg from "./HeroImg";
-import HeroIconFigma from "./Heroiconfigma";
-import HeroIconTwitter from "./Heroicontwitter";
+import HeroIcon from "./Heroicon";
+
 import Location from "./Location";
 
 export default function Hero() {
   return (
     <div className="hero">
       <div className="hero--left">
-        <div className="">
+        <div className="hero--title">
           <h1>Hi, I’m Sagar 👋</h1>
           <p>
             I'm a full stack developer (React.js & Node.js) with a focus on
@@ -27,9 +26,7 @@ export default function Hero() {
           <p>Available for new projects</p>
         </div>
         <div>
-          <HeroIconGitHub />
-          <HeroIconTwitter />
-          <HeroIconFigma />
+          <HeroIcon />
         </div>
       </div>
       <div className="hero--right">
