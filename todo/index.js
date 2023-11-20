@@ -2,6 +2,7 @@ const taskcontainer = document.querySelector(".taskcontainer");
 const dark = document.querySelector(".dark");
 let buttons = document.querySelectorAll(".addbtn");
 const addtask = document.querySelector(".addtask");
+const cards = document.getElementsByClassName("cards");
 
 function add() {
   taskcontainer.style.display = "block";
@@ -23,7 +24,6 @@ let count = {
 };
 
 function render(data) {
-  const cards = document.getElementsByClassName("cards");
   (cards[0].innerHTML = ""),
     (cards[1].innerHTML = ""),
     (cards[2].innerHTML = ""),
