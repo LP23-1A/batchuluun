@@ -17,17 +17,20 @@ body {
   /* width: 1280px; */
   margin: 16px 80px;
 }
-ul {
+.right--header ul {
   display: flex;
   gap: 24px;
   align-items: center;
 }
-li {
+.right--header li {
   list-style: none;
-  color: grey;
+  color: var(--gray-600, #4b5563);
   font-size: 16px;
 }
-
+p {
+  color: var(--gray-600, #4b5563);
+  font-size: 16px;
+}
 .right--header {
   gap: 20px;
 }
@@ -45,12 +48,17 @@ li {
 .hero {
   margin: 96px 80px;
   padding: 0 32px;
-  display: flex;
   gap: 48px;
 }
 .hero--title h1 {
   font-size: 60px;
   color: #111827;
+}
+.button {
+  margin: auto;
+  border: 0;
+  padding: 4px 20px;
+  border-radius: 10px;
 }
 .hero--title p {
   font-size: 16px;
@@ -62,7 +70,6 @@ li {
   margin-top: 48px;
 }
 .hero--available {
-  display: flex;
   align-items: center;
   gap: 8px;
   margin: 8px 0 48px 0;
@@ -79,4 +86,86 @@ li {
 }
 .hero--right {
   padding: 0 0 0 150px;
+}
+.intoduction {
+  padding: 96px 112px;
+}
+.introduction--img {
+  padding-right: 180px;
+}
+.introduction--text {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.introduction--text h2 {
+  font-size: 30px;
+}
+.introduction--content {
+  margin-top: 48px;
+  gap: 48px;
+}
+.introduction--text li {
+  color: var(--gray-600, #4b5563);
+  margin-left: 20px;
+}
+.Technology {
+  flex-direction: row;
+}
+.Technology img {
+  width: 64px;
+  height: 64px;
+}
+.Technology p {
+  text-align: center;
+}
+
+.skill {
+  padding: 96px 112px;
+}
+.skill--text {
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  text-align: center;
+}
+.skill--technology {
+  flex-wrap: wrap;
+  gap: 95px;
+  justify-content: space-around;
+  margin-top: 48px;
+}
+.Expreince {
+  padding: 96px 112px;
+  flex-direction: column;
+  gap: 48px;
+}
+.Expreince--title {
+  text-align: center;
+  gap: 16px;
+  flex-direction: column;
+}
+.expreinceImg {
+  padding-right: 100px;
+}
+.Expreince--content {
+  gap: 48px;
+  flex-direction: row;
+  width: fit-content;
+  margin: 48px auto 0 auto;
+  border: 1px solid;
+  border: 0;
+  border-radius: 12px;
+  padding: 32px;
+  background: var(--gray-default, #fff);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.06),
+    0px 4px 3px 0px rgba(0, 0, 0, 0.07);
+}
+.Expreince--text {
+  display: block;
+  width: 380px;
+}
+.Expreince--text ul {
+  margin: 16px 0 0 20px;
+  color: var(--gray-600, #4b5563);
 }

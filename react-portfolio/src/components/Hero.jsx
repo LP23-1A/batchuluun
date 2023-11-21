@@ -5,7 +5,7 @@ import Location from "./Location";
 
 export default function Hero() {
   return (
-    <div className="hero">
+    <div className="hero flex">
       <div className="hero--left">
         <div className="hero--title">
           <h1>Hi, I’m Sagar 👋</h1>

@@ -1,3 +1,4 @@
+import Expreince from "@/components/Expreince";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Skill from "@/components/Skills";
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Introduction />
       <Skill />
+      <Expreince />
     </div>
   );
 }
