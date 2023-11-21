@@ -84,8 +84,9 @@ p {
   gap: 10px;
   align-items: center;
 }
-.hero--right {
+.hero--right img {
   padding: 0 0 0 150px;
+  box-shadow: 200px 60px grey;
 }
 .intoduction {
   padding: 96px 112px;
