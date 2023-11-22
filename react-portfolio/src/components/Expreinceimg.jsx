@@ -1,4 +1,4 @@
-import image from "./img/logo-upwork.png";
+import image from "./img/Logo.png";
 
 export default function ExpreinceImg() {
   return <img src={image.src} />;
