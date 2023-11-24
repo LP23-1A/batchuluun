@@ -1,6 +1,6 @@
 export default function HeroIcon() {
   return (
-    <div className="hero--icon flex">
+    <div className="hero--icon flex items-center">
       <svg
         width="24"
         height="24"

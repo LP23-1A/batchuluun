@@ -1,9 +1,7 @@
 import CallIcon from "@/components/CallIcon";
 import CopyIcon from "@/components/CopyIcon";
 import CopyrightIcon from "@/components/CopyrightIcon";
-import Expreince from "@/components/Expreince";
 import ExpreinceImg from "@/components/Expreinceimg";
-import Footer from "@/components/Footer";
 import HeroImg from "@/components/HeroImg";
 import HeroIcon from "@/components/Heroicon";
 import IntroductionImg from "@/components/IntroductionImg";
@@ -11,20 +9,21 @@ import Location from "@/components/Location";
 import MessageIcon from "@/components/MessageIcon";
 import Navbar from "@/components/Navbar";
 import Technology from "@/components/Technology";
-import Work from "@/components/Work";
+import Workleft from "@/components/WorkLeft";
+import WorkRight from "@/components/WorkRight";
 
 export default function Home() {
   return (
-    <div>
+    <div className="container box-border">
       <section>
         <Navbar />
       </section>
       <section>
-        <div className="hero flex">
-          <div className="hero--left">
-            <div className="hero--title">
-              <h1>Hi, I’m Sagar 👋</h1>
-              <p>
+        <div className=" flex gap-12 py-24 px-28">
+          <div className="hero--left gap-10 flex flex-col w-3/5">
+            <div className="hero--title gap-1">
+              <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
+              <p className="text-base">
                 I'm a full stack developer (React.js & Node.js) with a focus on
                 creating (and occasionally designing) exceptional digital
                 experiences that are fast, accessible, visually appealing, and
@@ -32,33 +31,37 @@ export default function Home() {
                 for over 7 years, I still love it as if it was something new.
               </p>
             </div>
-            <div className="hero--location flex">
-              <Location />
-              <p>Ahmedabad, India</p>
+            <div className="hero--location">
+              <div className="flex">
+                <Location />
+                <p>Ahmedabad, India</p>
+              </div>
+              <div className="flex gap-1">
+                <p className="bg-lime-500 w-2 h-2 bg-green rounded mt-2"></p>
+                <p className="items-center">Available for new projects</p>
+              </div>
             </div>
-            <div className="hero--available flex">
-              <p className="hero--available--icon"></p>
-              <p>Available for new projects</p>
-            </div>
-            <div>
+            <div className="item-center">
               <HeroIcon />
             </div>
           </div>
-          <div className="hero--right">
+          <div className="hero--right pl-24 ">
             <HeroImg />
           </div>
         </div>
       </section>
       <section>
-        <div className="intoduction">
+        <div className="intoduction flex flex-col py-24 px-28 gap-12 bg-gray-200">
           <div className="introduction--button flex">
-            <button className="button">about me</button>
+            <button className="button bg-gray-300 py-1 px-5 rounded-xl m-auto">
+              about me
+            </button>
           </div>
-          <div className=" introduction--content  flex">
-            <div className="introduction--img">
+          <div className=" introduction--content  flex gap-12">
+            <div className="introduction--img pr-40">
               <IntroductionImg />
             </div>
-            <div className="introduction--text">
+            <div className="introduction--text flex flex-col gap-4 w-1/2">
               <h2>Curious about me? Here you have it:</h2>
               <p>
                 I'm a passionate, self-proclaimed designer who specializes in
@@ -89,11 +92,11 @@ export default function Home() {
                 you can follow me on GitHub.
               </p>
               <p>Finally, some quick bits about me.</p>
-              <ul>
+              <ul className="flex gap-10">
                 <li>B.E. in Computer Engineering</li>
                 <li>Full time freelancer</li>
               </ul>
-              <ul>
+              <ul className="flex gap-40">
                 <li>Avid learner</li>
                 <li>Aspiring indie hacker</li>
               </ul>
@@ -106,27 +109,33 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="skill">
-          <div className="skill--text flex">
-            <button className="button">Skills</button>
-            <p>The skills, tools and technologies I am really good at:</p>
+        <div className="skill py-24 px-28 flex flex-col gap-12 ">
+          <div className="skill--text  flex flex-col m-auto gap-4">
+            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto">
+              Skills
+            </button>
+            <p className="text-center">
+              The skills, tools and technologies I am really good at:
+            </p>
           </div>
-          <div className="skill--technology flex">
+          <div className="skill--technology flex flex-wrap gap-20 justify-around">
             <Technology />
           </div>
         </div>
       </section>
       <section>
-        <div className="Expreince flex">
-          <div className="Expreince--title flex">
-            <button className="button">Expreince</button>
+        <div className="Expreince flex flex-col gap-12 bg-gray-200 py-24 px-28">
+          <div className="Expreince--title mx-auto flex flex-col gap-4">
+            <button className="button bg-gray-300 py-1 px-4 rounded-xl  w-24 m-auto">
+              Expreince
+            </button>
             <p>Here is a quick summary of my most recent experiences:</p>
           </div>
-          <div className="Expreince--content flex">
-            <div className="expreinceImg">
+          <div className="Expreince--content flex m-auto gap-12 p-8 bg-white rounded-xl">
+            <div className="expreinceImg pr-20">
               <ExpreinceImg />
             </div>
-            <div className="Expreince--text">
+            <div className="Expreince--text ">
               <h2>Sr. Frontend Developer</h2>
               <ul>
                 <li>
@@ -148,11 +157,11 @@ export default function Home() {
               <p>Nov 2021 - Present</p>
             </div>
           </div>
-          <div className="Expreince--content flex">
-            <div className="expreinceImg">
+          <div className="Expreince--content flex m-auto gap-12 p-8 bg-white rounded-xl">
+            <div className="expreinceImg pr-20">
               <ExpreinceImg />
             </div>
-            <div className="Expreince--text">
+            <div className="Expreince--text ">
               <h2>Team Lead</h2>
               <ul>
                 <li>Sed quis justo ac magna.</li>
@@ -172,11 +181,11 @@ export default function Home() {
               <p>Jul 2017 - Oct 2021</p>
             </div>
           </div>
-          <div className="Expreince--content flex">
-            <div className="expreinceImg">
+          <div className="Expreince--content flex m-auto gap-12 p-8 bg-white rounded-xl">
+            <div className="expreinceImg pr-20">
               <ExpreinceImg />
             </div>
-            <div className="Expreince--text">
+            <div className="Expreince--text w-96">
               <h2>Full Stack Developer</h2>
               <ul>
                 <li>
@@ -192,47 +201,53 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div>
-          <div className="work--title">
-            <button className="button">Work</button>
+        <div className="flex flex-col py-24 px-28 gap-12 ">
+          <div className="work--title flex flex-col gap4 mx-auto text-center">
+            <button className="button bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto">
+              Work
+            </button>
             <p>Some of the noteworthy projects I have built:</p>
           </div>
-          <div>
-            <Work />
-          </div>
+          <Workleft />
+          <WorkRight />
+          <Workleft />
         </div>
       </section>
       <section>
-        <div className="footer flex">
+        <div className="footer flex flex-col gap-12 mx-auto text-center">
           <div className="footer--title">
-            <button className="button">Get in touch</button>
+            <button className="button  bg-gray-300 py-1 px-5 rounded-xl">
+              Get in touch
+            </button>
             <p>
               What’s next? Feel free to reach out to me if you're looking for
               <br></br> a developer, have a query, or simply want to connect.
             </p>
           </div>
-          <div className=" contact flex">
-            <div className="flex gap-20 email">
+          <div className=" contact flex flex-col ">
+            <div className="flex gap-4 email mx-auto">
               <MessageIcon />
-              <h1>reachsagarshah@gmail.com</h1>
+              <h1 className="text-4xl">reachsagarshah@gmail.com</h1>
               <CopyIcon />
             </div>
-            <div className="flex gap-20 phone">
+            <div className="flex gap-4 phone text-center mx-auto">
               <CallIcon />
-              <h1>+91 8980500565</h1>
+              <h1 className="text-4xl">+91 8980500565</h1>
               <CopyIcon />
             </div>
           </div>
-          <div>
+          <div className="mx-auto">
             <p>You may also find me on these platforms!</p>
-            <div className="footer--icon flex">
+            <div className="footer--icon flex justify-center">
               <HeroIcon />
             </div>
           </div>
         </div>
-        <div className="flex copyright">
+        <div className="flex copyright justify-center py-6 px-20 ">
           <CopyrightIcon />
-          <p>2023 | Designed and coded with ❤️️ by Sagar Shah</p>
+          <p className="bg-red">
+            2023 | Designed and coded with ❤️️ by Sagar Shah
+          </p>
         </div>
       </section>
     </div>

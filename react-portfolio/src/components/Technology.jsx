@@ -70,7 +70,7 @@ export default function Technology() {
       {data.map((el) => {
         return (
           <div className="Technology ">
-            <img src={el.url} alt="" />
+            <img className="w-16 h-16" src={el.url} alt="" />
             <p>{el.content}</p>
           </div>
         );

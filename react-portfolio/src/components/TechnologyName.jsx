@@ -1,12 +1,5 @@
 const dataName = [
   {
-    name1: "Fiskil",
-  },
-  {
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec urna ac tellus volutpat viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.",
-  },
-  {
     name: "React",
   },
   {
@@ -42,12 +35,11 @@ export default function TechnologyName() {
     <>
       {dataName.map((props) => {
         return (
-          <div>
-            <h2>{props.name1}</h2>
-            <p>{props.description}</p>
-            <button className="button">{props.name}</button>
+          <div className="flex flex-wrap">
+            <button className="bg-gray-200 py-1 px-5 rounded-xl">
+              {props.name}
+            </button>
           </div>
-          // <div>{/* <button className="button">{props.name}</button> */}</div>
         );
       })}
     </>
