@@ -1,7 +1,7 @@
 import CallIcon from "@/components/CallIcon";
 import CopyIcon from "@/components/CopyIcon";
 import CopyrightIcon from "@/components/CopyrightIcon";
-import ExpreinceImg from "@/components/Expreinceimg";
+import ExprenceData from "@/components/ExprenceData";
 import HeroImg from "@/components/HeroImg";
 import HeroIcon from "@/components/Heroicon";
 import IntroductionImg from "@/components/IntroductionImg";
@@ -11,12 +11,21 @@ import Navbar from "@/components/Navbar";
 import Technology from "@/components/Technology";
 import Workleft from "@/components/WorkLeft";
 import WorkRight from "@/components/WorkRight";
+import { useState } from "react";
+import DarkTheme from "@/components/Dark";
 
 export default function Home() {
+  const [dark, setDark] = useState(true);
+  const Handler = () => {
+    setDark(!dark);
+    if (setDark(!dark)) {
+      <DarkTheme />;
+    }
+  };
   return (
-    <div className="container box-border">
+    <div className={`${dark && "bg-black text-white"}`}>
       <section>
-        <Navbar />
+        <Navbar Handler={Handler} dark={dark} />
       </section>
       <section>
         <div className=" flex gap-12 py-24 px-28">
@@ -124,79 +133,15 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="Expreince flex flex-col gap-12 bg-gray-200 py-24 px-28">
-          <div className="Expreince--title mx-auto flex flex-col gap-4">
-            <button className="button bg-gray-300 py-1 px-4 rounded-xl  w-24 m-auto">
-              Expreince
+        <div className="bg-gray-200 m-auto  py-24 px-28 flex flex-col gap-12">
+          <div className="m-auto flex flex-col justify-center gap-4">
+            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto">
+              Experience
             </button>
             <p>Here is a quick summary of my most recent experiences:</p>
           </div>
-          <div className="Expreince--content flex m-auto gap-12 p-8 bg-white rounded-xl">
-            <div className="expreinceImg pr-20">
-              <ExpreinceImg />
-            </div>
-            <div className="Expreince--text ">
-              <h2>Sr. Frontend Developer</h2>
-              <ul>
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-                <br />
-                <li>
-                  Ut pretium arcu et massa semper, id fringilla leo semper.
-                </li>
-                <br />
-                <li>Sed quis justo ac magna.</li>
-                <br />
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Nov 2021 - Present</p>
-            </div>
-          </div>
-          <div className="Expreince--content flex m-auto gap-12 p-8 bg-white rounded-xl">
-            <div className="expreinceImg pr-20">
-              <ExpreinceImg />
-            </div>
-            <div className="Expreince--text ">
-              <h2>Team Lead</h2>
-              <ul>
-                <li>Sed quis justo ac magna.</li>
-                <br />
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-                <br />
-                <li>Sed quis justo ac magna.</li>
-                <br />
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Jul 2017 - Oct 2021</p>
-            </div>
-          </div>
-          <div className="Expreince--content flex m-auto gap-12 p-8 bg-white rounded-xl">
-            <div className="expreinceImg pr-20">
-              <ExpreinceImg />
-            </div>
-            <div className="Expreince--text w-96">
-              <h2>Full Stack Developer</h2>
-              <ul>
-                <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  ipsum dolor sit amet, <br /> consectetur adipiscing elit.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Dec 2015 - May 2017</p>
-            </div>
+          <div className="flex flex-col">
+            <ExprenceData />
           </div>
         </div>
       </section>
