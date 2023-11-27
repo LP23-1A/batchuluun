@@ -1,8 +1,14 @@
-import Icon from "./IconAndImg/Icon";
-import Menu from "./IconAndImg/menu";
+import { useState } from "react";
+import Icon from "./Icon/Icon";
+import Menu from "./Icon/menu";
 import Theme from "./Theme";
+import MobileMenu from "./Mobile";
 
 export default function Navbar({ Handler }) {
+  const [open, setOpen] = useState(false);
+  const menuHandler = () => {
+    setOpen(!open);
+  };
   return (
     <header className="flex justify-between py-2 px-28 max-sm:flex max-sm:flex-col max-sm:p-4 max-sm:gap-4 ">
       <div>
@@ -26,10 +32,11 @@ export default function Navbar({ Handler }) {
         </button>
       </div>
       <div className="hidden max-md:flex max-sm:hidden">
-        <button>
+        <button onClick={menuHandler}>
           <Menu />
         </button>
       </div>
+      {open && <MobileMenu setOpen={setOpen} />}
     </header>
   );
 }

@@ -1,6 +1,6 @@
 import TechnologyName from "./TechnologyName";
 import WorkImg from "./WorkImg";
-import WorkIcon from "./IconAndImg/Workicon";
+import WorkIcon from "./Icon/Workicon";
 
 export default function WorkRight() {
   return (
