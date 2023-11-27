@@ -1,12 +1,12 @@
 import TechnologyName from "./TechnologyName";
 import WorkImg from "./WorkImg";
-import WorkIcon from "./Workicon";
+import WorkIcon from "./IconAndImg/Workicon";
 
 export default function WorkRight() {
   return (
     <div>
-      <div className="flex shadow-xl">
-        <div className="flex flex-col gap-6 p-12 w-1/2">
+      <div className="flex shadow-xl max-md:flex max-md:flex-col-reverse ">
+        <div className="flex flex-col gap-6 p-12 w-1/2 max-md:p-16 max-md:w-full">
           <h2 className="text-xl">Fiskil</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
@@ -20,7 +20,7 @@ export default function WorkRight() {
             <WorkIcon />
           </div>
         </div>
-        <div className="p-12 bg-gray-100 rounded-xl w-1/2">
+        <div className="p-12 bg-gray-100 rounded-xlmax-md:m-auto">
           <WorkImg />
         </div>
       </div>

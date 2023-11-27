@@ -1,12 +1,12 @@
-import CallIcon from "@/components/CallIcon";
-import CopyIcon from "@/components/CopyIcon";
-import CopyrightIcon from "@/components/CopyrightIcon";
+import CallIcon from "@/components/IconAndImg/CallIcon";
+import CopyIcon from "@/components/IconAndImg/CopyIcon";
+import CopyrightIcon from "@/components/IconAndImg/CopyrightIcon";
 import ExprenceData from "@/components/ExprenceData";
 import HeroImg from "@/components/HeroImg";
-import HeroIcon from "@/components/Heroicon";
+import HeroIcon from "@/components/IconAndImg/Heroicon";
 import IntroductionImg from "@/components/IntroductionImg";
 import Location from "@/components/Location";
-import MessageIcon from "@/components/MessageIcon";
+import MessageIcon from "@/components/IconAndImg/MessageIcon";
 import Navbar from "@/components/Navbar";
 import Technology from "@/components/Technology";
 import Workleft from "@/components/WorkLeft";
@@ -18,21 +18,21 @@ export default function Home() {
   const [dark, setDark] = useState(true);
   const Handler = () => {
     setDark(!dark);
-    if (setDark(!dark)) {
+    if (setDark(!dark) === false) {
       <DarkTheme />;
     }
   };
   return (
     <div className={`${dark && "bg-black text-white"}`}>
       <section>
-        <Navbar Handler={Handler} dark={dark} />
+        <Navbar Handler={Handler} />
       </section>
       <section>
-        <div className=" flex gap-12 py-24 px-28">
-          <div className="hero--left gap-10 flex flex-col w-3/5">
-            <div className="hero--title gap-1">
+        <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12">
+          <div className="hero--left gap-10 flex flex-col max-md:m-auto">
+            <div className="hero--title gap-1 max-md:w-full ">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
-              <p className="text-base">
+              <p className="text-base max-md:w-full">
                 I'm a full stack developer (React.js & Node.js) with a focus on
                 creating (and occasionally designing) exceptional digital
                 experiences that are fast, accessible, visually appealing, and
@@ -54,23 +54,23 @@ export default function Home() {
               <HeroIcon />
             </div>
           </div>
-          <div className="hero--right pl-24 ">
+          <div className="hero--right max-md:mx-auto w-3/5 max-md:pl-16">
             <HeroImg />
           </div>
         </div>
       </section>
       <section>
-        <div className="intoduction flex flex-col py-24 px-28 gap-12 bg-gray-200">
+        <div className="intoduction flex flex-col py-24 px-28 gap-12 bg-gray-200 max-sm:hidden ">
           <div className="introduction--button flex">
             <button className="button bg-gray-300 py-1 px-5 rounded-xl m-auto">
               about me
             </button>
           </div>
-          <div className=" introduction--content  flex gap-12">
-            <div className="introduction--img pr-40">
+          <div className=" introduction--content  flex gap-52 max-md:flex max-md:flex-col">
+            <div className=" max-md:m-auto ">
               <IntroductionImg />
             </div>
-            <div className="introduction--text flex flex-col gap-4 w-1/2">
+            <div className="introduction--text flex flex-col gap-4 w-1/2 max-md:w-full">
               <h2>Curious about me? Here you have it:</h2>
               <p>
                 I'm a passionate, self-proclaimed designer who specializes in
@@ -118,7 +118,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="skill py-24 px-28 flex flex-col gap-12 ">
+        <div className="skill py-24 px-28 flex flex-col gap-12 max-sm:hidden">
           <div className="skill--text  flex flex-col m-auto gap-4">
             <button className="button bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto">
               Skills
@@ -133,7 +133,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="bg-gray-200 m-auto  py-24 px-28 flex flex-col gap-12">
+        <div className="bg-gray-200 m-auto  py-24 px-24 flex flex-col gap-12 max-sm:hidden">
           <div className="m-auto flex flex-col justify-center gap-4">
             <button className="button bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto">
               Experience
@@ -146,7 +146,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="flex flex-col py-24 px-28 gap-12 ">
+        <div className="flex flex-col py-24 px-28 gap-12 max-sm:hidden max-md:flex max-md:flex-col">
           <div className="work--title flex flex-col gap4 mx-auto text-center">
             <button className="button bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto">
               Work
@@ -159,7 +159,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="footer flex flex-col gap-12 mx-auto text-center">
+        <div className="footer flex flex-col gap-12 mx-auto text-center max-sm:hidden">
           <div className="footer--title">
             <button className="button  bg-gray-300 py-1 px-5 rounded-xl">
               Get in touch
@@ -188,7 +188,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex copyright justify-center py-6 px-20 ">
+        <div className="flex copyright justify-center py-6 px-20 max-sm:hidden">
           <CopyrightIcon />
           <p className="bg-red">
             2023 | Designed and coded with ❤️️ by Sagar Shah
