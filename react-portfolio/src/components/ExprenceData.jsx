@@ -30,7 +30,7 @@ export default function ExprenceData() {
     <div className="flex flex-col gap-12 ">
       {data.map((e) => {
         return (
-          <div className="flex justify-between bg-white py-8 px-16 mx-16 rounded-xl shadow-md gap-36 mx-auto max-md:flex max-md:flex-col max-md:gap-4 max-md:p-16 max-md:mx-0">
+          <div className="flex justify-between bg-white py-8 px-16 mx-20 rounded-xl shadow-md gap-36 mx-auto max-md:flex max-md:flex-col max-md:gap-4 max-md:p-16 max-md:mx-0">
             <img className="w-28 h-7" src={e.url} />
             <div className="flex flex-col gap-4">
               <h2 className="text-xl 900 text-zinc-700">{e.title}</h2>

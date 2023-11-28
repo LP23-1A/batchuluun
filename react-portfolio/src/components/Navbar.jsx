@@ -36,6 +36,7 @@ export default function Navbar({ themeToggle }) {
           <Menu />
         </button>
       </div>
+      {open && <MobileMenu setOpen={setOpen} />}
     </header>
   );
 }
