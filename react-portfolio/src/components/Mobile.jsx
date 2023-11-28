@@ -2,7 +2,7 @@ import Icon from "./Icon/Icon";
 import Theme from "./Theme";
 import Close from "./Icon/Close";
 
-export default function MobileMenu(props) {
+export default function MobileMenu(props, { Handler }) {
   const closeHandler = () => {
     props.setOpen(false);
   };
@@ -24,7 +24,7 @@ export default function MobileMenu(props) {
         <hr className="mt-4" />
         <div className="py-4">
           <div className="flex justify-between">
-            <p>Switch theme</p>
+            <p className="text-black">Switch theme</p>
             <button>
               <Theme />
             </button>

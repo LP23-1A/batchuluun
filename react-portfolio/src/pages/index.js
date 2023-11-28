@@ -11,21 +11,22 @@ import Navbar from "@/components/Navbar";
 import Technology from "@/components/Technology";
 import Workleft from "@/components/WorkLeft";
 import WorkRight from "@/components/WorkRight";
-import { useState } from "react";
-import DarkTheme from "@/components/Dark";
+import { useTheme } from "next-themes";
 
 export default function Home() {
-  const [dark, setDark] = useState(true);
-  const Handler = () => {
-    setDark(!dark);
-    if (setDark(!dark) === false) {
-      <DarkTheme />;
+  const { theme, setTheme } = useTheme();
+  const themeToggle = () => {
+    if (theme == "dark") {
+      setTheme("light");
+    }
+    if (theme == "light") {
+      setTheme("dark");
     }
   };
   return (
-    <div className={`${dark && "bg-black text-white"}`}>
+    <div>
       <section>
-        <Navbar Handler={Handler} />
+        <Navbar themeToggle={themeToggle} />
       </section>
       <section>
         <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12">
@@ -60,13 +61,13 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="intoduction flex flex-col py-24 px-28 gap-12 bg-gray-200 max-sm:hidden ">
+        <div className="intoduction flex flex-col  py-24 px-28 gap-52 bg-gray-200 max-sm:hidden max-md:gap-12">
           <div className="introduction--button flex">
             <button className="button bg-gray-300 py-1 px-5 rounded-xl m-auto">
               about me
             </button>
           </div>
-          <div className=" introduction--content  flex gap-52 max-md:flex max-md:flex-col">
+          <div className=" introduction--content justify-between flex gap-12 max-md:flex max-md:flex-col">
             <div className=" max-md:m-auto ">
               <IntroductionImg />
             </div>
@@ -140,7 +141,7 @@ export default function Home() {
             </button>
             <p>Here is a quick summary of my most recent experiences:</p>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <ExprenceData />
           </div>
         </div>

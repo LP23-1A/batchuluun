@@ -4,7 +4,7 @@ import Menu from "./Icon/menu";
 import Theme from "./Theme";
 import MobileMenu from "./Mobile";
 
-export default function Navbar({ Handler }) {
+export default function Navbar({ themeToggle }) {
   const [open, setOpen] = useState(false);
   const menuHandler = () => {
     setOpen(!open);
@@ -24,7 +24,7 @@ export default function Navbar({ Handler }) {
           <li>Contact</li>
           <li className="max-sm:hidden">|</li>
         </ul>
-        <button onClick={Handler}>
+        <button onClick={themeToggle}>
           <Theme />
         </button>
         <button className="bg-black text-white py-1 px-4 rounded-md ">
@@ -36,7 +36,6 @@ export default function Navbar({ Handler }) {
           <Menu />
         </button>
       </div>
-      {open && <MobileMenu setOpen={setOpen} />}
     </header>
   );
 }
