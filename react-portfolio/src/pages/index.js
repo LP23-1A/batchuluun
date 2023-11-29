@@ -11,25 +11,14 @@ import Navbar from "@/components/Navbar";
 import Technology from "@/components/Technology";
 import Workleft from "@/components/WorkLeft";
 import WorkRight from "@/components/WorkRight";
-import { useTheme } from "next-themes";
-
 export default function Home() {
-  const { theme, setTheme } = useTheme();
-  const themeToggle = () => {
-    if (theme == "dark") {
-      setTheme("light");
-    }
-    if (theme == "light") {
-      setTheme("dark");
-    }
-  };
   return (
-    <div>
+    <div className="m-0 p-0 box-border max-w-screen-2xl m-auto">
       <section>
-        <Navbar themeToggle={themeToggle} />
+        <Navbar />
       </section>
       <section>
-        <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12">
+        <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
           <div className="hero--left gap-10 flex flex-col max-md:m-auto">
             <div className="hero--title gap-1 max-md:w-full ">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
@@ -56,19 +45,21 @@ export default function Home() {
             </div>
           </div>
           <div className="hero--right max-md:mx-auto w-3/5 max-md:pl-16">
+            <div className="relative bg-slate-300 w-72 h-80 top-[35px] left-[35px] max-md:hidden dark:bg-slate-700"></div>
             <HeroImg />
           </div>
         </div>
       </section>
       <section>
-        <div className="intoduction flex flex-col  py-24 px-28 gap-52 bg-gray-200 max-sm:hidden max-md:gap-12">
+        <div className="intoduction flex flex-col  py-24 px-28 gap-52 bg-gray-200 max-sm:hidden max-md:gap-12 dark:bg-slate-900">
           <div className="introduction--button flex">
-            <button className="button bg-gray-300 py-1 px-5 rounded-xl m-auto">
+            <button className="button bg-gray-300 py-1 px-5 rounded-xl m-auto dark:bg-gray-600">
               about me
             </button>
           </div>
           <div className=" introduction--content justify-between flex gap-12 max-md:flex max-md:flex-col">
             <div className=" max-md:m-auto ">
+              <div className="relative bg-slate-300 w-96 h-96 right-[25px] top-[25px] max-md:hidden dark:bg-slate-700"></div>
               <IntroductionImg />
             </div>
             <div className="introduction--text flex flex-col gap-4 w-1/2 max-md:w-full">
@@ -134,20 +125,20 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="bg-gray-200 m-auto  py-24 px-24 flex flex-col gap-12 max-sm:hidden">
+        <div className="bg-gray-200 m-auto  py-24 px-32 flex flex-col gap-12 max-sm:hidden dark:bg-slate-900">
           <div className="m-auto flex flex-col justify-center gap-4">
             <button className="button bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto">
               Experience
             </button>
             <p>Here is a quick summary of my most recent experiences:</p>
           </div>
-          <div className="flex flex-col ">
+          <div className="flex flex-col px-24 max-md:px-0 ">
             <ExprenceData />
           </div>
         </div>
       </section>
       <section>
-        <div className="flex flex-col py-24 px-28 gap-12 max-sm:hidden max-md:flex max-md:flex-col">
+        <div className="flex flex-col py-24 px-28 gap-12 max-sm:hidden max-md:flex max-md:flex-col ">
           <div className="work--title flex flex-col gap4 mx-auto text-center">
             <button className="button bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto">
               Work
@@ -162,7 +153,7 @@ export default function Home() {
       <section>
         <div className="footer flex flex-col gap-12 mx-auto text-center max-sm:hidden">
           <div className="footer--title">
-            <button className="button  bg-gray-300 py-1 px-5 rounded-xl">
+            <button className="button  bg-gray-300 py-1 px-5 rounded-xl dark:bg-slate-700">
               Get in touch
             </button>
             <p>

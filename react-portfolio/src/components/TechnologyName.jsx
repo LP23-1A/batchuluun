@@ -35,8 +35,8 @@ export default function TechnologyName() {
     <>
       {dataName.map((props) => {
         return (
-          <div className="flex flex-wrap">
-            <button className="bg-gray-200 py-1 px-5 rounded-xl">
+          <div className="flex flex-wrap ">
+            <button className="bg-gray-200 py-1 px-5 rounded-xl dark:bg-gray-600">
               {props.name}
             </button>
           </div>

@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 const data = [
   {
     url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/768px-JavaScript-logo.png",
@@ -68,8 +69,9 @@ export default function Technology() {
   return (
     <>
       {data.map((el) => {
+        let key = uuidv4();
         return (
-          <div className="Technology ">
+          <div className="Technology " key={key}>
             <img className="w-16 h-16" src={el.url} alt="" />
             <p>{el.content}</p>
           </div>

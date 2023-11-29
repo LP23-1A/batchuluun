@@ -1,19 +1,28 @@
 import { useState } from "react";
-import Icon from "./Icon/Icon";
 import Menu from "./Icon/menu";
 import Theme from "./Theme";
 import MobileMenu from "./Mobile";
+import { useTheme } from "next-themes";
 
-export default function Navbar({ themeToggle }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
   const menuHandler = () => {
     setOpen(!open);
+  };
+  const ThemeToggle = () => {
+    if (theme == "dark") {
+      setTheme("light");
+    }
+    if (theme == "light" || theme == "system") {
+      setTheme("dark");
+    }
   };
   return (
     <header className="flex justify-between py-2 px-28 max-sm:flex max-sm:flex-col max-sm:p-4 max-sm:gap-4 ">
       <div>
-        <h1>
-          <Icon />
+        <h1 className="text-3xl max-md:text-black dark:text-white">
+          {"<ss/>"}
         </h1>
       </div>
       <div className=" flex gap-12 max-sm:block max-sm:gap-4 max-sm:flex max-sm:flex-col max-md:hidden">
@@ -24,10 +33,10 @@ export default function Navbar({ themeToggle }) {
           <li>Contact</li>
           <li className="max-sm:hidden">|</li>
         </ul>
-        <button onClick={themeToggle}>
+        <button onClick={ThemeToggle}>
           <Theme />
         </button>
-        <button className="bg-black text-white py-1 px-4 rounded-md ">
+        <button className="bg-black text-white py-1 px-4 rounded-md dark:bg-white dark:text-black">
           Download CV
         </button>
       </div>
