@@ -72,7 +72,11 @@ export default function Technology() {
         let key = uuidv4();
         return (
           <div className="Technology " key={key}>
-            <img className="w-16 h-16" src={el.url} alt="" />
+            <img
+              className="w-16 h-16 justify-around animate-bounce"
+              src={el.url}
+              alt=""
+            />
             <p>{el.content}</p>
           </div>
         );

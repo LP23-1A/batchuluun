@@ -1,6 +1,7 @@
 import Theme from "./Theme";
 import Close from "./Icon/Close";
 import { useTheme } from "next-themes";
+import ThemeChange from "./ThemeChange";
 
 export default function MobileMenu(props) {
   const { theme, setTheme } = useTheme();
@@ -35,7 +36,7 @@ export default function MobileMenu(props) {
           <div className="flex justify-between">
             <p className="text-black dark:text-white">Switch theme</p>
             <button onClick={ThemeToggle}>
-              <Theme />
+              <ThemeChange />
             </button>
           </div>
 

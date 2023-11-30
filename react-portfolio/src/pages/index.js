@@ -20,7 +20,7 @@ export default function Home() {
       <section>
         <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
           <div className="hero--left gap-10 flex flex-col max-md:m-auto">
-            <div className="hero--title gap-1 max-md:w-full ">
+            <div className="hero--title gap-2 max-md:w-full flex flex-col">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
               <p className="text-base max-md:w-full">
                 I'm a full stack developer (React.js & Node.js) with a focus on
@@ -112,14 +112,14 @@ export default function Home() {
       <section>
         <div className="skill py-24 px-28 flex flex-col gap-12 max-sm:hidden">
           <div className="skill--text  flex flex-col m-auto gap-4">
-            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto">
+            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto dark:bg-slate-700">
               Skills
             </button>
             <p className="text-center">
               The skills, tools and technologies I am really good at:
             </p>
           </div>
-          <div className="skill--technology flex flex-wrap gap-20 justify-around">
+          <div className="skill--technology flex flex-wrap gap-24 justify-around">
             <Technology />
           </div>
         </div>
@@ -127,20 +127,20 @@ export default function Home() {
       <section>
         <div className="bg-gray-200 m-auto  py-24 px-32 flex flex-col gap-12 max-sm:hidden dark:bg-slate-900">
           <div className="m-auto flex flex-col justify-center gap-4">
-            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto">
+            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto dark:bg-slate-700">
               Experience
             </button>
             <p>Here is a quick summary of my most recent experiences:</p>
           </div>
-          <div className="flex flex-col px-24 max-md:px-0 ">
+          <div className="flex flex-col px-28 max-md:px-0 ">
             <ExprenceData />
           </div>
         </div>
       </section>
       <section>
         <div className="flex flex-col py-24 px-28 gap-12 max-sm:hidden max-md:flex max-md:flex-col ">
-          <div className="work--title flex flex-col gap4 mx-auto text-center">
-            <button className="button bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto">
+          <div className="work--title flex flex-col gap-2 mx-auto text-center">
+            <button className="button bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto dark:bg-slate-700">
               Work
             </button>
             <p>Some of the noteworthy projects I have built:</p>
@@ -152,8 +152,8 @@ export default function Home() {
       </section>
       <section>
         <div className="footer flex flex-col gap-12 mx-auto text-center max-sm:hidden">
-          <div className="footer--title">
-            <button className="button  bg-gray-300 py-1 px-5 rounded-xl dark:bg-slate-700">
+          <div className="footer--title flex flex-col gap-2">
+            <button className="button  bg-gray-300 py-1 px-5 rounded-xl dark:bg-slate-700 w-fit m-auto">
               Get in touch
             </button>
             <p>

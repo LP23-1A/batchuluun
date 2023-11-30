@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Menu from "./Icon/menu";
-import Theme from "./Theme";
+
 import MobileMenu from "./Mobile";
 import { useTheme } from "next-themes";
+import ThemeChange from "./ThemeChange";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function Navbar() {
           <li className="max-sm:hidden">|</li>
         </ul>
         <button onClick={ThemeToggle}>
-          <Theme />
+          <ThemeChange />
         </button>
         <button className="bg-black text-white py-1 px-4 rounded-md dark:bg-white dark:text-black">
           Download CV
