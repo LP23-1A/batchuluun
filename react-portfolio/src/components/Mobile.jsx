@@ -34,7 +34,7 @@ export default function MobileMenu(props) {
         <hr className="mt-4" />
         <div className="py-4">
           <div className="flex justify-between">
-            <p className="text-black dark:text-white">Switch theme</p>
+            <p className="text-black dark:text-white">Switch themes</p>
             <button onClick={ThemeToggle}>
               <ThemeChange />
             </button>

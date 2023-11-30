@@ -34,9 +34,15 @@ export default function Navbar() {
           <li>Contact</li>
           <li className="max-sm:hidden">|</li>
         </ul>
-        <button onClick={ThemeToggle}>
-          <ThemeChange />
-        </button>
+        <div className="flex justify-between ">
+          <p className="text-black dark:text-white hidden max-sm:block">
+            Switch themes
+          </p>
+          <button onClick={ThemeToggle}>
+            <ThemeChange />
+          </button>
+        </div>
+
         <button className="bg-black text-white py-1 px-4 rounded-md dark:bg-white dark:text-black">
           Download CV
         </button>

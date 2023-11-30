@@ -59,7 +59,7 @@ export default function Home() {
           </div>
           <div className=" introduction--content justify-between flex gap-12 max-md:flex max-md:flex-col">
             <div className=" max-md:m-auto ">
-              <div className="relative bg-slate-300 w-96 h-96 right-[25px] top-[25px] max-md:hidden dark:bg-slate-700"></div>
+              <div className="relative bg-slate-300 w-96 h-96 right-[25px] top-[25px] max-md:hidden dark:bg-slate-700 max-lg:hidden"></div>
               <IntroductionImg />
             </div>
             <div className="introduction--text flex flex-col gap-4 w-1/2 max-md:w-full">
@@ -132,7 +132,7 @@ export default function Home() {
             </button>
             <p>Here is a quick summary of my most recent experiences:</p>
           </div>
-          <div className="flex flex-col px-28 max-md:px-0 ">
+          <div className="flex flex-col max-md:px-0 ">
             <ExprenceData />
           </div>
         </div>
