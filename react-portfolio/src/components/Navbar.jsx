@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Menu from "./Icon/menu";
 
-import MobileMenu from "./Mobile";
 import { useTheme } from "next-themes";
 import Theme from "./Theme";
 import DarkImg from "./darkImg";
+import MobileMenu from "./menu";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
