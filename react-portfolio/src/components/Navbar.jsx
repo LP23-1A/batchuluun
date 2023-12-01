@@ -48,7 +48,7 @@ export default function Navbar() {
           Download CV
         </button>
       </div>
-      <div className="hidden max-md:flex max-sm:hidden">
+      <div className="hidden max-md:flex ">
         <button onClick={menuHandler}>
           <Menu />
         </button>
