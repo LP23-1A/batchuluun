@@ -21,7 +21,7 @@ export default function Home() {
         <div className=" flex gap-32 py-24 px-28  max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
           <div className=" gap-10 flex flex-col max-md:m-auto">
             <div className=" gap-2 max-md:w-full flex flex-col">
-              <h1 className="text-6xl font-bold">Hi, asdasdasd👋</h1>
+              <h1 className="text-6xl font-bold">Hi, hu👋</h1>
               <p className="text-base max-md:w-full">
                 I'm a full stack developer (React.js & Node.js) with a focus on
                 creating (and occasionally designing) exceptional digital
