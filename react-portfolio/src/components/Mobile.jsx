@@ -1,7 +1,7 @@
 import Theme from "./Theme";
 import Close from "./Icon/Close";
 import { useTheme } from "next-themes";
-import ThemeChange from "./ThemeChange";
+import DarkImg from "./darkImg";
 
 export default function MobileMenu(props) {
   const { theme, setTheme } = useTheme();
@@ -19,7 +19,7 @@ export default function MobileMenu(props) {
   return (
     <div className="w-screen h-screen top-0 left-0 absolute bg-gray-400 flex justify-end">
       <div className="w-10/12  h-screen p-4 bg-white dark:bg-slate-700 ">
-        <div className="flex justify-between">
+        <div className="flex justify-between ">
           <h1 className="text-black dark:text-white">{"<ss />"}</h1>
           <button onClick={closeHandler}>
             <Close />
@@ -36,7 +36,7 @@ export default function MobileMenu(props) {
           <div className="flex justify-between">
             <p className="text-black dark:text-white">Switch themes</p>
             <button onClick={ThemeToggle}>
-              <ThemeChange />
+              {theme === "dark" ? <Theme /> : <DarkImg />}
             </button>
           </div>
 

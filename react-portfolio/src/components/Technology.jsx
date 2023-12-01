@@ -71,7 +71,7 @@ export default function Technology() {
       {data.map((el) => {
         let key = uuidv4();
         return (
-          <div className="Technology " key={key}>
+          <div key={key}>
             <img
               className="w-16 h-16 justify-around animate-bounce"
               src={el.url}

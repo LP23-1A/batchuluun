@@ -5,7 +5,7 @@ import ExprenceData from "@/components/ExprenceData";
 import HeroImg from "@/components/HeroImg";
 import HeroIcon from "@/components/Icon/Heroicon";
 import IntroductionImg from "@/components/IntroductionImg";
-import Location from "@/components/Location";
+import Location from "@/components/Icon/Location";
 import MessageIcon from "@/components/Icon/MessageIcon";
 import Navbar from "@/components/Navbar";
 import Technology from "@/components/Technology";
@@ -13,14 +13,14 @@ import Workleft from "@/components/WorkLeft";
 import WorkRight from "@/components/WorkRight";
 export default function Home() {
   return (
-    <div className="m-0 p-0 box-border max-w-screen-2xl m-auto">
+    <div className=" p-0 box-border max-w-screen-2xl m-auto">
       <section>
         <Navbar />
       </section>
       <section>
         <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
-          <div className="hero--left gap-10 flex flex-col max-md:m-auto">
-            <div className="hero--title gap-2 max-md:w-full flex flex-col">
+          <div className=" gap-10 flex flex-col max-md:m-auto">
+            <div className=" gap-2 max-md:w-full flex flex-col">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
               <p className="text-base max-md:w-full">
                 I'm a full stack developer (React.js & Node.js) with a focus on
@@ -30,7 +30,7 @@ export default function Home() {
                 for over 7 years, I still love it as if it was something new.
               </p>
             </div>
-            <div className="hero--location">
+            <div>
               <div className="flex">
                 <Location />
                 <p>Ahmedabad, India</p>
@@ -44,25 +44,25 @@ export default function Home() {
               <HeroIcon />
             </div>
           </div>
-          <div className="hero--right max-md:mx-auto w-3/5 max-md:pl-16">
+          <div className="max-md:mx-auto w-3/5 max-md:pl-16">
             <div className="relative bg-slate-300 w-72 h-80 top-[35px] left-[35px] max-md:hidden dark:bg-slate-700"></div>
             <HeroImg />
           </div>
         </div>
       </section>
       <section>
-        <div className="intoduction flex flex-col  py-24 px-28 gap-52 bg-gray-200 max-sm:hidden max-md:gap-12 dark:bg-slate-900">
-          <div className="introduction--button flex">
-            <button className="button bg-gray-300 py-1 px-5 rounded-xl m-auto dark:bg-gray-600">
+        <div className=" flex flex-col  py-24 px-28 gap-52 bg-gray-200 max-sm:hidden max-md:gap-12 dark:bg-slate-900">
+          <div className=" flex">
+            <button className="bg-gray-300 py-1 px-5 rounded-xl m-auto dark:bg-gray-600">
               about me
             </button>
           </div>
-          <div className=" introduction--content justify-between flex gap-12 max-md:flex max-md:flex-col">
+          <div className=" justify-between flex gap-12 max-md:flex max-md:flex-col">
             <div className=" max-md:m-auto ">
               <div className="relative bg-slate-300 w-96 h-96 right-[25px] top-[25px] max-md:hidden dark:bg-slate-700 max-lg:hidden"></div>
               <IntroductionImg />
             </div>
-            <div className="introduction--text flex flex-col gap-4 w-1/2 max-md:w-full">
+            <div className=" flex flex-col gap-4 w-1/2 max-md:w-full">
               <h2>Curious about me? Here you have it:</h2>
               <p>
                 I'm a passionate, self-proclaimed designer who specializes in
@@ -110,16 +110,16 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="skill py-24 px-28 flex flex-col gap-12 max-sm:hidden">
-          <div className="skill--text  flex flex-col m-auto gap-4">
-            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto dark:bg-slate-700">
+        <div className=" py-24 px-28 flex flex-col gap-12 max-sm:hidden">
+          <div className="  flex flex-col m-auto gap-4">
+            <button className=" bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto dark:bg-slate-700">
               Skills
             </button>
             <p className="text-center">
               The skills, tools and technologies I am really good at:
             </p>
           </div>
-          <div className="skill--technology flex flex-wrap gap-24 justify-around">
+          <div className=" flex flex-wrap gap-24 justify-around">
             <Technology />
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function Home() {
       <section>
         <div className="bg-gray-200 m-auto  py-24 px-32 flex flex-col gap-12 max-sm:hidden dark:bg-slate-900">
           <div className="m-auto flex flex-col justify-center gap-4">
-            <button className="button bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto dark:bg-slate-700">
+            <button className=" bg-gray-300 py-1 px-5 rounded-xl w-32 m-auto dark:bg-slate-700">
               Experience
             </button>
             <p>Here is a quick summary of my most recent experiences:</p>
@@ -139,8 +139,8 @@ export default function Home() {
       </section>
       <section>
         <div className="flex flex-col py-24 px-28 gap-12 max-sm:hidden max-md:flex max-md:flex-col ">
-          <div className="work--title flex flex-col gap-2 mx-auto text-center">
-            <button className="button bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto dark:bg-slate-700">
+          <div className=" flex flex-col gap-2 mx-auto text-center">
+            <button className=" bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto dark:bg-slate-700">
               Work
             </button>
             <p>Some of the noteworthy projects I have built:</p>

@@ -3,7 +3,8 @@ import Menu from "./Icon/menu";
 
 import MobileMenu from "./Mobile";
 import { useTheme } from "next-themes";
-import ThemeChange from "./ThemeChange";
+import Theme from "./Theme";
+import DarkImg from "./darkImg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -26,8 +27,8 @@ export default function Navbar() {
           {"<ss/>"}
         </h1>
       </div>
-      <div className=" flex gap-12 max-sm:block max-sm:gap-4 max-sm:flex max-sm:flex-col max-md:hidden">
-        <ul className="flex gap-12 max-sm:block max-sm:flex max-sm:flex-col max-sm:gap-4 ">
+      <div className=" flex gap-12  max-sm:gap-4 max-sm:flex max-sm:flex-col max-md:hidden">
+        <ul className="flex gap-12 max-sm:flex max-sm:flex-col max-sm:gap-4 ">
           <li>About</li>
           <li>Work</li>
           <li>Testimonails</li>
@@ -39,7 +40,7 @@ export default function Navbar() {
             Switch themes
           </p>
           <button onClick={ThemeToggle}>
-            <ThemeChange />
+            {theme === "dark" ? <Theme /> : <DarkImg />}
           </button>
         </div>
 
