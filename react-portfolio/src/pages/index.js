@@ -18,7 +18,7 @@ export default function Home() {
         <Navbar />
       </section>
       <section>
-        <div className=" flex gap-32 py-24 px-28  max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
+        <div className=" flex gap-32 py-24 px-28  max-md:flex max-md:py-4 max-md:px-4  max-md:flex-col-reverse max-md:gap-12 ">
           <div className=" gap-10 flex flex-col max-md:m-auto">
             <div className=" gap-2 max-md:w-full flex flex-col">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className=" flex flex-col  py-24 px-28 gap-52 bg-gray-200  max-md:gap-12 dark:bg-slate-900">
+        <div className=" flex flex-col  py-24 px-28 max-md:px-4 gap-52 bg-gray-200  max-md:gap-12 dark:bg-slate-900">
           <div className=" flex">
             <button className="bg-gray-300 py-1 px-5 rounded-xl m-auto dark:bg-gray-600">
               about me
@@ -97,7 +97,7 @@ export default function Home() {
                 <li>B.E. in Computer Engineering</li>
                 <li>Full time freelancer</li>
               </ul>
-              <ul className="flex gap-40">
+              <ul className="flex gap-40 max-md:gap-20">
                 <li>Avid learner</li>
                 <li>Aspiring indie hacker</li>
               </ul>
@@ -110,7 +110,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className=" py-24 px-28 flex flex-col gap-12 ">
+        <div className=" py-24 px-28 max-md:px-4 max-md:flex max-md:justify-center flex flex-col gap-12 ">
           <div className="  flex flex-col m-auto gap-4">
             <button className=" bg-gray-300 py-1 px-5 rounded-xl w-20 mx-auto dark:bg-slate-700">
               Skills
@@ -138,7 +138,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="flex flex-col py-24 px-28 gap-12 max-md:flex max-md:flex-col ">
+        <div className="flex flex-col py-24 px-28 max-md:px-4 gap-12 max-md:flex max-md:flex-col ">
           <div className=" flex flex-col gap-2 mx-auto text-center">
             <button className=" bg-gray-300 rounded-xl py-1 px-5 w-24 mx-auto dark:bg-slate-700">
               Work
@@ -151,7 +151,7 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="footer flex flex-col gap-12 mx-auto text-center ">
+        <div className="footer flex flex-col gap-12 mx-auto text-center max-md:">
           <div className="footer--title flex flex-col gap-2">
             <button className="button  bg-gray-300 py-1 px-5 rounded-xl dark:bg-slate-700 w-fit m-auto">
               Get in touch
@@ -162,14 +162,16 @@ export default function Home() {
             </p>
           </div>
           <div className=" contact flex flex-col ">
-            <div className="flex gap-4 email mx-auto">
+            <div className="flex gap-4 email mx-auto max-md:hidden">
               <MessageIcon />
-              <h1 className="text-4xl">reachsagarshah@gmail.com</h1>
+              <h1 className="text-4xl max-md:text-2xl ">
+                reachsagarshah@gmail.com
+              </h1>
               <CopyIcon />
             </div>
             <div className="flex gap-4 phone text-center mx-auto">
               <CallIcon />
-              <h1 className="text-4xl">+91 8980500565</h1>
+              <h1 className="text-4xl max-md:text-2xl">+91 8980500565</h1>
               <CopyIcon />
             </div>
           </div>
