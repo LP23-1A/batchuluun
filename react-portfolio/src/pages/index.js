@@ -18,7 +18,7 @@ export default function Home() {
         <Navbar />
       </section>
       <section>
-        <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
+        <div className=" flex gap-32 py-24 px-28  max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
           <div className=" gap-10 flex flex-col max-md:m-auto">
             <div className=" gap-2 max-md:w-full flex flex-col">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
@@ -180,7 +180,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex copyright justify-center py-6 px-20 max-sm:hidden">
+        <div className="flex copyright justify-center py-6 px-20">
           <CopyrightIcon />
           <p className="bg-red">
             2023 | Designed and coded with ❤️️ by Sagar Shah
