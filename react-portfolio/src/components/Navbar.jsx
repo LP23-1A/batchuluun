@@ -27,8 +27,8 @@ export default function Navbar() {
           {"<ss/>"}
         </h1>
       </div>
-      <div className=" flex gap-12  max-sm:gap-4 max-sm:flex max-sm:flex-col max-md:hidden">
-        <ul className="flex gap-12 max-sm:flex max-sm:flex-col max-sm:gap-4 ">
+      <div className=" flex gap-12  max-sm:gap-4 max-md:hidden">
+        <ul className="flex gap-12  max-sm:gap-4 ">
           <li>About</li>
           <li>Work</li>
           <li>Testimonails</li>
