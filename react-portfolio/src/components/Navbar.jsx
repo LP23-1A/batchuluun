@@ -21,7 +21,7 @@ export default function Navbar() {
     }
   };
   return (
-    <header className="flex justify-between py-2 px-28 max-sm:flex ">
+    <header className="flex justify-between py-2 px-28">
       <div>
         <h1 className="text-3xl max-md:text-black dark:text-white">
           {"<ss/>"}
