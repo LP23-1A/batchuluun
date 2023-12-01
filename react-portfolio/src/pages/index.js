@@ -18,7 +18,7 @@ export default function Home() {
         <Navbar />
       </section>
       <section>
-        <div className=" flex gap-32 py-24 px-28 max-sm:hidden max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
+        <div className=" flex gap-32 py-24 px-28  max-md:flex max-md:py-4 max-md:px-16  max-md:flex-col-reverse max-md:gap-12 ">
           <div className=" gap-10 flex flex-col max-md:m-auto">
             <div className=" gap-2 max-md:w-full flex flex-col">
               <h1 className="text-6xl font-bold">Hi, I’m Sagar 👋</h1>
