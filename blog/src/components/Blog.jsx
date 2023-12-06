@@ -1,30 +1,39 @@
-const data = [
-  {
-    url: "https://s3-alpha-sig.figma.com/img/3abf/26dd/585632b9d05dcfd0daffacedd55842f5?Expires=1702857600&Signature=GtIcIcyrku03di6uhi0mfVSqHwIdIsUNoUQebv4ln3q84G9ZINAh~g63In7v1hCCoAUoAP2aTUyCsm0UHjL-VzZqeJwqljXEBvlG38XfWgPV0jOZS41GSMMySeIgQ-5a6beEdkq3-nVqA8DtYQ5tFNSBjsKIZZlJohL6yXlNmptCXdFuApfCK6nWzmbfiNgeW-g3FK0QgNJNPlJaJFhYBW7ic31MDvl416i18XVjJb3BD8ahSb1F7OqOffjqQOGVpbAL4r4vPSLE8tV4YbaMpt1sknJsMh0hxR4lDqQ0txf88uFFFPq7xf9FpZyaEIntEtG8EVMtjjmahArIWExyCw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4",
-    button: "Technology",
-    description:
-      "The Impact of Technology on the Workplace: How Technology is Changing",
-    date: "August 20, 2022",
-  },
-];
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+const api = "https://dev.to/api/articles?username=gereltuyamz";
+
 export default function blogData() {
+  const [data, setdata] = useState([]);
+  const getData = async () => {
+    let res = await axios.get(api);
+    setdata(res.data);
+    console.log(res);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
-    <div>
+    <div className="flex flex-wrap gap-5">
       {data.map((e) => {
+        let key = uuidv4();
         return (
-          <div className="border-solid border-2 border-gray-300 w-[392px] rounded-xl">
+          <div
+            className="border-solid border border-gray-300 w-[392px] rounded-xl py-4"
+            key={key}
+          >
             <div className="p-4 flex flex-col gap-4 ">
               <div className="w-[360px] h-60 ">
-                <img src={e.url} alt="" className="rounded-xl" />
+                <img src={e.social_image} alt="" className="rounded-xl h-60" />
               </div>
               <div className="flex flex-col gap-4">
                 <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit">
-                  {e.button}
+                  {e.tags}
                 </button>
                 <h2 className=" text-2xl">{e.description}</h2>
               </div>
               <div>
-                <p>{e.date}</p>
+                <p>{e.published_timestamp}</p>
               </div>
             </div>
           </div>
