@@ -2,11 +2,15 @@ import Trend from "@/components/Trend";
 import Blog from "@/components/Blog";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 export default function Home() {
   return (
-    <div className="w-[1920px] m-auto box-border">
+    <div className="w-[1920px] m-auto box-border flex flex-col gap-24">
       <section className="px-[350px]">
         <Navbar />
+      </section>
+      <section className="px-[350px]">
+        <Hero />
       </section>
       <section className="px-[350px] ">
         <div className="flex flex-col gap-7">
