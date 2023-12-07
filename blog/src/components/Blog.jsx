@@ -4,11 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 const api = "https://dev.to/api/articles?username=gereltuyamz";
 
 export default function blogData() {
-  const [data, setdata] = useState([]);
+  const [data, setData] = useState([]);
   const getData = async () => {
     let res = await axios.get(api);
-    setdata(res.data);
-    console.log(res);
+    setData(res.data);
+  };
+  const handler = () => {
+    getData("https://dev.to/api/articles");
   };
   useEffect(() => {
     getData();
@@ -39,6 +41,11 @@ export default function blogData() {
           </div>
         );
       })}
+      <div className="border-solid border-slate-900 border text-center m-auto w-fit rounded">
+        <button className="py-2 px-5 text-gray-500" onClick={handler}>
+          Load more
+        </button>
+      </div>
     </div>
   );
 }

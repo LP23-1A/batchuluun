@@ -16,7 +16,7 @@ export default function Navbar() {
         <input
           type="text"
           placeholder="search"
-          className=" border-2 bg-slate-300 border-none px-2 rounded w-32 "
+          className=" border-2 bg-slate-100 border-none px-2 rounded w-32 "
         />
       </div>
     </div>
