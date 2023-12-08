@@ -1,5 +1,6 @@
 import BlogData from "@/components/BLog";
 import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import TrendData from "@/components/Trend";
 
@@ -8,6 +9,9 @@ export default function Home() {
     <div className=" flex flex-col w-[1920px] m-auto box-border gap-24">
       <section className="px-[350px]">
         <Navbar />
+      </section>
+      <section>
+        <Hero />
       </section>
       <section className="px-[350px]">
         <div className="flex flex-col gap-7">

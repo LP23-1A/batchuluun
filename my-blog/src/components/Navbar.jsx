@@ -1,4 +1,4 @@
-import NavLog from "@/icon/NavLogo";
+import NavLog from "@/components/icon/NavLogo";
 
 export default function Navbar() {
   return (
