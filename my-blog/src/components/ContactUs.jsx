@@ -1,17 +1,7 @@
-import { useState, useRef } from "react";
-export default function Contact() {
-  const [data, setData] = useState({
-    published: true,
-  });
-  const valueRef = useRef("");
-  const handlerInputValue = (e, key) => {
-    let mock = {};
-    mock[key] = e.target.value;
-    setData({ ...data, ...mock });
-  };
+export default function ContactUs() {
   return (
     <div className="w-[769px] px-20 box-border flex flex-col gap-10">
-      {/* <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5">
         <div>
           <h2 className="text-4xl">Contact Us</h2>
         </div>
@@ -34,28 +24,25 @@ export default function Contact() {
             <p>313-332-8662 info@email.com</p>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className="flex flex-col py-7 pl-8 pr-32 gap-5 bg-gray-100 rounded-xl">
-        {/* <h4 className="text-xl">Leave a Message</h4> */}
+        <h4 className="text-xl">Leave a Message</h4>
         <div className="flex justify-between">
           <input
             type="text"
-            placeholder="title"
+            placeholder="Your Name"
             className="border-solid border p-3 rounded"
-            onChange={(e) => handlerInputValue(e, "title")}
           />
           <input
             type="text"
-            placeholder="published"
+            placeholder="Your Email"
             className="border-solid border p-3 rounded"
-            onChange={(e) => handlerInputValue(e, "body_markdown")}
           />
         </div>
         <input
           type="text"
-          placeholder="tags"
+          placeholder="Subject"
           className="border-solid border p-3 rounded"
-          onChange={(e) => handlerInputValue(e, "tags")}
         />
         <textarea
           name=""
@@ -64,11 +51,10 @@ export default function Contact() {
           cols="30"
           rows="10"
           className="border-solid border p-3 rounded"
-          onChange={(e) => handlerInputValue(e, "series")}
         ></textarea>
-      </div>
-      <div className=" bg-indigo-100 p-4 text-center">
-        <button className="">Submit</button>
+        <div className=" bg-cyan-800 w-fit p-3 rounded-xl">
+          <button className="">Send Message</button>
+        </div>
       </div>
     </div>
   );

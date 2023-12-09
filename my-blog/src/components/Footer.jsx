@@ -6,8 +6,8 @@ import TwitterIcon from "@/components/icon/Twitter";
 
 export default function Footer() {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex justify-between border-b-slate-900 border-b">
+    <div className="flex flex-col gap-12">
+      <div className="flex justify-between ">
         <div className="flex flex-col gap-4 w-72">
           <h3 className="text-xl">About</h3>
           <p>
@@ -34,6 +34,7 @@ export default function Footer() {
           <InIcon />
         </div>
       </div>
+      <div className="border-b-slate-900 border-b"></div>
       <div className="flex justify-between py-8">
         <div className="flex gap-2">
           <FooterLogo />
@@ -44,8 +45,10 @@ export default function Footer() {
         </div>
         <div className="items-center">
           <ul className="flex gap-8 ">
-            <li>Terms of Use |</li>
-            <li>Privacy Policy |</li>
+            <li>Terms of Use</li>
+            <div className=" border-r border-slate-950 flex gap-2"></div>
+            <li>Privacy Policy </li>
+            <div className=" border-r border-slate-950 flex gap-2"></div>
             <li>Cookie Policy</li>
           </ul>
         </div>

@@ -10,7 +10,7 @@ export default function Home() {
       <section className="px-[350px]">
         <Navbar />
       </section>
-      <section>
+      <section className="px-[350px]">
         <Hero />
       </section>
       <section className="px-[350px]">
