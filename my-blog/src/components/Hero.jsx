@@ -1,43 +1,30 @@
 import image from "@/components/img/hero.png";
 import Arrow from "./Arrow";
-import Carousel from "carousel";
+import { Carousel } from "react-responsive-carousel";
+import { CAROUSEL_DATA } from "./CarouselData";
 export default function Hero() {
   return (
-    <>
+    <div>
       <Carousel>
-        <div>
-          <img src={image.src} alt="" />
-
-          <div className="w-[598px] p-10 bg-white rounded-xl flex flex-col gap-3">
-            <button className="py-1 px-3 text-white bg-indigo-500 rounded w-fit ">
-              Technology
-            </button>
-            <h1 className=" text-4xl">
-              Grid system for better Design User Interface
-            </h1>
-            <p>August 20, 2022</p>
-          </div>
-          <div className="flex justify-end">
-            <Arrow />
-          </div>
-        </div>
-        <div>
-          <img src={image.src} alt="" />
-
-          <div className="w-[598px] p-10 bg-white rounded-xl flex flex-col gap-3">
-            <button className="py-1 px-3 text-white bg-indigo-500 rounded w-fit ">
-              Technology
-            </button>
-            <h1 className=" text-4xl">
-              Grid system for better Design User Interface
-            </h1>
-            <p>August 20, 2022</p>
-          </div>
-          <div className="flex justify-end">
-            <Arrow />
-          </div>
+        <div className="flex truncate">
+          {CAROUSEL_DATA.map((e) => {
+            return (
+              <div
+                className="w-[1216px] h-[600px] bg-cover relative"
+                style={{ backgroundImage: `url(${e.url})` }}
+              >
+                <div className="w-[598px] p-10 bg-white flex flex-col gap-6 rounded-xl top-[320px] absolute left-[20px]">
+                  <button className="py-1 px-3 text-white bg-indigo-500 rounded w-fit ">
+                    {e.btn}
+                  </button>
+                  <h1 className="text-4xl">{e.desc}</h1>
+                  <p>{e.date}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Carousel>
-    </>
+    </div>
   );
 }

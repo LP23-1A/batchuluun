@@ -10,8 +10,10 @@ export default function Home() {
       <section className="px-[350px]">
         <Navbar />
       </section>
-      <section className="px-[350px]">
-        <Hero />
+      <section className="px-[350px] ">
+        <div className="flex flex-col gap-10">
+          <Hero />
+        </div>
       </section>
       <section className="px-[350px]">
         <div className="flex flex-col gap-7">
