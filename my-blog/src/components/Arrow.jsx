@@ -1,4 +1,4 @@
-export default function Caroseul() {
+export default function Arrow() {
   return (
     <div className="flex gap-1">
       <div className="border border-scale-500 p-1">
