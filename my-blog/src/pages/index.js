@@ -1,3 +1,4 @@
+import Arrow from "@/components/LeftArrow";
 import BlogData from "@/components/BLog";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";

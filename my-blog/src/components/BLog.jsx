@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-const api = "https://dev.to/api/articles?username=gereltuyamz";
+const api = "https://dev.to/api/articles";
 
 export default function BlogData() {
   const [data, setData] = useState([]);
@@ -18,11 +18,17 @@ export default function BlogData() {
 
   const filter = (name) =>
     setData(() => initData.current.filter((el) => el.tags === name));
+
+  const [add, setAdd] = useState(9);
+
   const handler = () => {
-    getData("https://dev.to/api/articles");
+    setAdd((add) => add + 3);
   };
+  // const handler = () => {
+  //   getData("https://dev.to/api/articles");
+  // };
   useEffect(() => {
-    getData();
+    getData(api);
   }, []);
   return (
     <div>
@@ -39,7 +45,7 @@ export default function BlogData() {
         </div>
       </div>
       <div className="flex flex-wrap gap-5 mt-10">
-        {data.map((e) => {
+        {data.slice(0, add).map((e) => {
           let key = uuidv4();
           return (
             <div

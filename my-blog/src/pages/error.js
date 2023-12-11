@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 
 export default function ErrorB() {
   return (
-    <section className="flex flex-col gap-28 w-[1920px]">
+    <section className="flex flex-col gap-28 w-[1920px] m-auto">
       <div className="px-[350px]">
         <Navbar />
       </div>
