@@ -1,4 +1,6 @@
+import BlogDetail from "@/pages/BlogDetail";
 import axios from "axios";
+import { COOKIE_NAME_PRERENDER_BYPASS } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -16,17 +18,18 @@ export default function BlogData() {
   };
   const reset = () => setData(initData.current);
 
-  const filter = (name) =>
-    setData(() => initData.current.filter((el) => el.tags === name));
+  const filter = (name) => {
+    setData(() =>
+      initData.current.filter((el) => el.tag_list.slice(0, 1) === name)
+    );
+    console.log(name);
+  };
 
   const [add, setAdd] = useState(9);
 
   const handler = () => {
     setAdd((add) => add + 3);
   };
-  // const handler = () => {
-  //   getData("https://dev.to/api/articles");
-  // };
   useEffect(() => {
     getData(api);
   }, []);
@@ -36,7 +39,7 @@ export default function BlogData() {
         <div className="flex gap-5">
           <button className=" text-yellow-400">All</button>
           <button onClick={() => filter("webdev")}>webdev</button>
-          <button onClick={() => filter("programming")}>programming</button>
+          <button onClick={() => filter("discuss")}>discuss</button>
           <button onClick={() => filter("nextjs")}>nextjs</button>
           <br />
         </div>
@@ -48,29 +51,36 @@ export default function BlogData() {
         {data.slice(0, add).map((e) => {
           let key = uuidv4();
           return (
-            <div
-              className="border-solid border border-gray-300 w-[392px] rounded-xl py-4"
-              key={key}
-            >
-              <div className="p-4 flex flex-col gap-4 ">
-                <div className="w-[360px] h-60 ">
-                  <img
-                    src={e.social_image}
-                    alt=""
-                    className="rounded-xl h-60"
-                  />
-                </div>
-                <div className="flex flex-col gap-4">
-                  <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit">
-                    {e.tags}
-                  </button>
-                  <h2 className=" text-2xl">{e.description}</h2>
-                </div>
-                <div>
-                  <p>{e.published_timestamp}</p>
+            <link href={`/BlogDetail`}>
+              <div
+                className="border-solid border border-gray-300 w-[392px] rounded-xl py-4"
+                key={key}
+              >
+                <div className="p-4 flex flex-col gap-4 ">
+                  <div className="w-[360px] h-60 ">
+                    <img
+                      src={e.social_image}
+                      alt=""
+                      className="rounded-xl h-60"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex gap-1">
+                      {e?.tag_list.slice(0, 1).map((t) => (
+                        <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit">
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+
+                    <h2 className=" text-2xl">{e.description}</h2>
+                  </div>
+                  <div>
+                    <p>{e.published_timestamp}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </link>
           );
         })}
         <div className="border-solid border-slate-900 border text-center m-auto w-fit rounded">

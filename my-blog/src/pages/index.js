@@ -1,9 +1,10 @@
-import Arrow from "@/components/LeftArrow";
+import Arrow from "@/components/icon/LeftArrow";
 import BlogData from "@/components/BLog";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import TrendData from "@/components/Trend";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
