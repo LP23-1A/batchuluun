@@ -7,11 +7,12 @@ export default function Navbar() {
     router.push("/contact");
   };
   const home = () => {
-    router.push("/index");
+    router.push("/");
   };
   const blog = () => {
-    router.push("/error");
+    router.push("/allblog");
   };
+
   return (
     <div className="flex justify-between py-8">
       <div className="w-4 h-4 items-center ">

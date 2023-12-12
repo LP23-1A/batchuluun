@@ -1,5 +1,4 @@
 import axios from "axios";
-import { COOKIE_NAME_PRERENDER_BYPASS } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -7,9 +6,9 @@ const api = "https://dev.to/api/articles";
 
 export default function BlogData() {
   const [data, setData] = useState([]);
-  const valueRef = useRef("");
   const initData = useRef([]);
   const router = useRouter();
+  const view = () => {};
   const getData = async () => {
     let res = await axios.get(api);
     initData.current = res.data;
@@ -17,13 +16,12 @@ export default function BlogData() {
   };
   const reset = () => setData(initData.current);
 
-  const filter = (name) => {
+  const filter = (tag) => {
     setData(() =>
-      initData.current.filter((el) => el.tag_list.slice(0, 1) === name)
+      initData.current.filter((el) => el.tag_list.some((c) => c.includes(tag)))
     );
-    console.log(name);
+    console.log(tag);
   };
-
   const [add, setAdd] = useState(9);
 
   const handler = () => {
@@ -36,25 +34,29 @@ export default function BlogData() {
     <div>
       <div className="flex justify-between">
         <div className="flex gap-5">
-          <button className=" text-yellow-400">All</button>
+          <button className=" text-yellow-400" onClick={reset}>
+            All
+          </button>
           <button onClick={() => filter("webdev")}>webdev</button>
           <button onClick={() => filter("discuss")}>discuss</button>
-          <button onClick={() => filter("nextjs")}>nextjs</button>
+          <button onClick={() => filter("watercooler")}>watercooler</button>
+          <button onClick={() => filter("top7")}>top7</button>
+
           <br />
         </div>
         <div>
-          <button onClick={reset}>View All</button>
+          <button onClick={view}>View All</button>
         </div>
       </div>
-      <div className="flex flex-wrap gap-5 mt-10">
+      <div className="flex flex-wrap gap-5 mt-10 ">
         {data.slice(0, add).map((e) => {
           let key = uuidv4();
           return (
             <div
-              className="border-solid border border-gray-300 w-[392px] rounded-xl py-4"
+              className="border-solid border border-gray-300 w-[392px] rounded-xl py-4 flex "
               key={key}
             >
-              <div className="p-4 flex flex-col gap-4 ">
+              <div className="p-4 flex  gap-4 flex-col ">
                 <div className="w-[360px] h-60 ">
                   <img
                     src={e.social_image}
@@ -63,8 +65,8 @@ export default function BlogData() {
                   />
                 </div>
                 <div className="flex flex-col gap-4">
-                  <div className="flex gap-1">
-                    {e?.tag_list.slice(0, 1).map((t) => (
+                  <div className="flex gap-1 flex-wrap">
+                    {e?.tag_list.map((t) => (
                       <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit">
                         {t}
                       </button>

@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 
 export default function Contact() {
   return (
-    <section className="w-[1920px] flex flex-col gap-28">
+    <section className="w-[1920px] flex flex-col gap-28 m-auto">
       <div className="px-[350px]">
         <Navbar />
       </div>
