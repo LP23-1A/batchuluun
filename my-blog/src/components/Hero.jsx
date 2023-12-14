@@ -20,7 +20,7 @@ export default function Hero() {
     setActiveIndex((activeIndex) => activeIndex - 1);
   };
   return (
-    <div className="">
+    <div className="max-sm:hidden">
       <div className="flex overflow-hidden">
         <div
           className="w-[1216px] h-[600px] bg-cover relative overflow-hidden"

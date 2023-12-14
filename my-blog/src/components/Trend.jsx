@@ -13,13 +13,13 @@ export default function TrendData() {
     getData();
   }, []);
   return (
-    <div className="flex flex-wrap gap-5">
+    <div className="flex flex-wrap gap-5 max-sm:flex max-sm:flex-col">
       {data.slice(0, 4).map((e) => {
         let key = uuidv4();
         return (
           <div
             key={key}
-            className="w-72 h-80 rounded-xl bg-cover "
+            className="w-72 h-80 rounded-xl bg-cover max-sm:w-[400px] max-sm:h-[320px]"
             style={{ backgroundImage: `url(${e.social_image})` }}
           >
             <div className="pt-44 pl-7 flex flex-col gap-4">

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 const api = "https://dev.to/api/articles";
 import Link from "next/link";
@@ -32,8 +31,8 @@ export default function BlogData() {
     getData(api);
   }, []);
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="flex flex-col gap-8">
+      <div className="flex justify-between max-sm:hidden">
         <div className="flex gap-5">
           <button className=" text-yellow-400" onClick={reset}>
             All
@@ -49,10 +48,9 @@ export default function BlogData() {
           <button onClick={view}>View All</button>
         </div>
       </div>
-      <div className="flex flex-wrap gap-5 mt-10 ">
+      <div className="flex flex-wrap gap-5 mt-10 max-sm:flex max-sm:flex-col max-sm:mx-auto">
         {data.slice(0, add).map((e) => {
           let key = uuidv4();
-          console.log(e.id);
           return (
             <div
               className="border-solid border border-gray-300 w-[392px] rounded-xl py-4 flex "
@@ -78,19 +76,24 @@ export default function BlogData() {
 
                     <h2 className=" text-2xl">{e.description}</h2>
                   </div>
-                  <div>
-                    <p>{e.published_timestamp}</p>
+                  <div className="flex items-center">
+                    <img
+                      className="w-8 h-8 rounded-3xl"
+                      src={e.user.profile_image}
+                      alt=""
+                    />
+                    <p className="flex items-center">{e.published_timestamp}</p>
                   </div>
                 </div>
               </Link>
             </div>
           );
         })}
-        <div className="border-solid border-slate-900 border text-center m-auto w-fit rounded">
-          <button className="py-2 px-5 text-gray-500" onClick={handler}>
-            Load more
-          </button>
-        </div>
+      </div>
+      <div className="border-solid border-slate-900 border text-center m-auto w-fit rounded">
+        <button className="py-2 px-5 text-gray-500" onClick={handler}>
+          Load more
+        </button>
       </div>
     </div>
   );
