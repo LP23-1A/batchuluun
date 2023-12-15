@@ -33,7 +33,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="px-[350px] max-sm:px-0 max-sm:mx-auto">
+      <section className="px-[350px]  max-sm:mx-auto bg-slate-100 py-16 max-sm:px-[190px]">
         <Footer />
       </section>
     </div>

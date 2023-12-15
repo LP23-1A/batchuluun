@@ -14,6 +14,7 @@ export default function BlogData() {
     let res = await axios.get(api);
     initData.current = res.data;
     setData(res.data);
+    console.log(res.data);
   };
   const reset = () => setData(initData.current);
 
@@ -67,11 +68,9 @@ export default function BlogData() {
                   </div>
                   <div className="flex flex-col gap-4">
                     <div className="flex gap-1 flex-wrap">
-                      {e.tag_list.map((t) => (
-                        <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit">
-                          {t}
-                        </button>
-                      ))}
+                      <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit flex gap-2">
+                        {e.tags}
+                      </button>
                     </div>
 
                     <h2 className=" text-2xl">{e.description}</h2>

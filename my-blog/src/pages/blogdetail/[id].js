@@ -3,11 +3,9 @@ import Navbar from "@/components/Navbar";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import image from "../../components/img/profile.png";
 
 export default function BlogDetail() {
   const [detail, setDetail] = useState(null);
-  // const [data, setData] = useState([]);
   const router = useRouter();
 
   const fetchDetail = async () => {
@@ -23,12 +21,6 @@ export default function BlogDetail() {
   }, [router.isReady]);
   console.log(detail);
   return (
-    // <div>
-    //   {detail && JSON.stringify(detail, 2, null)}
-    //   <div>
-    //     <h1>hello</h1>
-    //   </div>
-    // </div>
     <div className="w-[1920px] m-auto flex flex-col gap-[100px]">
       <section className="px-[350px]">
         <Navbar />

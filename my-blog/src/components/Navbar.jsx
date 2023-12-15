@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Menu from "./icon/Menu";
 import { useState } from "react";
 import ResMenu from "./ResMenu";
+import Close from "./icon/Close";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -17,21 +18,18 @@ export default function Navbar() {
   const blog = () => {
     router.push("/allblog");
   };
-  const menuHandler = () => {
-    setOpen(!open);
-    console.log(open);
-  };
   return (
     <div className="flex justify-between py-8 z-50">
       <div className="w-4 h-4 items-center ">
         <NavLog />
       </div>
       <div className="hidden max-sm:flex max-sm:">
-        <button onClick={menuHandler}>
-          <Menu />
+        <button onClick={() => setOpen(!open)}>
+          {open === false ? <Menu /> : <Close />}
         </button>
         {open && <ResMenu setOpen={setOpen} />}
       </div>
+
       <div className="text-center max-sm:hidden">
         <ul className="flex gap-10 text-center items-center">
           <button onClick={home}>Home</button>
