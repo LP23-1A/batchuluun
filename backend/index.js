@@ -1,10 +1,10 @@
-import express from "express";
+import express, { query } from "express";
 import dotenv from "dotenv";
 import bp from "body-parser";
 import { pool } from "./db.js";
 
 dotenv.config();
-const PORT = 5432;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 app.use(bp.json());
@@ -13,7 +13,7 @@ app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
 });
 
-app.get("/user", async (req, res) => {
+app.get("/users", async (req, res) => {
   try {
     const queryText = `SELECT * FROM users`;
     const response = await pool.query(queryText);
@@ -23,12 +23,13 @@ app.get("/user", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
+app.get("/user", async (req, res) => {
   const { name, email } = req.body;
   try {
     const queryText = `SELECT * FROM users WHERE name='${name}' AND email='${email}'`;
     const response = await pool.query(queryText);
     res.send(response.rows);
+    console.log(name);
   } catch (error) {
     console.error(error);
   }
@@ -40,7 +41,7 @@ app.post("/createTable", async (_, res) => {
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL
     )`;
     await pool.query(tableQueryText);
     res.send("ok");
@@ -63,6 +64,28 @@ app.post("/user", async (req, response) => {
   }
 });
 
+app.delete("/users", async (req, res) => {
+  const { name, email, id } = req.body;
+  try {
+    const queryText = `DELETE FROM users WHERE (name = '${name}' AND email='${email}') OR id='${id}' `;
+    await pool.query(queryText);
+    res.send("delete");
+  } catch (error) {
+    res.send("error").end();
+    console.log(error);
+  }
+});
+app.put("/user", async (req, res) => {
+  const { name, email, id } = req.body;
+  try {
+    const queryText = `UPDATE users SET name = '${name}', email='${email}' WHERE id='${id}' `;
+    await pool.query(queryText);
+    res.send("updated");
+  } catch (error) {
+    res.send("error").end();
+    console.log(error);
+  }
+});
 // `
 //     INSERT INTO users (name, email) VALUES ($1, $2)
 //     INSERT INTO tableName (fields) Values ()
