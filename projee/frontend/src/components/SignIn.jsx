@@ -1,16 +1,16 @@
 import { useState } from "react";
 import Logo from "../icon/LogLogo";
 import axios from "axios";
-const api = "localhost:8000/users";
+
+const api = "http://localhost:3000/";
 export default function SignIn() {
   const [name, setName] = useState("");
   //   const [email, setEmail] = useState("");
   //   const [password, setPassword] = useState("");
-  const handlerName = () => {
-    // let res = await axios.get(api);
-    // setName(res.data);
-    setName((e) => e.target.value);
-    console.log(setName);
+  const handlerName = async () => {
+    let res = await axios.post(api, { name: name });
+
+    console.log(res, "res");
   };
 
   return (
@@ -30,6 +30,7 @@ export default function SignIn() {
             type="text"
             placeholder="Name"
             className="border py-2 px-2 rounded-xl "
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             // value={email}
@@ -49,7 +50,7 @@ export default function SignIn() {
             placeholder="Re-Password"
             className="border py-2 px-2 rounded-xl "
           />
-          <button className="btn btn-primary rounded-xl" onChange={handlerName}>
+          <button className="btn btn-primary rounded-xl" onClick={handlerName}>
             Log in
           </button>
         </div>

@@ -6,5 +6,5 @@ const { Pool } = pg;
 dotev.config();
 export const pool = new Pool({
   ssl: true,
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DB_URL,
 });
