@@ -1,18 +1,15 @@
+"use client";
 import { useState } from "react";
-import Logo from "../icon/LogLogo";
+import Logo from "../../icon/LogLogo";
 import axios from "axios";
 
-const api = "http://localhost:8000/users";
+const api = "http://localhost:3000/";
 export default function SignIn() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
   const handlerName = async () => {
-    let res = await axios.post(api, {
-      name: name,
-      email: email,
-      password: password,
-    });
+    let res = await axios.post(api, { name: name });
 
     console.log(res, "res");
   };
@@ -26,9 +23,7 @@ export default function SignIn() {
         </div>
         <div className="flex flex-col gap-1">
           <h3 className="text-center">Welcome Back</h3>
-          <p className="text-center">
-            Sign up below to create your Wallet account
-          </p>
+          <p className="text-center">Welcome back, Please enter your details</p>
         </div>
         <div className="flex flex-col gap-3 w-[384px]">
           <input
@@ -39,23 +34,22 @@ export default function SignIn() {
             onChange={(e) => setName(e.target.value)}
           />
           <input
-            value={email}
+            // value={email}
             type="text"
             placeholder="Email"
             className="border py-2 px-2 rounded-xl "
-            onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            value={password}
+            // value={password}
             type="text"
             placeholder="Password"
             className="border py-2 px-2 rounded-xl "
-            onChange={(e) => setPassword(e.target.value)}
           />
           <input
+            // value={password}
             type="text"
             placeholder="Re-Password"
-            className="border py-2 px-2 rounded-xl"
+            className="border py-2 px-2 rounded-xl "
           />
           <button className="btn btn-primary rounded-xl" onClick={handlerName}>
             Log in

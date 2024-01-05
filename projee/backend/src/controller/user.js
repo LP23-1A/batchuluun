@@ -1,4 +1,4 @@
-import { pool } from "../db.js";
+import { pool } from "../../db.js";
 export const getUsers = async (req, res) => {
   try {
     const queryText = `SELECT * FROM users`;
@@ -9,12 +9,12 @@ export const getUsers = async (req, res) => {
   }
 };
 export const getOneUser = async (req, res) => {
-  const { name, email } = req.body;
+  const { email, password } = req.body;
   try {
-    const queryText = `SELECT * FROM users WHERE name='${name}' AND email='${email}'`;
+    const queryText = `SELECT * FROM users WHERE password='${password}' AND email='${email}'`;
     const response = await pool.query(queryText);
     res.send(response.rows);
-    console.log(name);
+    console.log(password);
   } catch (error) {
     console.error(error);
   }
