@@ -13,10 +13,12 @@ export const getOneUser = async (req, res) => {
   try {
     const queryText = `SELECT * FROM users WHERE password='${password}' AND email='${email}'`;
     const response = await pool.query(queryText);
+    if (response.rows.length === 0) throw error;
     res.send(response.rows);
-    console.log(password);
+    console.log("success");
   } catch (error) {
-    console.error(error);
+    console.error("Wrong username & password");
+    res.status(400).send("Wrong username and password");
   }
 };
 

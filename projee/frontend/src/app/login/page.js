@@ -1,18 +1,17 @@
+"use client";
 import { useState } from "react";
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Geld from "./Geld";
+import Geld from "@/components/Geld";
 const api = "http://localhost:8000/users/user";
 export default function LogIn() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setpassWord] = useState("");
   const LogIn = async () => {
-    let res = await axios.get(api, { email: email, password: password });
-    console.log(res, "succes");
+    const res = await axios.get(api, { email: email, password: password });
   };
-
   return (
     <div className=" bg-indigo-900">
       <div className="bg-white flex justify-center items-center w-1/2 h-screen ">
