@@ -4,14 +4,19 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Geld from "@/components/Geld";
-const api = "http://localhost:8000/users/user";
+import Alert from "@/components/Alert";
+const api = "http://localhost:8000/users/oneuser";
 export default function LogIn() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const LogIn = async () => {
     const res = await axios.post(api, { email: email, password: password });
-    console.log(email, password);
+    if ((res.data = "success")) {
+      router.push("/loading");
+    } else {
+      <Alert />;
+    }
   };
   return (
     <div className=" bg-indigo-900">
@@ -36,7 +41,7 @@ export default function LogIn() {
             />
             <input
               value={password}
-              type="text"
+              type="password"
               placeholder="Password"
               className="border py-2 px-2 rounded-xl "
               onChange={(e) => setPassword(e.target.value)}

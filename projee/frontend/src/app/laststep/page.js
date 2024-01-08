@@ -1,7 +1,19 @@
+"use client";
 import Allow from "@/components/Allow";
 import Geld from "@/components/Geld";
+import axios from "axios";
+const api = "http://localhost:8000/users";
 
 export default function Step() {
+  console.log(localStorage.getItem("data"));
+  const handlerName = async () => {
+    // const getItem = localStorage.getItem(key);
+    // let res = await axios.post(api, {
+    //   getItem,
+    // });
+
+    console.log(localStorage.getItem("data"));
+  };
   return (
     <div className="flex flex-col gap-24">
       <div className="flex flex-col gap-12 w-screen pt-10  items-center">
@@ -24,7 +36,9 @@ export default function Step() {
           Your very first account has been created. Now continue to dashboard
           and start tracking
         </p>
-        <button className="btn btn-primary px-32 py-4">Go To Dashboard</button>
+        <button className="btn btn-primary px-32 py-4" onClick={handlerName}>
+          Go To Dashboard
+        </button>
       </div>
     </div>
   );

@@ -18,6 +18,16 @@ export default function SignIn() {
 
     console.log(res, "res");
   };
+  if (localStorage.getItem("data") == null) {
+    localStorage.setItem("data", "[]");
+  }
+  const keys = { name, email, password };
+  const step = () => {
+    router.push("/step");
+    // localStorage.setItem("data", JSON.stringify(keys));
+    localStorage.removeItem("data");
+    console.log(keys);
+  };
 
   return (
     <div className=" w-100vw bg-indigo-800">
@@ -60,11 +70,8 @@ export default function SignIn() {
               placeholder="Re-Password"
               className="border py-2 px-2 rounded-xl"
             />
-            <button
-              className="btn btn-primary rounded-xl"
-              onClick={handlerName}
-            >
-              Log in
+            <button className="btn btn-primary rounded-xl" onClick={step}>
+              Sign in
             </button>
           </div>
           <div>
