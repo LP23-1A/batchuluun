@@ -9,12 +9,12 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setpassWord] = useState("");
   const LogIn = async () => {
-    let res = await axios.get(api, { email: email, password: password });
-    console.log(res, "succes");
+    let res = await axios.post(api, { email: email, password: password });
+    console.log(res, "res");
   };
 
   return (
-    <div className=" bg-indigo-900">
+    <div className=" bg-blue-800">
       <div className="bg-white flex justify-center items-center w-1/2 h-screen ">
         <div className=" flex flex-col gap-10 ">
           <div className="flex justify-center">
@@ -36,7 +36,7 @@ export default function LogIn() {
             />
             <input
               value={password}
-              type="text"
+              type="password"
               placeholder="Password"
               className="border py-2 px-2 rounded-xl "
               onChange={(e) => setpassWord(e.target.value)}
@@ -49,7 +49,7 @@ export default function LogIn() {
             <p className="text-center">
               Don’t have account?{" "}
               <span
-                className=" text-sky-600 cursor-pointer"
+                className=" text-blue-800 cursor-pointer"
                 onClick={() => router.push("/signin")}
               >
                 Sign in

@@ -21,7 +21,7 @@ export default function SignIn() {
 
   return (
     <div className=" w-100vw bg-indigo-800">
-      <div className="bg-white flex justify-center items-center w-1/2">
+      <div className="bg-white flex justify-center items-center w-1/2 h-screen ">
         <div className="py-[320px] flex flex-col gap-10 ">
           <div className="flex justify-center">
             <Geld />
@@ -50,7 +50,7 @@ export default function SignIn() {
             />
             <input
               value={password}
-              type="text"
+              type="password"
               placeholder="Password"
               className="border py-2 px-2 rounded-xl "
               onChange={(e) => setPassword(e.target.value)}
@@ -71,7 +71,7 @@ export default function SignIn() {
             <p className="text-center">
               Don’t have account?{" "}
               <span
-                className=" text-sky-600 cursor-pointer"
+                className=" text-blue-800 cursor-pointer"
                 onClick={() => router.push("/login")}
               >
                 Log in

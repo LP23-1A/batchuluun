@@ -8,9 +8,10 @@ const api = "http://localhost:8000/users/user";
 export default function LogIn() {
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [password, setpassWord] = useState("");
+  const [password, setPassword] = useState("");
   const LogIn = async () => {
-    const res = await axios.get(api, { email: email, password: password });
+    const res = await axios.post(api, { email: email, password: password });
+    console.log(email, password);
   };
   return (
     <div className=" bg-indigo-900">
@@ -38,7 +39,7 @@ export default function LogIn() {
               type="text"
               placeholder="Password"
               className="border py-2 px-2 rounded-xl "
-              onChange={(e) => setpassWord(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <button className="btn btn-primary rounded-xl" onClick={LogIn}>
               Log in
@@ -48,7 +49,7 @@ export default function LogIn() {
             <p className="text-center">
               Don’t have account?{" "}
               <span
-                className=" text-sky-600 cursor-pointer"
+                className=" text-blue-800 cursor-pointer"
                 onClick={() => router.push("/signin")}
               >
                 Sign in

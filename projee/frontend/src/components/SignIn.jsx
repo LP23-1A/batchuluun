@@ -47,7 +47,7 @@ export default function SignIn() {
           />
           <input
             value={password}
-            type="text"
+            type="password"
             placeholder="Password"
             className="border py-2 px-2 rounded-xl "
             onChange={(e) => setPassword(e.target.value)}
