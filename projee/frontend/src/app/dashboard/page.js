@@ -1,9 +1,11 @@
 "use client";
 import Geld from "@/components/Geld";
+import Icon from "@/components/Icon";
 import BottomArrow from "@/icon/BottomArrow";
 import Logo from "@/icon/LogLogo";
 import Profile from "@/icon/Profile";
 import TopArrow from "@/icon/TopArrow";
+import image from "@/img/1.jpg";
 import {
   Chart as Chartjs,
   BarElement,
@@ -92,6 +94,10 @@ export default function DashBoard() {
             <Bar data={data} options={option}></Bar>
           </div>
         </div>
+      </div>
+      <div>
+        <img src={image} className=" bg-slate-500" />
+        <Icon image={image} />
       </div>
     </div>
   );
