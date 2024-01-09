@@ -9,24 +9,22 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const handlerName = async () => {
-    let res = await axios.post(api, {
-      name: name,
-      email: email,
-      password: password,
-    });
+  // const handlerName = async () => {
+  //   let res = await axios.post(api, {
+  //     name: name,
+  //     email: email,
+  //     password: password,
+  //   });
 
-    console.log(res, "res");
-  };
-  if (localStorage.getItem("data") == null) {
-    localStorage.setItem("data", "[]");
-  }
+  //   console.log(res, "res");
+  // };
+  // if (localStorage.getItem("data") == null) {
+  //   localStorage.setItem("data", "[]");
+  // }
   const keys = { name, email, password };
   const step = () => {
     router.push("/step");
-    // localStorage.setItem("data", JSON.stringify(keys));
-    localStorage.removeItem("data");
-    console.log(keys);
+    localStorage.setItem("data", JSON.stringify(keys));
   };
 
   return (

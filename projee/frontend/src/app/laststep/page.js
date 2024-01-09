@@ -5,14 +5,16 @@ import axios from "axios";
 const api = "http://localhost:8000/users";
 
 export default function Step() {
-  console.log(localStorage.getItem("data"));
+  const data = JSON.parse(localStorage.getItem("data"));
+  console.log(data);
   const handlerName = async () => {
-    // const getItem = localStorage.getItem(key);
-    // let res = await axios.post(api, {
-    //   getItem,
-    // });
-
-    console.log(localStorage.getItem("data"));
+    let res = await axios.post(api, {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      currency_type: data.currency,
+    });
+    console.log("success");
   };
   return (
     <div className="flex flex-col gap-24">
@@ -22,9 +24,9 @@ export default function Step() {
         </div>
         <div>
           <ul class="steps">
-            <li class="step step-primary">Currency</li>
+            <li className="step step-primary">Currency</li>
 
-            <li class="step step-primary">Finish</li>
+            <li className="step step-primary">Finish</li>
           </ul>
         </div>
       </div>
