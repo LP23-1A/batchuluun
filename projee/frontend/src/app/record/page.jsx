@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
+import Left from "@/icon/LeftIcon";
+import Right from "@/icon/RightIcon";
 
 export default function Record() {
   const typesData = [
@@ -55,7 +57,7 @@ export default function Record() {
       <div className="">
         <Navbar />
       </div>
-      <div className="px-32 bg-slate-200 py-6 ">
+      <div className="px-32 bg-slate-200 py-6 flex ">
         <div className="w-[282px] flex flex-col gap-6 bg-white rounded-xl py-6 px-4 ">
           <div className=" flex flex-col gap-6">
             <h2 className="text-3xl">Records</h2>
@@ -117,6 +119,23 @@ export default function Record() {
               />
             </div>
             <input type="range" min={0} max={1000} />
+          </div>
+        </div>
+        <div className="">
+          <div className="flex justify-between">
+            <div className="flex gap-3">
+              <Left />
+              <p>Last 30 Days</p>
+              <Right />
+            </div>
+            <div>
+              <div className="">
+                <button className="flex items-center">
+                  <span className="text-lg">Newest first </span>
+                  <Leading />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
