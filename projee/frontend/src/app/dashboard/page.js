@@ -1,11 +1,11 @@
 "use client";
+import Doughnut from "@/components/Doughnut";
 import Geld from "@/components/Geld";
-import Icon from "@/components/Icon";
+import Homecomp from "@/components/Homecomp";
+import Navbar from "@/components/Navbar";
 import BottomArrow from "@/icon/BottomArrow";
-import Logo from "@/icon/LogLogo";
-import Profile from "@/icon/Profile";
 import TopArrow from "@/icon/TopArrow";
-import image from "@/img/1.jpg";
+
 import {
   Chart as Chartjs,
   BarElement,
@@ -26,25 +26,21 @@ export default function DashBoard() {
         borderColor: "black",
         backgroundColor: ["green"],
         borderWidth: 1,
+        options: false,
+      },
+      {
+        label: "sales number",
+        data: [200, 200, 200, 200, 200, 200],
+        borderColor: "black",
+        backgroundColor: ["orange"],
+        borderWidth: 1,
       },
     ],
   };
   const option = {};
   return (
     <div className=" bg-white w-[1440px] m-auto">
-      <div className=" px-32 py-4 flex justify-between">
-        <div className="flex gap-6 items-center">
-          <Logo />
-          <p>DashBoard</p>
-          <p>Records</p>
-        </div>
-        <div className="flex gap-6">
-          <button className="bg-indigo-800  text-lg px-6 rounded-3xl">
-            + Record
-          </button>
-          <Profile />
-        </div>
-      </div>
+      <Navbar />
       <div className=" bg-slate-200 px-32 pt-8 flex gap-6">
         <div className="w-96 h-[220px] bg-blue-800 flex flex-col gap-24 p-8 rounded-2xl">
           <Geld className="text-white" />
@@ -84,8 +80,8 @@ export default function DashBoard() {
           </div>
         </div>
       </div>
-      <div className=" bg-slate-200 pt-6 px-32 ">
-        <div className="w-1/2 bg-white ">
+      <div className=" bg-slate-200 py-6 px-32 flex gap-4">
+        <div className="w-1/2 bg-white rounded-2xl">
           <div className="py-4 px-6">
             <p>Income-Expense</p>
           </div>
@@ -94,10 +90,31 @@ export default function DashBoard() {
             <Bar data={data} options={option}></Bar>
           </div>
         </div>
+        <div className="w-1/2 bg-white rounded-2xl">
+          <div className="py-4 px-6 flex justify-between">
+            <p>Income-Expense</p>
+            <p>Jun 1 - Nov 30</p>
+          </div>
+          <div className="border-b"></div>
+          <div className="">
+            <Doughnut />
+          </div>
+        </div>
       </div>
-      <div>
-        <img src={image} className=" bg-slate-500" />
-        <Icon image={image} />
+      <div className="bg-slate-200 py-6 px-32 ">
+        <div className=" bg-white px-6 rounded-3xl">
+          <h2 className="text-2xl py-4">Last Records</h2>
+          <div className="border-b"></div>
+          <Homecomp />
+          <div className="border-b"></div>
+          <Homecomp />
+          <div className="border-b"></div>
+          <Homecomp />
+          <div className="border-b"></div>
+          <Homecomp />
+          <div className="border-b"></div>
+          <Homecomp />
+        </div>
       </div>
     </div>
   );
