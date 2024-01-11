@@ -1,8 +1,13 @@
+"use client";
+import AddCard from "@/components/AddRecord";
+import FoodDinks from "@/components/Foos";
 import Navbar from "@/components/Navbar";
+import { todayData } from "@/components/Today";
 import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
+import { useState } from "react";
 
 export default function Record() {
   const typesData = [
@@ -51,17 +56,23 @@ export default function Record() {
       text: "Others",
     },
   ];
-
+  const [add, addCard] = useState(false);
+  const Handler = () => {
+    addCard(true);
+  };
   return (
-    <div className="bg-white w-[1440px] m-auto">
+    <div className="bg-white w-[1440px] m-auto flex flex-col gap-6">
       <div className="">
         <Navbar />
       </div>
-      <div className="px-32 bg-slate-200 py-6 flex ">
+      <div className="px-32 bg-slate-200 py-6 flex gap-6">
         <div className="w-[282px] flex flex-col gap-6 bg-white rounded-xl py-6 px-4 ">
           <div className=" flex flex-col gap-6">
             <h2 className="text-3xl">Records</h2>
-            <button className="bg-blue-800  text-lg px-6 rounded-3xl text-white ">
+            <button
+              className="bg-blue-800  text-lg px-6 rounded-3xl text-white "
+              onClick={Handler}
+            >
               + Add
             </button>
           </div>
@@ -121,9 +132,9 @@ export default function Record() {
             <input type="range" min={0} max={1000} />
           </div>
         </div>
-        <div className="">
-          <div className="flex justify-between">
-            <div className="flex gap-3">
+        <div className="flex flex-col gap-6">
+          <div className="flex justify-between gap-[560px]">
+            <div className="flex gap-3 items-center">
               <Left />
               <p>Last 30 Days</p>
               <Right />
@@ -137,8 +148,59 @@ export default function Record() {
               </div>
             </div>
           </div>
+          <div className="border bg-white rounded-xl flex justify-between p-3">
+            <div className="flex gap-4">
+              <input type="checkbox" />
+              <p className="font-bold">Select All</p>
+            </div>
+            <p>-35,500</p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <p className="font-bold">Today</p>
+            {todayData.map((el) => {
+              return (
+                <div className="flex justify-between border bg-white rounded-xl items-center p-3">
+                  <div className="flex gap-4 items-center">
+                    <FoodDinks />
+                    <div>
+                      <p className="font-bold">{el.title}</p>
+                      <p>{el.time}</p>
+                    </div>
+                  </div>
+                  <p className="text-red-600">{el.amount}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex flex-col gap-4">
+            <p className="font-bold">Yesterday</p>
+            {todayData.map((el) => {
+              return (
+                <div className="  border bg-white rounded-xl items-center p-3">
+                  <div className="flex gap-4">
+                    <div>
+                      <input type="checkbox" />
+                    </div>
+                    <div className="flex justify-between">
+                      <div className="flex gap-4 items-center">
+                        <FoodDinks />
+                        <div>
+                          <p className="font-bold">{el.title}</p>
+                          <p>{el.time}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-red-600">{el.amount}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
+      {add && <AddCard closeModal={addCard} />}
     </div>
   );
 }
