@@ -1,4 +1,5 @@
 "use client";
+import AddCategory from "@/components/AddCategory";
 import AddCard from "@/components/AddRecord";
 import FoodDinks from "@/components/Foos";
 import Navbar from "@/components/Navbar";
@@ -61,7 +62,7 @@ export default function Record() {
     addCard(true);
   };
   return (
-    <div className="bg-white w-[1440px] m-auto flex flex-col gap-6">
+    <div className="bg-white w-[1440px] m-auto flex flex-col gap-6 relative ">
       <div className="">
         <Navbar />
       </div>
@@ -114,7 +115,8 @@ export default function Record() {
             </div>
 
             <button>
-              <span className="text-2xl text-blue-500">+</span> Add Category
+              <span className="text-2xl text-blue-500 dropdown">+</span> Add
+              Category
             </button>
           </div>
           <div>
@@ -201,6 +203,7 @@ export default function Record() {
         </div>
       </div>
       {add && <AddCard closeModal={addCard} />}
+      <AddCategory />
     </div>
   );
 }

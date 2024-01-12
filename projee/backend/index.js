@@ -34,3 +34,30 @@ app.post("/createTable", async (req, res) => {
     console.error(error);
   }
 });
+
+app.post("/createCategoryTable", async (req, res) => {
+  try {
+    const tableQueryText = `
+        CREATE TABLE IF NOT EXISTS category (
+            id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
+            name VARCHAR(255) NOT NULL,
+            description VARCHAR(255) NOT NULL,
+            createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            category_image VARCHAR(50)
+        )`;
+    await pool.query(tableQueryText);
+    res.send("ok");
+  } catch (error) {
+    console.error(error);
+  }
+});
+const enableUuidOsspExtensionQuery =
+  'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"';
+pool.query(enableUuidOsspExtensionQuery, (err, result) => {
+  if (err) {
+    console.error("Error enabling uuid-ossp extension:", err);
+  } else {
+    console.log("uuid-ossp extension enabled");
+  }
+});

@@ -2,9 +2,11 @@
 import Allow from "@/components/Allow";
 import Geld from "@/components/Geld";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 const api = "http://localhost:8000/users";
 
 export default function Step() {
+  const router = useRouter();
   const data = JSON.parse(localStorage.getItem("data"));
   console.log(data);
   const handlerName = async () => {
@@ -14,6 +16,7 @@ export default function Step() {
       password: data.password,
       currency_type: data.currency,
     });
+    router.push("/dashboard");
     console.log("success");
   };
   return (
