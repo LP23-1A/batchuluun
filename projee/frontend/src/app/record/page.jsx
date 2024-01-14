@@ -161,15 +161,22 @@ export default function Record() {
             <p className="font-bold">Today</p>
             {todayData.map((el) => {
               return (
-                <div className="flex justify-between border bg-white rounded-xl items-center p-3">
-                  <div className="flex gap-4 items-center">
-                    <FoodDinks />
+                <div className="  border bg-white rounded-xl items-center p-3">
+                  <div className="flex justify-between items-center">
+                    <div className="flex gap-4 items-center">
+                      <div>
+                        <input type="checkbox" />
+                      </div>
+                      <FoodDinks />
+                      <div>
+                        <p className="font-bold">{el.title}</p>
+                        <p>{el.time}</p>
+                      </div>
+                    </div>
                     <div>
-                      <p className="font-bold">{el.title}</p>
-                      <p>{el.time}</p>
+                      <p className="text-red-600">{el.amount}</p>
                     </div>
                   </div>
-                  <p className="text-red-600">{el.amount}</p>
                 </div>
               );
             })}
@@ -179,21 +186,19 @@ export default function Record() {
             {todayData.map((el) => {
               return (
                 <div className="  border bg-white rounded-xl items-center p-3">
-                  <div className="flex gap-4">
-                    <div>
-                      <input type="checkbox" />
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="flex gap-4 items-center">
-                        <FoodDinks />
-                        <div>
-                          <p className="font-bold">{el.title}</p>
-                          <p>{el.time}</p>
-                        </div>
-                      </div>
+                  <div className="flex justify-between items-center">
+                    <div className="flex gap-4 items-center">
                       <div>
-                        <p className="text-red-600">{el.amount}</p>
+                        <input type="checkbox" />
                       </div>
+                      <FoodDinks />
+                      <div>
+                        <p className="font-bold">{el.title}</p>
+                        <p>{el.time}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-red-600">{el.amount}</p>
                     </div>
                   </div>
                 </div>
@@ -203,7 +208,6 @@ export default function Record() {
         </div>
       </div>
       {add && <AddCard closeModal={addCard} />}
-      <AddCategory />
     </div>
   );
 }
