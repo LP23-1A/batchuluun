@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 const api = "http://localhost:8000/users/user/category";
 
 export default function AddCategoryInput({ closeCategoryModal }) {
@@ -6,6 +7,7 @@ export default function AddCategoryInput({ closeCategoryModal }) {
   const [description, setDescription] = useState();
   const handlerInput = async () => {
     let res = await axios.post(api, { name: name, description: description });
+    console.log(res);
   };
   return (
     <div>
@@ -19,6 +21,7 @@ export default function AddCategoryInput({ closeCategoryModal }) {
         <input
           type="text"
           value={description}
+          className="border p-1"
           onChange={(el) => setDescription(el.target.value)}
         />
         <button onClick={handlerInput}>Add</button>

@@ -8,15 +8,10 @@ import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
-import axios from "axios";
+
 import { useState } from "react";
 
 export default function Record() {
-  const [name, setName] = useState("");
-  const handler = async () => {
-    let res = await axios.post(api, { name: name });
-    console.log(res);
-  };
   const typesData = [
     {
       text: "All",
