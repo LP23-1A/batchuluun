@@ -1,6 +1,10 @@
 import Leading from "@/icon/Leading";
+import MyToggle from "./Switch";
+import { useState } from "react";
 
 export default function AddCard({ closeModal }) {
+  const [detail, setDetail] = useState("");
+
   return (
     <div className="w-[792px] border rounded-xl absolute top-[400px] left-[350px] z-100 bg-black">
       <div className="flex px-6 py-5 justify-between">
@@ -12,25 +16,26 @@ export default function AddCard({ closeModal }) {
       <div className="border-b"></div>
       <div className="flex gap-6">
         <div className="w-1/2 p-6 flex flex-col gap-6">
-          <input type="checkbox" class="toggle" />
+          <MyToggle />
           <div className="border bg-white rounded-xl p-3">
             <p className="font-bold">Amount </p>
             <p>$ 000.00</p>
           </div>
           <div>
             <p>Category</p>
-            <div className="border p-3 rounded-xl flex justify-between">
-              <details class="dropdown">
-                <summary class="m-1 btn">open or close</summary>
-                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                  <li>
-                    <a>Item 1</a>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </details>
+            <div className="border rounded-xl p-3  flex justify-between">
+              <select
+                name=""
+                id=""
+                className="w-40 p-1 rounded-xl"
+                onChange={(el) => setDetail(el.target.value)}
+              >
+                <option value="">Home</option>
+                <option value="">Gift</option>
+                <option value="">Food</option>
+                <option value="">Drink</option>
+                <option value="">Taxi</option>
+              </select>
               <Leading />
             </div>
           </div>
@@ -41,7 +46,6 @@ export default function AddCard({ closeModal }) {
                 type="date"
                 className="border rounded-xl  p-3"
                 name="trip-start"
-                value="2024-01-11"
                 min="2024-01-01"
                 max="2024-12-31"
               />
@@ -83,6 +87,7 @@ export default function AddCard({ closeModal }) {
           </div>
         </div>
       </div>
+      <details></details>
     </div>
   );
 }

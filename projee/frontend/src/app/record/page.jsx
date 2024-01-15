@@ -1,5 +1,5 @@
 "use client";
-import AddCategory from "@/components/AddCategory";
+import AddCategoryInput from "@/components/AddCategory";
 import AddCard from "@/components/AddRecord";
 import FoodDinks from "@/components/Foos";
 import Navbar from "@/components/Navbar";
@@ -8,9 +8,15 @@ import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
+import axios from "axios";
 import { useState } from "react";
 
 export default function Record() {
+  const [name, setName] = useState("");
+  const handler = async () => {
+    let res = await axios.post(api, { name: name });
+    console.log(res);
+  };
   const typesData = [
     {
       text: "All",
@@ -57,9 +63,13 @@ export default function Record() {
       text: "Others",
     },
   ];
-  const [add, addCard] = useState(false);
+  const [add, setAdd] = useState(false);
+  const [AddCategory, setAddCategory] = useState(false);
   const Handler = () => {
-    addCard(true);
+    setAdd(true);
+  };
+  const HandlerCategory = () => {
+    setAddCategory(true);
   };
   return (
     <div className="bg-white w-[1440px] m-auto flex flex-col gap-6 relative ">
@@ -114,10 +124,13 @@ export default function Record() {
               })}
             </div>
 
-            <button>
+            <button onClick={HandlerCategory}>
               <span className="text-2xl text-blue-500 dropdown">+</span> Add
               Category
             </button>
+            {AddCategory && (
+              <AddCategoryInput closeCategoryModal={setAddCategory} />
+            )}
           </div>
           <div>
             <h3>Amount Range</h3>
@@ -207,7 +220,7 @@ export default function Record() {
           </div>
         </div>
       </div>
-      {add && <AddCard closeModal={addCard} />}
+      {add && <AddCard closeModal={setAdd} />}
     </div>
   );
 }

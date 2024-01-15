@@ -52,12 +52,33 @@ app.post("/createCategoryTable", async (req, res) => {
     console.error(error);
   }
 });
-const enableUuidOsspExtensionQuery =
-  'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"';
-pool.query(enableUuidOsspExtensionQuery, (err, result) => {
-  if (err) {
-    console.error("Error enabling uuid-ossp extension:", err);
-  } else {
-    console.log("uuid-ossp extension enabled");
+
+app.post("/createTransactionTable", async (req, res) => {
+  try {
+    const tableQueryText = `
+        CREATE TABLE IF NOT EXISTS category (
+            id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
+            user_id FORIEGN KEY,
+            name VARCHAR(255) NOT NULL,
+            amount VARCHAR(255) NOT NULL,
+            transaction_type ENUM("INC", "EXP")
+            description VARCHAR(255) NOT NULL,
+            createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            category_id uuid 
+        )`;
+    await pool.query(tableQueryText);
+    res.send("ok");
+  } catch (error) {
+    console.error(error);
   }
 });
+// const enableUuidOsspExtensionQuery =
+//   'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"';
+// pool.query(enableUuidOsspExtensionQuery, (err, result) => {
+//   if (err) {
+//     console.error("Error enabling uuid-ossp extension:", err);
+//   } else {
+//     console.log("uuid-ossp extension enabled");
+//   }
+// });
