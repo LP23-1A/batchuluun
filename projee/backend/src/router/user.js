@@ -6,10 +6,10 @@ import {
   getUsers,
   updateUser,
 } from "../controller/user.js";
-import { Createcategory } from "../controller/category.js";
+import { CreateCategory, getCategorys } from "../controller/category.js";
 const user = express.Router();
 user.route("/").get(getUsers).post(createUser);
 user.route("/user").get(getOneUser).put(updateUser).delete(deleteUser);
 user.route("/oneuser").post(getOneUser);
-user.route("/user/category").post(Createcategory);
+user.route("/user/category").post(CreateCategory).get(getCategorys);
 export default user;

@@ -26,9 +26,9 @@ export default function AddCategoryInput({ closeCategoryModal }) {
         />
         <button onClick={handlerInput}>Add</button>
       </div>
-      <p className=" cursor-pointer" closeCategoryModal={false}>
+      <button className=" cursor-pointer" closeCategoryModal={false}>
         x
-      </p>
+      </button>
     </div>
   );
 }

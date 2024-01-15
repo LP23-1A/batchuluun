@@ -1,6 +1,7 @@
 import Leading from "@/icon/Leading";
 import MyToggle from "./Switch";
 import { useState } from "react";
+import Toggle from "./Switch";
 
 export default function AddCard({ closeModal }) {
   const [detail, setDetail] = useState("");
@@ -16,7 +17,9 @@ export default function AddCard({ closeModal }) {
       <div className="border-b"></div>
       <div className="flex gap-6">
         <div className="w-1/2 p-6 flex flex-col gap-6">
-          <MyToggle />
+          <div className="flex border rounded-3xl ">
+            <Toggle />
+          </div>
           <div className="border bg-white rounded-xl p-3">
             <p className="font-bold">Amount </p>
             <p>$ 000.00</p>

@@ -3,14 +3,15 @@ import AddCategoryInput from "@/components/AddCategory";
 import AddCard from "@/components/AddRecord";
 import FoodDinks from "@/components/Foos";
 import Navbar from "@/components/Navbar";
-import { todayData } from "@/components/Today";
 import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
-
-import { useState } from "react";
-
+import { todayData } from "@/components/Today";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { CategoryData } from "@/components/AddCategoryData";
+const api = "http://localhost:8000/users/user/category";
 export default function Record() {
   const typesData = [
     {
@@ -23,48 +24,18 @@ export default function Record() {
       text: "Expess",
     },
   ];
-  const categoryData = [
-    {
-      text: "Food and Drinks",
-    },
-    {
-      text: "Shoping",
-    },
-    {
-      text: "Housing",
-    },
-    {
-      text: "Transpartetion",
-    },
-    {
-      text: "Vehicle",
-    },
-    {
-      text: "Life & Entertaiment",
-    },
-    {
-      text: "Communication PC",
-    },
-    {
-      text: "Financial expenses",
-    },
-    {
-      text: "Investments",
-    },
-    {
-      text: "Income",
-    },
-    {
-      text: "Others",
-    },
-  ];
   const [add, setAdd] = useState(false);
   const [AddCategory, setAddCategory] = useState(false);
+  const [show, setShow] = useState(false);
+  const [categoryData, setCategoryData] = useState([]);
+  const [amount, setAmount] = useState(0);
   const Handler = () => {
     setAdd(true);
   };
-  const HandlerCategory = () => {
+  const HandlerCategory = async () => {
     setAddCategory(true);
+    const CategoryData = await axios.get(api);
+    setCategoryData(CategoryData.data);
   };
   return (
     <div className="bg-white w-[1440px] m-auto flex flex-col gap-6 relative ">
@@ -111,7 +82,7 @@ export default function Record() {
                   <div className="flex gap-2 justify-between">
                     <div className="flex gap-2">
                       <Eye />
-                      <p>{el.text}</p>
+                      <p>{el.name}</p>
                     </div>
                     <Leading />
                   </div>
@@ -129,17 +100,14 @@ export default function Record() {
           </div>
           <div>
             <h3>Amount Range</h3>
-            <div className="flex">
-              <input
-                type="number"
-                className=" bg-slate-400 border w-20 py-2 pl-3 rounded"
-              />
-              <input
-                type="number"
-                className="bg-slate-400 border w-20 py-2 pl-3 rounded"
-              />
-            </div>
-            <input type="range" min={0} max={1000} />
+            <p>{amount}</p>
+            <input
+              type="range"
+              value={amount}
+              min={0}
+              max={100}
+              onChange={(el) => setAmount(el.target.value)}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-6">

@@ -56,16 +56,16 @@ app.post("/createCategoryTable", async (req, res) => {
 app.post("/createTransactionTable", async (req, res) => {
   try {
     const tableQueryText = `
-        CREATE TABLE IF NOT EXISTS category (
+        CREATE TABLE IF NOT EXISTS transaction (
             id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
-            user_id FORIEGN KEY,
+            user_id uuid REFERENCES users(id),
             name VARCHAR(255) NOT NULL,
             amount VARCHAR(255) NOT NULL,
-            transaction_type ENUM("INC", "EXP")
+            transaction_type VARCHAR(3) CHECK (transaction_type IN ('INC', 'EXP')),
             description VARCHAR(255) NOT NULL,
             createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            category_id uuid 
+            category_id uuid REFERENCES category(id)
         )`;
     await pool.query(tableQueryText);
     res.send("ok");
