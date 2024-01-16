@@ -8,7 +8,7 @@ export const getCategorys = async (req, res) => {
     console.log(error);
   }
 };
-export const CreateCategory = async (req, response) => {
+export const createCategory = async (req, response) => {
   const { name, description } = req.body;
   try {
     const queryText = `INSERT INTO category (id, name, description) VALUES (gen_random_uuid (), $1, $2) RETURNING *`;
