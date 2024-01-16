@@ -19,3 +19,13 @@ export const createCategory = async (req, response) => {
     response.send("error query");
   }
 };
+export const updateCategory = async (req, res) => {
+  const { name, description } = req.body;
+  try {
+    const queryText = `UPDATE category SET name='${name}' WHERE description='${description}'`;
+    const response = await pool.query(queryText);
+    res.send(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};

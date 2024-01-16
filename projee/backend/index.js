@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import { pool } from "./db.js";
 import user from "./src/router/user.js";
 import cors from "cors";
+import category from "./src/router/category.js";
+import transaction from "./src/router/transaction.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
@@ -10,6 +12,8 @@ const app = express();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use("/users", user);
+app.use("/categorys", category);
+app.use("/transactions", transaction);
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);

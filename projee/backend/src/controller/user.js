@@ -37,7 +37,7 @@ export const updateUser = async (req, res) => {
   const { name, email, id } = req.body;
   try {
     const queryText = `UPDATE users SET name = '${name}', email='${email}' WHERE id='${id}' `;
-    await pool.query(queryText);
+    const response = await pool.query(queryText);
     res.send("updated");
   } catch (error) {
     res.send("error");
