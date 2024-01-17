@@ -1,20 +1,30 @@
 import { pool } from "../../db.js";
 
-export const createTransaction = async (req, response) => {
-  const { name, amount, description } = req.body;
+export const createTransaction = async (req, res) => {
+  const { user_id, name, amount, transaction_type, description, category_id } =
+    req.body;
   try {
-    const queryText =
-      "INSERT INTO transaction (id, name, amount, description) VALUES (gen_random_uuid (), $1, $2, $3) RETURNING *";
-    const res = await pool.query(queryText, [name, amount, description]);
-    response.send(res.rows[0]);
+    const insertQuery = `
+      INSERT INTO transactions (user_id, name, amount, transaction_type, description, category_id)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *`;
+
+    const result = await pool.query(insertQuery, [
+      user_id,
+      name,
+      amount,
+      transaction_type,
+      description,
+      category_id,
+    ]);
+    res.send("ok");
   } catch (error) {
     console.error(error);
-    response.send("error query");
   }
 };
 export const getTransactions = async (req, res) => {
   try {
-    const queryText = `SELECT * FROM transaction`;
+    const queryText = `SELECT * FROM transactions`;
     const response = await pool.query(queryText);
     res.send(response.rows);
   } catch (error) {
@@ -22,9 +32,9 @@ export const getTransactions = async (req, res) => {
   }
 };
 export const getOneTransaction = async (req, res) => {
-  const { name } = req.body;
+  const { user_id } = req.body;
   try {
-    const queryText = `SELECT * FROM transaction WHERE name='${name}'`;
+    const queryText = `SELECT * FROM transactions WHERE user_id='${user_id}'`;
     const response = await pool.query(queryText);
     res.send("success");
   } catch (error) {
@@ -40,18 +50,13 @@ const updateTransaction = async (req, res) => {
       WHERE id = $7
       RETURNING *`;
 
-    const result = await pool.query(queryText, [
-      user_id,
-      name,
-      amount,
-      transaction_type,
-      description,
-      category_id,
-      id,
-    ]);
+    const result = await pool.query(queryText, [name, amount, description]);
     res.send(result.rows[0]).end();
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+// const deletetransaction = async (req, res) => {
+//   const
+// }

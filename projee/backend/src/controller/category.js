@@ -1,7 +1,7 @@
 import { pool } from "../../db.js";
 export const getCategorys = async (req, res) => {
   try {
-    const queryText = `SELECT * FROM category`;
+    const queryText = `SELECT * FROM categorys`;
     const response = await pool.query(queryText);
     res.send(response.rows);
   } catch (error) {
@@ -11,7 +11,7 @@ export const getCategorys = async (req, res) => {
 export const createCategory = async (req, response) => {
   const { name, description } = req.body;
   try {
-    const queryText = `INSERT INTO category (id, name, description) VALUES (gen_random_uuid (), $1, $2) RETURNING *`;
+    const queryText = `INSERT INTO categorys (id, name, description) VALUES (gen_random_uuid (), $1, $2) RETURNING *`;
     const res = await pool.query(queryText, [name, description]);
     response.send(res.rows[0]);
   } catch (error) {
@@ -22,7 +22,7 @@ export const createCategory = async (req, response) => {
 export const updateCategory = async (req, res) => {
   const { name, description } = req.body;
   try {
-    const queryText = `UPDATE category SET name='${name}' WHERE description='${description}'`;
+    const queryText = `UPDATE categorys SET name='${name}' WHERE description='${description}'`;
     const response = await pool.query(queryText);
     res.send(response.data);
   } catch (error) {

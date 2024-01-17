@@ -7,10 +7,10 @@ import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
-import axios from "axios"; 
+import axios from "axios";
 import { todayData } from "@/components/Today";
 import { useEffect, useState } from "react";
-const api = "http://localhost:8000/users/user/category";
+const api = "http://localhost:8000/categorys";
 export default function Record() {
   const typesData = [
     {
@@ -35,11 +35,11 @@ export default function Record() {
   };
   const handler = async () => {
     const res = await axios.get(api);
-    setCategoryData(res.data)
-  }
+    setCategoryData(res.data);
+  };
   useEffect(() => {
-    handler()
-  }, [])
+    handler();
+  }, []);
   return (
     <div className="bg-white w-[1440px] m-auto flex flex-col gap-6 relative ">
       <div className="">
@@ -80,27 +80,21 @@ export default function Record() {
               <p>clear</p>
             </div>
             <div className="flex flex-col gap-2">
-              {categoryData && categoryData.map((el) => {
-                return (
-                  <div className="flex gap-2 justify-between">
-                    <div className="flex gap-2">
-                      <Eye />
-                      <p>{el.name}</p>
+              {categoryData &&
+                categoryData.map((el) => {
+                  return (
+                    <div className="flex gap-2 justify-between">
+                      <div className="flex gap-2">
+                        <Eye />
+                        <p>{el.name}</p>
+                      </div>
+                      <Leading />
                     </div>
-                    <Leading />
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
-
-            <button onClick={handlerCategory}>
-              <span className="text-2xl text-blue-500 dropdown">+</span> Add
-              Category
-            </button>
-            {AddCategory && (
-              <AddCategoryInput closeCategoryModal={setAddCategory} />
-            )}
           </div>
+          <AddCategoryInput />
           <div>
             <h3>Amount Range</h3>
             <p>{amount}</p>

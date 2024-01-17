@@ -21,8 +21,7 @@ export default function AddCard({ closeModal }) {
             <Toggle />
           </div>
           <div className="border bg-white rounded-xl p-3">
-            <p className="font-bold">Amount </p>
-            <p>$ 000.00</p>
+            <input type="text" placeholder="$00.000" className="p-2" />
           </div>
           <div>
             <p>Category</p>
