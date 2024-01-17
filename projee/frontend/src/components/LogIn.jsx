@@ -1,9 +1,7 @@
 import { useState } from "react";
-
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Geld from "./Geld";
-import Alert from "./Alert";
 const api = "http://localhost:8000/users/oneuser";
 export default function LogIn() {
   const router = useRouter();
@@ -13,8 +11,6 @@ export default function LogIn() {
     let res = await axios.post(api, { email: email, password: password });
     if (res.data === "success") {
       router.push("/loading");
-    } else {
-      <Alert />;
     }
   };
 

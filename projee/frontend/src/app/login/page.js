@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Geld from "@/components/Geld";
-import Alert from "@/components/Alert";
+import Button from "@/components/Button";
+import CategoryNameData from "@/components/CategoryNameData";
 const api = "http://localhost:8000/users/oneuser";
 export default function LogIn() {
   const router = useRouter();
@@ -14,8 +14,6 @@ export default function LogIn() {
     const res = await axios.post(api, { email: email, password: password });
     if ((res.data = "success")) {
       router.push("/loading");
-    } else {
-      <Alert />;
     }
   };
   return (
@@ -46,9 +44,7 @@ export default function LogIn() {
               className="border py-2 px-2 rounded-xl "
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="btn btn-primary rounded-xl" onClick={LogIn}>
-              Log in
-            </button>
+            <Button name={"Log in"} />
           </div>
           <div>
             <p className="text-center">
@@ -63,7 +59,9 @@ export default function LogIn() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+        <CategoryNameData />
+      </div>
     </div>
   );
 }

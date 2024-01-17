@@ -1,6 +1,7 @@
 "use client";
+import Button from "@/components/Button";
 import Geld from "@/components/Geld";
-import Money from "@/components/Money";
+import Money from "@/icon/Money";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -19,8 +20,8 @@ export default function Step() {
     router.push("/laststep");
   };
   return (
-    <div className="flex flex-col gap-32">
-      <div className="flex flex-col gap-12 w-screen pt-10  items-center">
+    <div className="flex flex-col gap-32 w-96 m-auto">
+      <div className="flex flex-col gap-12 pt-10  items-center">
         <div>
           <Geld />
         </div>
@@ -48,9 +49,9 @@ export default function Step() {
           Your base currency should be the one you use most often. All
           transaction in other currencies will be calculated based on this one{" "}
         </p>
-        <button className="btn btn-primary px-40 py-4" onClick={laststep}>
-          Confirm
-        </button>
+      </div>
+      <div>
+        <Button name={"Confirm"} />
       </div>
     </div>
   );

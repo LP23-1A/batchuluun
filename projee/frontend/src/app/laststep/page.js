@@ -1,5 +1,6 @@
 "use client";
-import Allow from "@/components/Allow";
+import Allow from "@/icon/Allow";
+import Button from "@/components/Button";
 import Geld from "@/components/Geld";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -20,8 +21,8 @@ export default function Step() {
     console.log("success");
   };
   return (
-    <div className="flex flex-col gap-24">
-      <div className="flex flex-col gap-12 w-screen pt-10  items-center">
+    <div className="flex flex-col gap-24 w-96 m-auto">
+      <div className="flex flex-col gap-12 pt-10  items-center">
         <div>
           <Geld />
         </div>
@@ -41,10 +42,8 @@ export default function Step() {
           Your very first account has been created. Now continue to dashboard
           and start tracking
         </p>
-        <button className="btn btn-primary px-32 py-4" onClick={handlerName}>
-          Go To Dashboard
-        </button>
       </div>
+      <Button name={"Go To Dashboard"} />
     </div>
   );
 }

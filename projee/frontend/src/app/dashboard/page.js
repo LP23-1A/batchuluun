@@ -2,11 +2,10 @@
 import Doughnut from "@/components/Doughnut";
 import Geld from "@/components/Geld";
 import Navbar from "@/components/Navbar";
-import { todayData } from "@/components/Today";
 import BottomArrow from "@/icon/BottomArrow";
 import TopArrow from "@/icon/TopArrow";
 import { Bar } from "react-chartjs-2";
-import FoodDinks from "@/components/Foos";
+import FoodDinks from "@/icon/Food";
 import {
   Chart as Chartjs,
   BarElement,
@@ -105,28 +104,7 @@ export default function DashBoard() {
       <div className="bg-slate-200 py-6 px-32 ">
         <div className=" bg-white px-6 rounded-3xl">
           <h2 className="text-2xl py-4">Last Records</h2>
-          <div>
-            {todayData.map((el) => {
-              return (
-                <div className="   bg-white  items-center p-3">
-                  <div className="flex gap-4 justify-between">
-                    <div className="flex justify-between">
-                      <div className="flex gap-4 items-center">
-                        <FoodDinks />
-                        <div>
-                          <p className="font-bold">{el.title}</p>
-                          <p>{el.time}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-red-600">{el.amount}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <div></div>
         </div>
       </div>
     </div>

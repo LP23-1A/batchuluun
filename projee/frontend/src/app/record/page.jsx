@@ -1,15 +1,12 @@
 "use client";
 import AddCategoryInput from "@/components/AddCategory";
 import AddCard from "@/components/AddRecord";
-import FoodDinks from "@/components/Foos";
+import CategoryNameData from "@/components/CategoryNameData";
 import Navbar from "@/components/Navbar";
-import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
-import axios from "axios";
-import { todayData } from "@/components/Today";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const api = "http://localhost:8000/categorys";
 export default function Record() {
   const typesData = [
@@ -25,7 +22,6 @@ export default function Record() {
   ];
   const [add, setAdd] = useState(false);
   const [AddCategory, setAddCategory] = useState(false);
-  const [categoryData, setCategoryData] = useState();
   const [amount, setAmount] = useState(0);
   const Handler = () => {
     setAdd(true);
@@ -33,13 +29,6 @@ export default function Record() {
   const handlerCategory = () => {
     setAddCategory(!AddCategory);
   };
-  const handler = async () => {
-    const res = await axios.get(api);
-    setCategoryData(res.data);
-  };
-  useEffect(() => {
-    handler();
-  }, []);
   return (
     <div className="bg-white w-[1440px] m-auto flex flex-col gap-6 relative ">
       <div className="">
@@ -49,12 +38,7 @@ export default function Record() {
         <div className="w-[282px] flex flex-col gap-6 bg-white rounded-xl py-6 px-4 ">
           <div className=" flex flex-col gap-6">
             <h2 className="text-3xl">Records</h2>
-            <button
-              className="bg-blue-800  text-lg px-6 rounded-3xl text-white "
-              onClick={Handler}
-            >
-              + Add
-            </button>
+            <AddCard />
           </div>
           <input
             type="text"
@@ -80,18 +64,7 @@ export default function Record() {
               <p>clear</p>
             </div>
             <div className="flex flex-col gap-2">
-              {categoryData &&
-                categoryData.map((el) => {
-                  return (
-                    <div className="flex gap-2 justify-between">
-                      <div className="flex gap-2">
-                        <Eye />
-                        <p>{el.name}</p>
-                      </div>
-                      <Leading />
-                    </div>
-                  );
-                })}
+              <CategoryNameData />
             </div>
           </div>
           <AddCategoryInput />
@@ -132,7 +105,7 @@ export default function Record() {
           </div>
           <div className="flex flex-col gap-4">
             <p className="font-bold">Today</p>
-            {todayData.map((el) => {
+            {/* {todayData.map((el) => {
               return (
                 <div className="  border bg-white rounded-xl items-center p-3">
                   <div className="flex justify-between items-center">
@@ -176,11 +149,10 @@ export default function Record() {
                   </div>
                 </div>
               );
-            })}
+            })} */}
           </div>
         </div>
       </div>
-      {add && <AddCard closeModal={setAdd} />}
     </div>
   );
 }

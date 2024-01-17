@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Geld from "@/components/Geld";
 import { useRouter } from "next/navigation";
+import Button from "@/components/Button";
 const api = "http://localhost:8000/users";
 export default function SignIn() {
   const [name, setName] = useState("");
@@ -68,9 +69,7 @@ export default function SignIn() {
               placeholder="Re-Password"
               className="border py-2 px-2 rounded-xl"
             />
-            <button className="btn btn-primary rounded-xl" onClick={step}>
-              Sign in
-            </button>
+            <Button name={"Sign in"} />
           </div>
           <div>
             <p className="text-center">

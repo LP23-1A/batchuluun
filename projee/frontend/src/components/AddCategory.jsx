@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { CategoryImgData } from "./CategoryImg";
+import CategoryData from "./CategoryData";
 const api = "http://localhost:8000/categorys";
 
 export default function AddCategoryInput({ closeCategoryModal }) {
@@ -26,11 +28,34 @@ export default function AddCategoryInput({ closeCategoryModal }) {
           </form>
           <div className="flex flex-col gap-3">
             <div className="flex gap-3">
-              <select name="" id="">
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-              </select>
+              <div className="dropdown">
+                <div tabIndex={0} role="button" className="btn m-1">
+                  Click
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[4] menu p-2 shadow bg-base-100 rounded-box w-60"
+                >
+                  <div className="flex flex-col gap-5 w-60">
+                    <div className="flex gap-5">
+                      <p className=" bg-blue-600 w-6 h-6 rounded-xl text-center text-xl text-white">
+                        +
+                      </p>
+                      <p>Add Record</p>
+                    </div>
+                    <div className="border-b"></div>
+
+                    {CategoryImgData.map((el) => {
+                      return (
+                        <div className="flex gap-4">
+                          <p>{el.img}</p>
+                          <p>{el.name}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </ul>
+              </div>
               <input
                 type="text"
                 value={name}
@@ -38,12 +63,12 @@ export default function AddCategoryInput({ closeCategoryModal }) {
                 placeholder="Name"
                 className="p-1"
               />
-              <input
-                type="text"
-                value={description}
-                onChange={(el) => setDescription(el.target.value)}
-              />
             </div>
+            <input
+              type="text"
+              value={description}
+              onChange={(el) => setDescription(el.target.value)}
+            />
             <button onClick={handlerInput} className="btn btn-primary w-80">
               Add category
             </button>
