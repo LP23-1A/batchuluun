@@ -49,9 +49,9 @@ export default function Step() {
           Your base currency should be the one you use most often. All
           transaction in other currencies will be calculated based on this one{" "}
         </p>
-      </div>
-      <div>
-        <Button name={"Confirm"} />
+        <button className="btn btn-primary w-full" onClick={laststep}>
+          next
+        </button>
       </div>
     </div>
   );

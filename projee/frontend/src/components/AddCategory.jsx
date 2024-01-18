@@ -9,7 +9,6 @@ export default function AddCategoryInput({ closeCategoryModal }) {
   const [description, setDescription] = useState();
   const handlerInput = async () => {
     let res = await axios.post(api, { name: name, description: description });
-    console.log(res);
   };
   return (
     <div>

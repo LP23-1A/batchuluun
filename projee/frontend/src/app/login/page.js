@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Geld from "@/components/Geld";
 import Button from "@/components/Button";
 import CategoryNameData from "@/components/CategoryNameData";
+import Alert from "@/components/Alert";
 const api = "http://localhost:8000/users/oneuser";
 export default function LogIn() {
   const router = useRouter();
@@ -13,7 +14,11 @@ export default function LogIn() {
   const LogIn = async () => {
     const res = await axios.post(api, { email: email, password: password });
     if ((res.data = "success")) {
-      router.push("/loading");
+      useEffect(() => {
+        setTimeout(router.push("/loading"));
+      }, 8000);
+    } else {
+      <Alert />;
     }
   };
   return (

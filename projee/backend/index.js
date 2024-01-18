@@ -77,6 +77,15 @@ app.post("/createTransactionTable", async (req, res) => {
     console.error(error);
   }
 });
+app.post("/deleteTransactionTable", async (req, res) => {
+  try {
+    const queryText = `DROP TABLE IF EXISTS transactions`;
+    await pool.query(queryText);
+    res.send("deleted transaction table");
+  } catch (error) {
+    console.log(error);
+  }
+});
 // const enableUuidOsspExtensionQuery =
 //   'CREATE EXTENSION IF NOT EXISTS "uuid-ossp"';
 // pool.query(enableUuidOsspExtensionQuery, (err, result) => {

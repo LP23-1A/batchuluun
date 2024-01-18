@@ -21,7 +21,6 @@ const CategoryNameData = () => {
     return <div>Loading...</div>;
   }
   const categoryData = JSON.stringify(data);
-  console.log(categoryData);
   return (
     <div>
       {data.map((el) => {

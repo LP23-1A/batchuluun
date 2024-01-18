@@ -69,7 +69,7 @@ export default function SignIn() {
               placeholder="Re-Password"
               className="border py-2 px-2 rounded-xl"
             />
-            <Button name={"Sign in"} />
+            <button onClick={step}>sign in</button>
           </div>
           <div>
             <p className="text-center">

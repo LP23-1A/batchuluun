@@ -1,17 +1,42 @@
-import { useState } from "react";
-import Button from "./Button";
-import CategoryData from "./CategoryData";
+import { useEffect, useState } from "react";
 import { CategoryImgData } from "./CategoryImg";
-export default function AddCard({ fn }) {
-  const [exActive, setExActive] = useState(true);
-  const [inActive, setInActive] = useState(false);
+import axios from "axios";
+export default function AddCard() {
+  const [exActive, setExActive] = useState(false);
   const [activeButton, setActiveButton] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+  const [data, setData] = useState([]);
+  const api = "http://localhost:8000/transactions";
+  const categoryApi = "http://localhost:8000/categorys";
+  const handler = async () => {
+    const data = await axios.get(categoryApi);
+    setData(data.data);
+  };
+  useEffect(() => {
+    handler();
+  });
   const toggled = () => {
     setExActive(!exActive);
-    setInActive(!inActive);
     setActiveButton(!activeButton);
   };
-
+  const handlerRecord = async () => {
+    try {
+      const response = await axios.post(api, {
+        name: name,
+        amount: exActive ? -amount : amount,
+        transaction_type: exActive ? "INC" : "EXP",
+        description: description,
+      });
+      console.log(response.data);
+      setName("");
+      setAmount("");
+      setDescription("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="">
       <button
@@ -23,7 +48,6 @@ export default function AddCard({ fn }) {
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box bg-white ">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-4">
               ✕
             </button>
@@ -33,21 +57,22 @@ export default function AddCard({ fn }) {
             <div className="border-b"></div>
             <div className="flex gap-10">
               <div className="w-1/2 flex flex-col gap-4">
-                <div className="border rounded-2xl flex items-center">
+                <div
+                  className="border rounded-2xl flex items-center "
+                  onClick={toggled}
+                >
                   <button
-                    onClick={toggled}
                     className="flex items-center w-1/2 justify-center "
                     style={{
-                      background: exActive ? "blue" : "",
+                      background: exActive ? "" : "blue",
                     }}
                   >
                     Expense
                   </button>
                   <button
-                    onClick={toggled}
                     className="flex w-1/2 justify-center"
                     style={{
-                      background: inActive ? "green" : "",
+                      background: exActive ? "green" : "",
                     }}
                   >
                     Income
@@ -57,8 +82,10 @@ export default function AddCard({ fn }) {
                   <p>Amount</p>
                   <input
                     type="text"
+                    value={amount}
                     placeholder="$ 00.000"
                     className=" bg-white w-4/5"
+                    onChange={(el) => setAmount(el.target.value)}
                   />
                 </div>
                 <div className="">
@@ -80,14 +107,24 @@ export default function AddCard({ fn }) {
                         </div>
                         <div className="border-b"></div>
 
-                        {CategoryImgData.map((el) => {
+                        {/* {CategoryImgData.map((el) => {
                           return (
                             <div className="flex gap-4 cursor-pointer">
                               <p>{el.img}</p>
                               <p>{el.name}</p>
                             </div>
                           );
-                        })}
+                        })} */}
+                        <select
+                          name=""
+                          id=""
+                          value={name}
+                          onChange={(el) => setName(el.target.value)}
+                        >
+                          {data.map((el) => {
+                            return <option>{el.name}</option>;
+                          })}
+                        </select>
                       </div>
                     </ul>
                   </div>
@@ -118,11 +155,16 @@ export default function AddCard({ fn }) {
               </div>
               <div className="w-1/2 flex flex-col gap-3">
                 <p>Payee</p>
-                <select name="" id="" className="px-4 py-2 rounded-2xl">
-                  <option value="">Write here</option>
-                </select>
+                <input type="text" />
                 <p>Note</p>
+                <input
+                  type="text"
+                  className="w-[200px] h-[130px]"
+                  value={description}
+                  onChange={(el) => setDescription(el.target.value)}
+                />
               </div>
+              <p onClick={handlerRecord}>hh</p>
             </div>
           </div>
         </div>

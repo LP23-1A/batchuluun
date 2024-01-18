@@ -43,7 +43,9 @@ export default function Step() {
           and start tracking
         </p>
       </div>
-      <Button name={"Go To Dashboard"} />
+      <button className="btn btn-primary w-full" onClick={handlerName}>
+        Go to dashboard
+      </button>
     </div>
   );
 }
