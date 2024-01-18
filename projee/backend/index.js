@@ -30,7 +30,7 @@ app.post("/createTable", async (req, res) => {
             avatar_img BYTEA,
             createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            currency_type TEXT DEFAULT 'MNT'
+            currency_type VARCHAR(3) CHECK (currency_type IN ('MNT', 'USA'))
         )`;
     await pool.query(tableQueryText);
     res.send("ok");
@@ -77,9 +77,9 @@ app.post("/createTransactionTable", async (req, res) => {
     console.error(error);
   }
 });
-app.post("/deleteTransactionTable", async (req, res) => {
+app.post("/deleteUsersTable", async (req, res) => {
   try {
-    const queryText = `DROP TABLE IF EXISTS transactions`;
+    const queryText = `DROP TABLE IF EXISTS users`;
     await pool.query(queryText);
     res.send("deleted transaction table");
   } catch (error) {

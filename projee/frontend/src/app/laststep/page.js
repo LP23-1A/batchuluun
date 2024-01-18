@@ -15,7 +15,7 @@ export default function Step() {
       name: data.name,
       email: data.email,
       password: data.password,
-      currency_type: data.currency,
+      currency_type: data.currency_type,
     });
     router.push("/dashboard");
     console.log("success");

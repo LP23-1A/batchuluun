@@ -23,9 +23,9 @@ const CategoryNameData = () => {
   const categoryData = JSON.stringify(data);
   return (
     <div>
-      {data.map((el) => {
+      {data.map((el, ind) => {
         return (
-          <div className="flex gap-2 justify-between">
+          <div className="flex gap-2 justify-between" key={ind}>
             <div className="flex gap-2">
               <Eye />
               <p>{el.name}</p>

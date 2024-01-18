@@ -44,9 +44,9 @@ export default function AddCategoryInput({ closeCategoryModal }) {
                     </div>
                     <div className="border-b"></div>
 
-                    {CategoryImgData.map((el) => {
+                    {CategoryImgData.map((el, ind) => {
                       return (
-                        <div className="flex gap-4">
+                        <div className="flex gap-4" key={ind}>
                           <p>{el.img}</p>
                           <p>{el.name}</p>
                         </div>

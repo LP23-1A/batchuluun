@@ -15,11 +15,11 @@ export default function Cards() {
   ];
   return (
     <div>
-      {mockData.map((el) => {
+      {mockData.map((el, ind) => {
         <div>
           <div className=" bg-black w-24 h-24">
             <span className="w-1 h-1 bg-green-500"></span>
-            <p>{el.title}</p>
+            <p key={ind}>{el.title}</p>
           </div>
         </div>;
       })}

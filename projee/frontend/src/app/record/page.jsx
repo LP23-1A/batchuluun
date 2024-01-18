@@ -31,12 +31,12 @@ export default function Record() {
     setAddCategory(!AddCategory);
   };
   return (
-    <div className="bg-white w-screen h-screen flex flex-col gap-6 relative ">
+    <div className="bg-white w-screen  flex flex-col gap-6 relative ">
       <div className="">
         <Navbar />
       </div>
       <div className=" bg-slate-200">
-        <div className="px-32  py-6 flex gap-6 w-[1440px] h-screen m-auto">
+        <div className="px-32  py-6 flex gap-6 w-[1440px] m-auto">
           <div className="w-[282px] flex flex-col gap-6 bg-white rounded-xl py-6 px-4 ">
             <div className=" flex flex-col gap-6">
               <h2 className="text-3xl">Records</h2>
@@ -50,9 +50,9 @@ export default function Record() {
             <div className="flex flex-col gap-6">
               <h3 className=" text-2xl">Types</h3>
               <div className="flex flex-col gap-2">
-                {typesData.map((el) => {
+                {typesData.map((el, ind) => {
                   return (
-                    <div className="flex gap-2">
+                    <div className="flex gap-2" key={ind}>
                       <input type="radio" />
                       <p>{el.text}</p>
                     </div>

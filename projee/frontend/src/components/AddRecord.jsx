@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { CategoryImgData } from "./CategoryImg";
 import axios from "axios";
 export default function AddCard() {
   const [exActive, setExActive] = useState(false);
@@ -29,7 +28,6 @@ export default function AddCard() {
         transaction_type: exActive ? "INC" : "EXP",
         description: description,
       });
-      console.log(response.data);
       setName("");
       setAmount("");
       setDescription("");
@@ -38,7 +36,7 @@ export default function AddCard() {
     }
   };
   return (
-    <div className="">
+    <div>
       <button
         className="btn  btn-primary w-full"
         onClick={() => document.getElementById("my_modal_4").showModal()}
@@ -106,23 +104,14 @@ export default function AddCard() {
                           <p>Add Record</p>
                         </div>
                         <div className="border-b"></div>
-
-                        {/* {CategoryImgData.map((el) => {
-                          return (
-                            <div className="flex gap-4 cursor-pointer">
-                              <p>{el.img}</p>
-                              <p>{el.name}</p>
-                            </div>
-                          );
-                        })} */}
                         <select
                           name=""
                           id=""
                           value={name}
                           onChange={(el) => setName(el.target.value)}
                         >
-                          {data.map((el) => {
-                            return <option>{el.name}</option>;
+                          {data.map((el, ind) => {
+                            return <option key={ind}>{el.name}</option>;
                           })}
                         </select>
                       </div>
