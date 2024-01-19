@@ -1,26 +1,25 @@
 "use client";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Geld from "@/components/Geld";
-import Button from "@/components/Button";
-import CategoryNameData from "@/components/CategoryNameData";
 import Alert from "@/components/Alert";
-const api = "http://localhost:8000/users/oneuser";
+const API = "http://localhost:8000/users/oneuser";
 export default function LogIn() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const LogIn = async () => {
-    const res = await axios.post(api, { email: email, password: password });
-    if ((res.data = "success")) {
-      useEffect(() => {
-        setTimeout(router.push("/loading"));
-      }, 8000);
+  const handleLogIn = async () => {
+    const res = await axios.post(API, { email: email, password: password });
+    const user = res.data;
+    localStorage.setItem("id", JSON.stringify(user));
+    if (user && (user.id || user.email)) {
+      router.push(`/dashboard/${user.email}`);
     } else {
       <Alert />;
     }
   };
+
   return (
     <div className=" bg-indigo-900">
       <div className="bg-white flex justify-center items-center w-1/2 h-screen ">
@@ -49,7 +48,9 @@ export default function LogIn() {
               className="border py-2 px-2 rounded-xl "
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button name={"Log in"} />
+            <button className="btn btn-primary " onClick={handleLogIn}>
+              Log in
+            </button>
           </div>
           <div>
             <p className="text-center">
@@ -63,9 +64,6 @@ export default function LogIn() {
             </p>
           </div>
         </div>
-      </div>
-      <div>
-        <CategoryNameData />
       </div>
     </div>
   );

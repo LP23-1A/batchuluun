@@ -1,25 +1,18 @@
 import HomeIcon from "@/icon/Home";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
-const fetchData = async (url) => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
-};
+const apiUrl = "http://localhost:8000/transactions";
 
 export default function RecordSection() {
-  const apiUrl = "http://localhost:8000/transactions";
-
-  const { data, error } = useSWR(apiUrl, fetchData);
-
-  if (error) {
-    return <div>Error fetching data</div>;
-  }
-
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-  const categoryData = JSON.stringify(data);
-  console.log(categoryData);
+  const [data, setData] = useState([]);
+  const toggled = async () => {
+    const res = await axios.get(apiUrl);
+    setData(res);
+  };
+  useEffect(() => {
+    toggled();
+  });
   return (
     <div className="flex flex-col gap-3 rounded-3xl">
       {data.map((el, ind) => {
@@ -35,7 +28,7 @@ export default function RecordSection() {
               </div>
               <div>
                 <p>{el.name}</p>
-                <p>{el.createdat}</p>
+                <p>{el.createdat.slice(11, 16)}</p>
               </div>
             </div>
             <div>

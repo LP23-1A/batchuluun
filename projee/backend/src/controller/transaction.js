@@ -23,9 +23,10 @@ export const createTransaction = async (req, res) => {
   }
 };
 export const getTransactions = async (req, res) => {
+  const id = req.query.user_id;
   try {
-    const queryText = `SELECT * FROM transactions`;
-    const response = await pool.query(queryText);
+    const queryText = `SELECT * FROM users u INNER JOIN transactions t ON u.email = t.user_id`;
+    const response = await pool.query(queryText, [id]);
     res.send(response.rows);
   } catch (error) {
     console.log(error);

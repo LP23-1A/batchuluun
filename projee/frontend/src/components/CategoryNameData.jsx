@@ -1,26 +1,19 @@
 import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
-import useSWR from "swr";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const fetchData = async (url) => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
-};
+const apiUrl = "http://localhost:8000/categorys";
 
 const CategoryNameData = () => {
-  const apiUrl = "http://localhost:8000/categorys";
-
-  const { data, error } = useSWR(apiUrl, fetchData);
-
-  if (error) {
-    return <div>Error fetching data</div>;
-  }
-
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-  const categoryData = JSON.stringify(data);
+  const [data, setData] = useState([]);
+  const toggle = async () => {
+    const res = await axios.get(apiUrl);
+    setData(res.data);
+  };
+  useEffect(() => {
+    toggle();
+  });
   return (
     <div>
       {data.map((el, ind) => {

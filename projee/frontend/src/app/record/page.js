@@ -31,18 +31,18 @@ export default function Record() {
     setAddCategory(!AddCategory);
   };
   return (
-    <div className="bg-white w-screen  flex flex-col gap-6 relative ">
+    <div className="bg-white w-screen  flex flex-col gap-6  ">
       <div className="">
         <Navbar />
       </div>
-      <div className=" bg-slate-200">
+      <div className=" bg-slate-200 h-screen">
         <div className="px-32  py-6 flex gap-6 w-[1440px] m-auto">
           <div className="w-[282px] flex flex-col gap-6 bg-white rounded-xl py-6 px-4 ">
             <div className=" flex flex-col gap-6">
               <h2 className="text-3xl">Records</h2>
               <AddCard />
             </div>
-            <input
+            <inputx
               type="text"
               placeholder="search"
               className="border py-1 pl-2 rounded"
