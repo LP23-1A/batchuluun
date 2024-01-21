@@ -1,18 +1,19 @@
 import { pool } from "../../db.js";
 export const getCategorys = async (req, res) => {
+  const id = req.query.user_id;
   try {
-    const queryText = `SELECT * FROM categorys`;
-    const response = await pool.query(queryText);
+    const queryText = `SELECT * FROM users u INNER JOIN categorys c ON u.id = c.user_id WHERE u.id = $1  `;
+    const response = await pool.query(queryText, [id]);
     res.send(response.rows);
   } catch (error) {
     console.log(error);
   }
 };
 export const createCategory = async (req, response) => {
-  const { name, description } = req.body;
+  const { user_id, name, description } = req.body;
   try {
-    const queryText = `INSERT INTO categorys (id, name, description) VALUES (gen_random_uuid (), $1, $2) RETURNING *`;
-    const res = await pool.query(queryText, [name, description]);
+    const queryText = `INSERT INTO categorys (id, user_id, name, description) VALUES (gen_random_uuid (), $1,  $2, $3) RETURNING *`;
+    const res = await pool.query(queryText, [user_id, name, description]);
     response.send(res.rows[0]);
   } catch (error) {
     console.error(error);

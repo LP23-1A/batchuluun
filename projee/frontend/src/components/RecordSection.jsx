@@ -1,17 +1,16 @@
 import HomeIcon from "@/icon/Home";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
-const apiUrl = "http://localhost:8000/transactions";
-
+const userId = JSON.parse(localStorage.getItem("id"));
+const apiUrl = `http://localhost:8000/transactions?user_id=${userId.id}`;
 export default function RecordSection() {
   const [data, setData] = useState([]);
-  const toggled = async () => {
+  const handler = async () => {
     const res = await axios.get(apiUrl);
-    setData(res);
+    setData(res.data);
   };
   useEffect(() => {
-    toggled();
+    handler();
   });
   return (
     <div className="flex flex-col gap-3 rounded-3xl">

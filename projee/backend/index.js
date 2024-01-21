@@ -44,6 +44,7 @@ app.post("/createCategoryTable", async (req, res) => {
     const tableQueryText = `
         CREATE TABLE IF NOT EXISTS categorys (
             id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
+            user_id uuid REFERENCES users(id),
             name VARCHAR(255) NOT NULL,
             description VARCHAR(255) NOT NULL,
             createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -77,9 +78,18 @@ app.post("/createTransactionTable", async (req, res) => {
     console.error(error);
   }
 });
-app.post("/deleteTransactionTable", async (req, res) => {
+app.post("/delete", async (req, res) => {
   try {
-    const queryText = `DROP TABLE IF EXISTS transactions`;
+    const queryText = `DROP TABLE IF EXISTS categorys`;
+    await pool.query(queryText);
+    res.send("deleted transaction table");
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.post("/alterTable", async (req, res) => {
+  try {
+    const queryText = `ALTER TABLE IF EXISTS categorys`;
     await pool.query(queryText);
     res.send("deleted transaction table");
   } catch (error) {

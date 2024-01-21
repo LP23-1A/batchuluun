@@ -7,7 +7,6 @@ export default function AddCard() {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [data, setData] = useState([]);
-  const user = JSON.parse(localStorage.getItem("id"));
   const api = "http://localhost:8000/transactions";
   const categoryApi = "http://localhost:8000/categorys";
   const handler = async () => {

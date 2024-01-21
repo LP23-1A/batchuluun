@@ -8,6 +8,8 @@ export default function AddCategoryInput({ closeCategoryModal }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState();
   const user = JSON.parse(localStorage.getItem("id"));
+
+  console.log(user.id);
   const handlerInput = async () => {
     let res = await axios.post(api, {
       name: name,

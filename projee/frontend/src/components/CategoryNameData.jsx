@@ -2,8 +2,8 @@ import Eye from "@/icon/Eye";
 import Leading from "@/icon/Leading";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-const apiUrl = "http://localhost:8000/categorys";
+const user = JSON.parse(localStorage.getItem("id"));
+const apiUrl = `http://localhost:8000/categorys?user_id=${user.id}`;
 
 const CategoryNameData = () => {
   const [data, setData] = useState([]);
