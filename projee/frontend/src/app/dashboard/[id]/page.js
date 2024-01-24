@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import BottomArrow from "@/icon/BottomArrow";
 import TopArrow from "@/icon/TopArrow";
 import { Bar } from "react-chartjs-2";
-import FoodDinks from "@/icon/Food";
 import {
   Chart as Chartjs,
   BarElement,

@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Geld from "@/components/Geld";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Button1 from "@/components/Button1";
 const api = "http://localhost:8000/users";
 
 export default function Step() {
@@ -43,9 +44,7 @@ export default function Step() {
           and start tracking
         </p>
       </div>
-      <button className="btn btn-primary w-full" onClick={handlerName}>
-        Go to dashboard
-      </button>
+      <Button1 onClick={handlerName}>Go to dashboard</Button1>
     </div>
   );
 }

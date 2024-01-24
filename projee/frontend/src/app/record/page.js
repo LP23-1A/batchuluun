@@ -7,8 +7,10 @@ import RecordSection from "@/components/RecordSection";
 import Leading from "@/icon/Leading";
 import Left from "@/icon/LeftIcon";
 import Right from "@/icon/RightIcon";
-import { useState } from "react";
-const transactionApi = "http://localhost:8000/transactions";
+import axios from "axios";
+import { useEffect, useState } from "react";
+const userId = JSON.parse(localStorage.getItem("id"));
+const transactionApi = `http://localhost:8000/categorys?user_id=${userId.id}`;
 export default function Record() {
   const typesData = [
     {
@@ -24,12 +26,28 @@ export default function Record() {
   const [add, setAdd] = useState(false);
   const [AddCategory, setAddCategory] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [input, setInput] = useState("");
+  const search = async () => {
+    const res = await axios.get(transactionApi);
+    localStorage.setItem("alldata", JSON.stringify(res.data));
+  };
+  const data = JSON.parse(localStorage.getItem("alldata"));
+
+  // const searchCategory = options.filter((option) => {
+  //   option.toLowerCase().includes(value.toLowerCase());
+  // });
+  // const handlerSearch = () => {
+  //   setInput(searchCategory);
+  // };
   const Handler = () => {
     setAdd(true);
   };
   const handlerCategory = () => {
     setAddCategory(!AddCategory);
   };
+  useEffect(() => {
+    search();
+  });
   return (
     <div className="bg-white w-screen  flex flex-col gap-6  ">
       <div className="">
@@ -42,7 +60,8 @@ export default function Record() {
               <h2 className="text-3xl">Records</h2>
               <AddCard />
             </div>
-            <inputx
+            <input
+              value={input}
               type="text"
               placeholder="search"
               className="border py-1 pl-2 rounded"

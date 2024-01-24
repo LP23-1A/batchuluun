@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/Button";
+import Button1 from "@/components/Button1";
 import Geld from "@/components/Geld";
 import Money from "@/icon/Money";
 import axios from "axios";
@@ -52,9 +53,7 @@ export default function Step() {
           Your base currency should be the one you use most often. All
           transaction in other currencies will be calculated based on this one{" "}
         </p>
-        <button className="btn btn-primary w-full" onClick={laststep}>
-          next
-        </button>
+        <Button1 onClick={laststep}>Next</Button1>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import Logo from "@/icon/LogLogo";
 import Profile from "@/icon/Profile";
 import { useState } from "react";
 import Button from "./Button";
+import Button1 from "./Button1";
 
 export default function Navbar() {
   const [active, setActive] = useState(true);
@@ -22,7 +23,7 @@ export default function Navbar() {
           </a>
         </div>
         <div className="flex gap-6">
-          <Button name={"+ Record"} />
+          <Button1>+ Record</Button1>
           <Profile />
         </div>
       </div>
