@@ -66,7 +66,7 @@ const LoginSection = () => {
             multiline
             maxRows={4}
             variant="filled"
-            onChange={(e) =>
+            onChange={(e: any) =>
               setInput((prev) => ({ ...prev, email: e.target.value }))
             }
           />
@@ -89,7 +89,7 @@ const LoginSection = () => {
             <OutlinedInput
               id="outlined-adornment-password"
               type={showPassword ? "text" : "password"}
-              onChange={(e) =>
+              onChange={(e: any) =>
                 setInput((prev) => ({ ...prev, password: e.target.value }))
               }
               endAdornment={
