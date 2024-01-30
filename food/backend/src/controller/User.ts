@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { UserModel } from "../model/User";
 type SignUpType = {
-  username: string;
+  name: string;
   email: string;
-  location: string;
+  phoneNumber: number;
   password: string;
 };
 type LogInType = {
@@ -12,12 +12,12 @@ type LogInType = {
 };
 export const signUp = async (req: Request, res: Response) => {
   try {
-    const { username, email, location, password }: Required<SignUpType> =
+    const { name, email, phoneNumber, password }: Required<SignUpType> =
       req.body;
     const result = await UserModel.create({
-      username,
+      name,
       email,
-      location,
+      phoneNumber,
       password,
     });
     res.send(result);
