@@ -16,6 +16,7 @@ const Navbar = () => {
           width: "1440px",
           justifyContent: "space-between",
           paddingY: "20px",
+          paddingX: "200px",
           flexDirection: "row",
         }}
       >

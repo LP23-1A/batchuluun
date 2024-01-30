@@ -2,12 +2,13 @@ import * as React from "react";
 
 import Navbar from "./components/Navbar";
 import Error from "./components/Error";
+import { Stack } from "@mui/material";
 
 export default function BasicButtons() {
   return (
-    <div>
+    <Stack>
       <Navbar />
       <Error />
-    </div>
+    </Stack>
   );
 }

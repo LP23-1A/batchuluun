@@ -2,16 +2,19 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import LoginSection from "../components/LoginSection";
 import Footer from "../components/Footer";
+import { Stack } from "@mui/material";
 
 const page = () => {
   return (
-    <div className="flex flex-col gap-[60px] ">
+    <Stack sx={{ display: "flex", flexDirection: "column", gap: "60px" }}>
       <Navbar />
-      <div className="flex justify-center ">
+      <Stack
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
         <LoginSection />
-      </div>
+      </Stack>
       <Footer />
-    </div>
+    </Stack>
   );
 };
 

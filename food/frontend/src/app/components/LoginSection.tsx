@@ -14,7 +14,9 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Error from "../components/Error";
 const LoginSection = () => {
+  const [error, setError] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -32,11 +34,13 @@ const LoginSection = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(api, { ...input });
+      localStorage.setItem("user", JSON.stringify(data.user));
       if (data) {
-        router.push("/dashboard");
+        router.push(`/dashboard/${data.user.email}`);
       }
       console.log("ok");
     } catch (error) {
+      setError("username or password error");
       console.log(error);
     }
   };
@@ -56,6 +60,7 @@ const LoginSection = () => {
       <Box display={"flex"} justifyContent={"center"} fontSize={"28px"}>
         Нэвтрэх
       </Box>
+      {error && <Box color={"red"}>{error}</Box>}
       <Stack sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Stack sx={{ flex: "" }}>
           <Box fontSize={"14px"}>Имэйл</Box>
@@ -70,6 +75,7 @@ const LoginSection = () => {
               setInput((prev) => ({ ...prev, email: e.target.value }))
             }
           />
+          {input.email}
         </Stack>
         <Stack sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
           <Box fontSize={"14px"}>Нууц Үг</Box>
