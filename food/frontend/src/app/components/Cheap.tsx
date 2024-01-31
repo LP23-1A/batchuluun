@@ -1,44 +1,49 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
 import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+import { Stack } from "@mui/material";
+import goodmorning from "../../../public/img/egg.png";
+import ice from "../../../public/img/ice.png";
+import breackfast from "../../../public/img/breackfast.png";
+import food from "../../../public/img/food.png";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const images = [
+const mockData = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    img: goodmorning,
+    name: "Өглөөний хоол",
+    price: 4800,
   },
   {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
+    img: ice,
+    name: "Зайрмаг",
+    price: 14800,
   },
   {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
+    img: breackfast,
+    name: "Өглөөний хоол",
+    price: 248000,
   },
   {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
+    img: food,
+    name: "Breakfast ",
+    price: 3480,
+  },
+  {
+    img: goodmorning,
+    name: "Өглөөний хоол",
+    price: 4800,
   },
 ];
-
-function SwipeableTextMobileStepper() {
+export default function CardStep() {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const [activeStep, setActiveStep] = React.useState(4);
+  const maxSteps = 5;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -48,12 +53,8 @@ function SwipeableTextMobileStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStepChange = (step: number) => {
-    setActiveStep(step);
-  };
-
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+    <Box sx={{ maxWidth: 1200, flexGrow: 1 }}>
       <Paper
         square
         elevation={0}
@@ -63,36 +64,35 @@ function SwipeableTextMobileStepper() {
           height: 50,
           pl: 2,
           bgcolor: "background.default",
+          overflow: "hidden",
         }}
       >
-        <Typography>{images[activeStep].label}</Typography>
+        <Stack
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          {mockData.map((el: any, ind: Number) => (
+            <Stack key={el + ind}>
+              <Box>
+                <img src={el.img.src} alt="" />
+              </Box>
+              <Typography
+                sx={{ color: "#000", fontSize: "18px", fontWeight: "600" }}
+              >
+                {el.name}
+              </Typography>
+              <Typography color={"#18BA51"}>
+                {mockData[activeStep].price}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
       </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  height: 255,
-                  display: "block",
-                  maxWidth: 400,
-                  overflow: "hidden",
-                  width: "100%",
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
       <MobileStepper
+        variant="text"
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
@@ -100,7 +100,7 @@ function SwipeableTextMobileStepper() {
           <Button
             size="small"
             onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
+            disabled={activeStep === maxSteps - 4}
           >
             Next
             {theme.direction === "rtl" ? (
@@ -121,8 +121,9 @@ function SwipeableTextMobileStepper() {
           </Button>
         }
       />
+      <Stack>
+        <p>{mockData[activeStep].name}</p>
+      </Stack>
     </Box>
   );
 }
-
-export default SwipeableTextMobileStepper;

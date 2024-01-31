@@ -8,25 +8,26 @@ import Bg from "../../icon/Bg";
 import { useRouter } from "next/navigation";
 import BasicCard from "@/app/components/Card1";
 import Cards from "@/app/components/Cards";
-import SwipeableTextMobileStepper from "@/app/components/Cheap";
+import CardStep from "@/app/components/Cheap";
+// import SwipeableTextMobileStepper from "@/app/components/Cheap";
 const page = () => {
-  const router = useRouter();
-  useEffect(() => {
-    const rawJson: string | null = localStorage.getItem("user");
-    const user = rawJson && JSON.parse(rawJson);
+  // const router = useRouter();
+  // useEffect(() => {
+  //   const rawJson: string | null = localStorage.getItem("user");
+  //   const user = rawJson && JSON.parse(rawJson);
 
-    if (!user) {
-      router.push("/login");
-      return;
-    }
+  //   if (!user) {
+  //     router.push("/login");
+  //     return;
+  //   }
 
-    const { _id, email, password } = user;
+  //   const { _id, email, password } = user;
 
-    if (!_id || !email || !password) {
-      router.push("/login");
-      return;
-    }
-  }, []);
+  //   if (!_id || !email || !password) {
+  //     router.push("/login");
+  //     return;
+  //   }
+  // }, []);
   return (
     <Stack>
       <Navbar />
@@ -76,7 +77,7 @@ const page = () => {
       >
         <Cards />
       </Stack>
-      <SwipeableTextMobileStepper />
+      <CardStep />
     </Stack>
   );
 };

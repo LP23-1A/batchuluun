@@ -2,7 +2,7 @@ import express from "express";
 import { connectDatabase } from "./Utils/database";
 import { user } from "./router/User";
 import cors from "cors";
-const PORT = 8000;
+const PORT = 8001;
 const start = () => {
   connectDatabase();
 

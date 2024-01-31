@@ -27,6 +27,11 @@ const Cards = () => {
       name: "Breakfast ",
       price: 3480,
     },
+    {
+      img: goodmorning,
+      name: "Өглөөний хоол",
+      price: 4800,
+    },
   ];
   return (
     <Stack sx={{ width: "1200px" }}>
