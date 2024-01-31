@@ -1,11 +1,27 @@
-import { Box, Stack } from "@mui/material";
+"use client";
+import { Box, Button, Modal, Stack, Typography } from "@mui/material";
 import React from "react";
 
 import SearchAppBar from "./Search";
 import { PermIdentitySharp, ShoppingBasketSharp } from "@mui/icons-material";
 import PineconeBlackLogo from "../icon/PineconeBlackLogo";
+import LoginSection from "./LoginSection";
 
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 const Navbar = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <Stack
       sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
@@ -14,9 +30,10 @@ const Navbar = () => {
         sx={{
           display: "flex",
           width: "1440px",
+          paddingX: "120px",
           justifyContent: "space-between",
           paddingY: "20px",
-          paddingX: "200px",
+
           flexDirection: "row",
         }}
       >
@@ -50,7 +67,30 @@ const Navbar = () => {
             }}
           >
             <PermIdentitySharp />
-            <Box>Нэвтрэх</Box>
+            <Button sx={{ color: "black" }} onClick={handleOpen}>
+              Нэвтрэх
+            </Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Stack
+                sx={{
+                  position: "absolute" as "absolute",
+                  top: "43%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 448,
+                  bgcolor: "background.paper",
+                  borderRadius: "12px",
+                  boxShadow: 24,
+                }}
+              >
+                <LoginSection />
+              </Stack>
+            </Modal>
           </Stack>
         </Stack>
       </Stack>

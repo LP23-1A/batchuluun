@@ -5,7 +5,7 @@ const Error = () => {
   return (
     <div>
       <Alert variant="filled" severity="error">
-        This is a filled error Alert.
+        username or password error.
       </Alert>
     </div>
   );

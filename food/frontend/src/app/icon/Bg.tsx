@@ -3,9 +3,15 @@ import React from "react";
 
 const Bg = () => {
   return (
-    <Stack bgcolor={"green"} width={"1440px"} position={"relative"}>
+    <Stack
+      bgcolor={"green"}
+      position={"relative"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
+    >
       <svg
-        width="1440"
+        width={"1440px"}
         height="788"
         viewBox="0 0 1440 788"
         fill="none"

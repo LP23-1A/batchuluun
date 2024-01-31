@@ -32,7 +32,7 @@ export const LogIn = async (req: Request, res: Response) => {
       email: email,
       password: password,
     });
-    res.send("ok");
+    res.send(result);
   } catch (error) {
     console.log(error);
   }

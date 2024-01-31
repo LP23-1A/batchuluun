@@ -34,9 +34,11 @@ const LoginSection = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(api, { ...input });
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("user", JSON.stringify(data));
       if (data) {
-        router.push(`/dashboard/${data.user.email}`);
+        router.push(`/dashboard/${data.email}`);
+      } else {
+        setError("username or password error");
       }
       console.log("ok");
     } catch (error) {
@@ -55,17 +57,23 @@ const LoginSection = () => {
         display: "flex",
         gap: "48px",
         flexDirection: "column",
+        borderRadius: "6px",
       }}
     >
+      {error && <Error />}
       <Box display={"flex"} justifyContent={"center"} fontSize={"28px"}>
         Нэвтрэх
       </Box>
-      {error && <Box color={"red"}>{error}</Box>}
+
       <Stack sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <Stack sx={{ flex: "" }}>
           <Box fontSize={"14px"}>Имэйл</Box>
           <TextField
-            sx={{ border: "1px solid gray", "&:focus": "none" }}
+            sx={{
+              border: "1px solid gray",
+              borderBottom: "none",
+              borderRadius: "6px",
+            }}
             id="filled-multiline-flexible"
             label="Имэйл хаягаа оруулна уу"
             multiline
@@ -75,7 +83,6 @@ const LoginSection = () => {
               setInput((prev) => ({ ...prev, email: e.target.value }))
             }
           />
-          {input.email}
         </Stack>
         <Stack sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
           <Box fontSize={"14px"}>Нууц Үг</Box>
@@ -119,18 +126,10 @@ const LoginSection = () => {
         </Stack>
       </Stack>
       <Stack sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-        <Button
-          sx={{
-            paddingX: "16px",
-            paddingY: "8px",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-          onClick={submitHandler}
-          variant="contained"
-        >
+        <Button variant="contained" onClick={submitHandler}>
           Нэвтрэх
         </Button>
+
         <Box display={"flex"} justifyContent={"center"}>
           Эсвэл
         </Box>
