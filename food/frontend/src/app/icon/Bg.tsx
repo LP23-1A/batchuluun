@@ -4,7 +4,7 @@ import React from "react";
 const Bg = () => {
   return (
     <Stack
-      bgcolor={"green"}
+      bgcolor={"#18BA51"}
       position={"relative"}
       display={"flex"}
       justifyContent={"center"}

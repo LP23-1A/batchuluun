@@ -51,7 +51,7 @@ export default function BasicCard() {
         }}
       >
         {mockData.map((el: any, ind: Number) => (
-          <Card sx={{ maxWidth: 275 }}>
+          <Card sx={{ maxWidth: 275, boxShadow: "4" }}>
             <CardContent
               sx={{ display: "flex", flexDirection: "column", gap: "20px" }}
             >

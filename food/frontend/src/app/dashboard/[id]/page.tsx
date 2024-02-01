@@ -1,15 +1,15 @@
 "use client";
 import { Box, Stack } from "@mui/material";
 import React, { useEffect } from "react";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar1";
 import BigImage from "../../../../public/img/img1.png";
 import SmallImage from "../../../../public/img/img2.png";
 import Bg from "../../icon/Bg";
 import { useRouter } from "next/navigation";
 import BasicCard from "@/app/components/Card1";
-import Cards from "@/app/components/Cards";
-import CardStep from "@/app/components/Cheap";
-// import SwipeableTextMobileStepper from "@/app/components/Cheap";
+
+import FoodCards from "@/app/components/Cards";
+import Footer from "@/app/components/Footer";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -71,13 +71,16 @@ const page = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-
           margin: "100px auto",
+          gap: "50px",
         }}
       >
-        <Cards />
+        <FoodCards name={"Хямдралтай"} />
+        <FoodCards name={"Үндсэн хоол"} />
+        <FoodCards name={"Салад ба зууш"} />
+        <FoodCards name={"Амттан"} />
       </Stack>
-      <CardStep />
+      <Footer />
     </Stack>
   );
 };

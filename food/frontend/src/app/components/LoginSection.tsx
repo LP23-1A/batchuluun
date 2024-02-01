@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Error from "../components/Error";
+import { green, grey } from "@mui/material/colors";
 const LoginSection = () => {
   const [error, setError] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
@@ -28,12 +29,13 @@ const LoginSection = () => {
     email: "",
     password: "",
   });
-  const api = "http://localhost:8000/user/login";
   const router = useRouter();
   const submitHandler = async (e: any) => {
+    const BASE_URL = "http://localhost:8000/user/login";
+
     e.preventDefault();
     try {
-      const { data } = await axios.post(api, { ...input });
+      const { data } = await axios.post(BASE_URL, { ...input });
       localStorage.setItem("user", JSON.stringify(data));
       if (data) {
         router.push(`/dashboard/${data.email}`);
@@ -42,7 +44,7 @@ const LoginSection = () => {
       }
       console.log("ok");
     } catch (error) {
-      setError("username or password error");
+      // setError("username or password error");
       console.log(error);
     }
   };
@@ -126,7 +128,12 @@ const LoginSection = () => {
         </Stack>
       </Stack>
       <Stack sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-        <Button variant="contained" onClick={submitHandler}>
+        <Button
+          variant="contained"
+          onClick={submitHandler}
+          disabled={input.email === "" && input.password === ""}
+          color="success"
+        >
           Нэвтрэх
         </Button>
 

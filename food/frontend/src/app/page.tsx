@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar1";
 import Error from "./components/Error";
 import { Stack } from "@mui/material";
 

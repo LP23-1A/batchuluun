@@ -3,24 +3,28 @@ import Logo from "../icon/PineconeBlackLogo";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import PineconeWhiteLogo from "../icon/PineconeWhiteLogo";
+import Bg from "../icon/Bg";
 
 const Footer = () => {
   return (
     <Stack
       sx={{
-        backgroundColor: "green",
+        bgcolor: "#18BA51",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        position: "relative",
       }}
     >
+      <Bg />
       <Stack
         sx={{
           width: "1440px",
-          paddingY: "114px",
+          px: "120px",
           display: "flex",
           gap: "40px",
           flexDirection: "column",
+          position: "absolute",
         }}
       >
         <Stack

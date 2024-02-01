@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar1";
 import Footer from "../components/Footer";
 import { Stack } from "@mui/material";
 import SignUp from "../components/SignUp";
