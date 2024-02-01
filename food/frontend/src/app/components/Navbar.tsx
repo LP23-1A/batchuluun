@@ -2,18 +2,18 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import PineconeBlackLogo from "../icon/PineconeBlackLogo";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import {
+  Button,
+  Modal,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
+import LoginSection from "./LoginSection";
+import { PermIdentitySharp, ShoppingBasketSharp } from "@mui/icons-material";
+import SearchAppBar from "./Search";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -41,72 +41,112 @@ function Navbar() {
     setAnchorElUser(null);
   };
   const [alignment, setAlignment] = React.useState("web");
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string
   ) => {
     setAlignment(newAlignment);
   };
-
+  const style = {};
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "white" }}>
       <Container>
-        <Toolbar>
-          <PineconeBlackLogo />
+        <Toolbar
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            sx={{
+              border: "1px solid white",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
+            <PineconeBlackLogo />
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <ToggleButtonGroup
+              sx={{ display: "flex", gap: "20px" }}
               color="success"
               value={alignment}
               exclusive
               onChange={handleChange}
               aria-label="Platform"
             >
-              <ToggleButton value="web">Web</ToggleButton>
-              <ToggleButton value="android">Android</ToggleButton>
-              <ToggleButton value="ios">iOS</ToggleButton>
+              <ToggleButton
+                sx={{ border: "none", bgcolor: "white" }}
+                value="web"
+              >
+                НҮҮР
+              </ToggleButton>
+              <ToggleButton sx={{ border: "none" }} value="android">
+                ХООЛНЫ ЦЭС
+              </ToggleButton>
+              <ToggleButton sx={{ border: "none" }} value="ios">
+                ХҮРГЭЛТИЙН БҮС
+              </ToggleButton>
             </ToggleButtonGroup>
           </Box>
+          <Stack sx={{ display: "flex", gap: "24px", flexDirection: "row" }}>
+            <SearchAppBar />
+            <Stack
+              sx={{
+                display: "flex",
+                gap: "12px",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <ShoppingBasketSharp sx={{ color: "black" }} />
+              <Box sx={{ color: "black" }}>Сагс</Box>
+            </Stack>
+            <Stack
+              sx={{
+                display: "flex",
+                gap: "12px",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <PermIdentitySharp sx={{ color: "black" }} />
+              <Button sx={{ color: "black" }} onClick={handleOpen}>
+                Нэвтрэх
+              </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Stack
+                  sx={{
+                    position: "absolute" as "absolute",
+                    top: "43%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 448,
+                    bgcolor: "background.paper",
+                    borderRadius: "12px",
+                    boxShadow: 24,
+                  }}
+                >
+                  <LoginSection />
+                </Stack>
+              </Modal>
+            </Stack>
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default Navbar;

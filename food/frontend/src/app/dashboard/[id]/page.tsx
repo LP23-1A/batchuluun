@@ -1,7 +1,7 @@
 "use client";
 import { Box, Stack } from "@mui/material";
 import React, { useEffect } from "react";
-import Navbar from "../../components/Navbar1";
+import Navbar from "../../components/Navbar";
 import BigImage from "../../../../public/img/img1.png";
 import SmallImage from "../../../../public/img/img2.png";
 import Bg from "../../icon/Bg";
@@ -10,6 +10,8 @@ import BasicCard from "@/app/components/Card1";
 
 import FoodCards from "@/app/components/Cards";
 import Footer from "@/app/components/Footer";
+import AllFood from "@/app/components/AllFood";
+import FoodCard from "@/app/components/FoodCard";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -75,10 +77,8 @@ const page = () => {
           gap: "50px",
         }}
       >
-        <FoodCards name={"Хямдралтай"} />
-        <FoodCards name={"Үндсэн хоол"} />
-        <FoodCards name={"Салад ба зууш"} />
-        <FoodCards name={"Амттан"} />
+        <AllFood name="Хямдралтай" />
+        <FoodCard />
       </Stack>
       <Footer />
     </Stack>

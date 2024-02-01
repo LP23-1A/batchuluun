@@ -65,11 +65,12 @@ export default function SearchAppBar() {
     >
       <Search>
         <SearchIconWrapper>
-          <SearchIcon />
+          <SearchIcon sx={{ color: "black" }} />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder="Хайх"
           inputProps={{ "aria-label": "search" }}
+          sx={{ color: "black" }}
         />
       </Search>
     </Box>

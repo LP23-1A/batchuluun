@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
-import Navbar from "../components/Navbar1";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Stack } from "@mui/material";
 import SignUp from "../components/SignUp";
+import AllFood from "../components/AllFood";
 
 const page = () => {
   return (
@@ -11,6 +12,7 @@ const page = () => {
       <Navbar />
       <SignUp />
       <Footer />
+      <AllFood />
     </Stack>
   );
 };
