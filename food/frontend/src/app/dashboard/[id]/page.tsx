@@ -6,12 +6,9 @@ import BigImage from "../../../../public/img/img1.png";
 import SmallImage from "../../../../public/img/img2.png";
 import Bg from "../../icon/Bg";
 import { useRouter } from "next/navigation";
-import BasicCard from "@/app/components/Card1";
-
-import FoodCards from "@/app/components/Cards";
 import Footer from "@/app/components/Footer";
 import AllFood from "@/app/components/AllFood";
-import FoodCard from "@/app/components/FoodCard";
+import ActionAreaCard from "@/app/components/Cards";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -66,9 +63,7 @@ const page = () => {
           alignItems: "center",
           marginTop: "122px",
         }}
-      >
-        <BasicCard />
-      </Stack>
+      ></Stack>
       <Stack
         sx={{
           display: "flex",
@@ -78,8 +73,9 @@ const page = () => {
         }}
       >
         <AllFood name="Хямдралтай" />
-        <FoodCard />
       </Stack>
+      <ActionAreaCard />
+
       <Footer />
     </Stack>
   );

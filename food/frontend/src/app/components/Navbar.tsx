@@ -11,8 +11,8 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
-import LoginSection from "./LoginSection";
 import { PermIdentitySharp, ShoppingBasketSharp } from "@mui/icons-material";
+import LoginSection from "./LoginSection";
 import SearchAppBar from "./Search";
 
 const pages = ["Products", "Pricing", "Blog"];
@@ -52,7 +52,15 @@ function Navbar() {
   };
   const style = {};
   return (
-    <AppBar position="static" sx={{ bgcolor: "white" }}>
+    <AppBar
+      position="static"
+      sx={{
+        bgcolor: "white",
+        boxShadow: "0",
+        width: "1200px",
+        m: "auto",
+      }}
+    >
       <Container>
         <Toolbar
           sx={{
@@ -60,6 +68,7 @@ function Navbar() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
+            padding: "0",
           }}
         >
           <Box
@@ -74,15 +83,15 @@ function Navbar() {
             <PineconeBlackLogo />
 
             <ToggleButtonGroup
-              sx={{ display: "flex", gap: "20px" }}
               color="success"
               value={alignment}
               exclusive
               onChange={handleChange}
               aria-label="Platform"
+              sx={{ bgcolor: "white" }}
             >
               <ToggleButton
-                sx={{ border: "none", bgcolor: "white" }}
+                sx={{ border: "none", backgroundColor: "white" }}
                 value="web"
               >
                 НҮҮР

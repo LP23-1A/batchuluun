@@ -2,6 +2,7 @@ import express from "express";
 import { connectDatabase } from "./Utils/database";
 import { user } from "./router/User";
 import cors from "cors";
+import { food } from "./router/Food";
 const PORT = 8000;
 const start = () => {
   connectDatabase();
@@ -10,6 +11,7 @@ const start = () => {
   app.use(cors({ origin: "*" }));
   app.use(express.json());
   app.use("/user", user);
+  app.use("/food", food);
   app.get("/", (req, res) => {
     res.status(200).send({ success: true, message: "hello world" });
   });

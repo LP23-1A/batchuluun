@@ -129,9 +129,8 @@ const LoginSection = () => {
       </Stack>
       <Stack sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
         <Button
-          variant="contained"
           onClick={submitHandler}
-          disabled={input.email === "" && input.password === ""}
+          disabled={input.email === "" || input.password === ""}
           color="success"
         >
           Нэвтрэх
