@@ -6,12 +6,13 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import image from "../../../public/img/ice.png";
 type PropsType = {
+  img?: String;
   name?: String;
   price?: String;
 };
 const BaseUrl =
   "https://www.foodiesfeed.com/wp-content/uploads/2023/07/fresh-fruit-platter.jpg";
-export default function ActionAreaCard() {
+export default function ImgCard(name: String, price: String) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -22,8 +23,12 @@ export default function ActionAreaCard() {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div"></Typography>
-          <Typography variant="body2" color="text.secondary"></Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {price}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

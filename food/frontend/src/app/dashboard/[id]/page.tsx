@@ -8,7 +8,7 @@ import Bg from "../../icon/Bg";
 import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import AllFood from "@/app/components/AllFood";
-import ActionAreaCard from "@/app/components/Cards";
+import ImgCard from "@/app/components/Card";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -74,7 +74,7 @@ const page = () => {
       >
         <AllFood name="Хямдралтай" />
       </Stack>
-      <ActionAreaCard />
+      <ImgCard name="chjdcd" />
 
       <Footer />
     </Stack>
