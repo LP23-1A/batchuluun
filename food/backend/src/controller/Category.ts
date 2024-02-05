@@ -1,5 +1,5 @@
-import { CategoryModel } from "../model/Category";
 import { Request, Response } from "express";
+import { CategoryModel } from "../model/category";
 type CategoryType = {
   name: String;
 };
