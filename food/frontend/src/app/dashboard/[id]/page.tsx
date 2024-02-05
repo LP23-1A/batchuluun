@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import AllFood from "@/app/components/AllFood";
 import ImgCard from "@/app/components/Card";
+import Cards from "@/app/components/Cards";
+import Menu1 from "@/app/components/Menu";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -74,8 +76,10 @@ const page = () => {
       >
         <AllFood name="Хямдралтай" />
       </Stack>
-      <ImgCard name="chjdcd" />
-
+      <Stack sx={{ width: "1200px", margin: "auto" }}>
+        <Cards />
+      </Stack>
+      <Menu1 />
       <Footer />
     </Stack>
   );

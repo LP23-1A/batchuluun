@@ -3,15 +3,17 @@ import { connectDatabase } from "./Utils/database";
 import { user } from "./router/User";
 import cors from "cors";
 import { food } from "./router/Food";
+import { category } from "./router/Category";
 const PORT = 8000;
-const start = () => {
-  connectDatabase();
+connectDatabase();
 
+const start = () => {
   const app = express();
   app.use(cors({ origin: "*" }));
   app.use(express.json());
   app.use("/user", user);
   app.use("/food", food);
+  app.use("/category", category);
   app.get("/", (req, res) => {
     res.status(200).send({ success: true, message: "hello world" });
   });
