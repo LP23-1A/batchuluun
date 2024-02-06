@@ -4,8 +4,7 @@ const CategorySchema = new mongoose.Schema({
   foodId: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "food",
-      require: true,
+      ref: "foods",
     },
   ],
 });

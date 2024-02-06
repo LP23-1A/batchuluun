@@ -1,11 +1,16 @@
 import { v2 as cloudinary } from "cloudinary";
+import mongoose from "mongoose";
 import { Request, Response } from "express";
 import { FoodModel } from "../model/Food";
+import { CategoryModel } from "../model/Category";
+import { category } from "../router/Category";
 type FoodType = {
   name: string;
   image: string;
   ingeredient: string;
   price: number;
+  discount?: number;
+  categoryId: number;
 };
 
 cloudinary.config({
@@ -18,14 +23,34 @@ const createFood = async (req: Request, res: Response) => {
     const cloudinaryRes = await cloudinary.uploader.upload(req.body.image, {
       folder: "food",
     });
-    const { name, ingeredient, price }: Required<FoodType> = req.body;
-    const result = FoodModel.create({
+    const {
+      name,
+      ingeredient,
+      price,
+      discount,
+      categoryId,
+    }: Required<FoodType> = req.body;
+    const food = await FoodModel.create({
       name: name,
       image: cloudinaryRes.secure_url,
       ingeredient: ingeredient,
       price: price,
+      discount: discount,
     });
-    res.send({ success: true, result });
+    food.save();
+    // await CategoryModel.findOneAndUpdate({_id: categoryId}, {})
+
+    await CategoryModel.findOneAndUpdate(
+      {
+        id: categoryId,
+      },
+      {
+        $push: {
+          foodId: food._id,
+        },
+      }
+    );
+    res.send({ success: true, food });
   } catch (error) {
     console.log(error);
   }

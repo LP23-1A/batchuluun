@@ -30,10 +30,7 @@ const Menu1 = () => {
     setAlignment(newAlignment);
   };
   return (
-    <Stack
-      style={{ backgroundColor: active ? "green" : "white" }}
-      onClick={toggle}
-    >
+    <Stack>
       {/* {data.map((el, ind) => (
         <Box key={el.name + ind}>
           <Button
@@ -44,7 +41,12 @@ const Menu1 = () => {
           </Button>
         </Box>
       ))} */}
-      <Button>name</Button>
+      <Button
+        onClick={toggle}
+        style={{ backgroundColor: active ? "green" : "white" }}
+      >
+        name
+      </Button>
       <Button>name</Button>
     </Stack>
   );
