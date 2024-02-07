@@ -4,6 +4,7 @@ import { user } from "./router/User";
 import cors from "cors";
 import { food } from "./router/Food";
 import { category } from "./router/Category";
+import { order } from "./router/Order";
 const PORT = 8000;
 connectDatabase();
 
@@ -14,6 +15,7 @@ const start = () => {
   app.use("/user", user);
   app.use("/food", food);
   app.use("/category", category);
+  app.use("/order", order);
   app.get("/", (req, res) => {
     res.status(200).send({ success: true, message: "hello world" });
   });

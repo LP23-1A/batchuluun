@@ -15,6 +15,8 @@ const orderSchema = new mongoose.Schema({
     default: () => Date.now(),
   },
   district: String,
-  horoo: String,
-  Apartment: String,
+  khoroo: String,
+  apartment: String,
 });
+const orderModel = mongoose.model("order", orderSchema);
+export { orderModel };

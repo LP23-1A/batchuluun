@@ -9,17 +9,18 @@ export const createCategory = async (req: Request, res: Response) => {
     const category = await CategoryModel.create({ name: name });
     res.status(200).send({ success: true, category });
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };
-export const getAllCategory = async (req: Request, res: Response) => {
+export const getCategory = async (req: Request, res: Response) => {
   try {
     const { name } = req.body;
-    const result = await CategoryModel.find({ name: name }).populate("foodId");
-    console.log(result);
+    const result = await CategoryModel.findOne({ name: name }).populate(
+      "foodId"
+    );
 
     res.status(200).send({ success: true, result });
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };

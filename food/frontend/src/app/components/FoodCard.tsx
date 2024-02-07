@@ -1,7 +1,20 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import image from "../../../public/img/ice.png";
+import axios from "axios";
 const FoodCard = (count: any, discount: any) => {
+  const BASE_URL = "http://localhost:8000/category/one";
+  const handler = async () => {
+    try {
+      const { data } = await axios.post(BASE_URL, { name: "Soup" });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // useEffect(() => {
+  //   handler();
+  // });
   return (
     <Stack>
       <Box
@@ -15,7 +28,7 @@ const FoodCard = (count: any, discount: any) => {
         }}
         src={image.src}
       />
-      <Box>
+      <Box onClick={handler}>
         <Typography sx={{ fontSize: "22px", fontWeight: "600" }}>
           Өглөөний хоол
         </Typography>

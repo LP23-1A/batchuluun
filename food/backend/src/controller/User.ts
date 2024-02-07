@@ -20,9 +20,9 @@ export const signUp = async (req: Request, res: Response) => {
       phoneNumber,
       password,
     });
-    res.send(result);
+    res.status(201).send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).send();
   }
 };
 export const LogIn = async (req: Request, res: Response) => {
@@ -32,8 +32,8 @@ export const LogIn = async (req: Request, res: Response) => {
       email: email,
       password: password,
     });
-    res.send(result);
+    res.status(200).send(result);
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };

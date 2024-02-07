@@ -38,7 +38,6 @@ const createFood = async (req: Request, res: Response) => {
       discount: discount,
     });
     food.save();
-    // await CategoryModel.findOneAndUpdate({_id: categoryId}, {})
 
     await CategoryModel.findOneAndUpdate(
       {
@@ -50,27 +49,27 @@ const createFood = async (req: Request, res: Response) => {
         },
       }
     );
-    res.send({ success: true, food });
+    res.status(201).send({ success: true, food });
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };
 const getAllFood = async (req: Request, res: Response) => {
   try {
     const getAllFoods = await FoodModel.find();
-    return res.send({ success: true, getAllFoods });
+    return res.status(200).send({ success: true, getAllFoods });
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };
 const deleteFood = async (req: Request, res: Response) => {
   try {
     const { deleteId } = req.params;
     const deleteOneFood = await FoodModel.findByIdAndDelete(deleteId);
-    res.send({ success: true, deleteOneFood });
+    res.status(200).send({ success: true, deleteOneFood });
     console.log("delete");
   } catch (error) {
-    console.log(error);
+    res.status(500).send(error);
   }
 };
 const updateFood = async (req: Request, res: Response) => {
@@ -80,9 +79,9 @@ const updateFood = async (req: Request, res: Response) => {
     const updateOneFood = await FoodModel.findByIdAndUpdate(updateFood, {
       name,
     });
-    return res.send({ success: true, updateOneFood });
+    return res.status(200).send({ success: true, updateOneFood });
   } catch (error) {
-    console.log(error);
+    res.status(500).send;
   }
 };
 export { createFood, getAllFood, deleteFood, updateFood };

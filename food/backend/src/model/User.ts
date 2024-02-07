@@ -9,5 +9,5 @@ const UserSchema = new mongoose.Schema({
   location: String,
   phoneNumber: Number,
 });
-const UserModel = mongoose.model("User", UserSchema);
+const UserModel = mongoose.model("user", UserSchema);
 export { UserModel };
