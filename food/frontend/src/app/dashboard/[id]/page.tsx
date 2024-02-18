@@ -11,6 +11,7 @@ import AllFood from "@/app/components/AllFood";
 import ImgCard from "@/app/components/Card";
 import Cards from "@/app/components/Cards";
 import Menu1 from "@/app/components/Menu";
+import Order from "@/app/components/Order";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -81,6 +82,7 @@ const page = () => {
       </Stack>
       <Menu1 />
       <Footer />
+      <Order />
     </Stack>
   );
 };

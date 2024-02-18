@@ -15,7 +15,6 @@ import {
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Error from "../components/Error";
-import { green, grey } from "@mui/material/colors";
 const LoginSection = () => {
   const [error, setError] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
