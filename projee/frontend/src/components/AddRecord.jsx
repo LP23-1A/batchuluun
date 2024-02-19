@@ -10,8 +10,8 @@ export default function AddCard() {
   const api = "http://localhost:8000/transactions";
   const categoryApi = "http://localhost:8000/categorys";
   const handler = async () => {
-    const data = await axios.get(categoryApi);
-    setData(data.data);
+    const res = await axios.get(categoryApi);
+    setData(res.data);
   };
   useEffect(() => {
     handler();
@@ -132,6 +132,7 @@ export default function AddCard() {
                 <button
                   className="rounded-xl py-2"
                   style={{ background: activeButton ? "green" : "blue" }}
+                  onClick={handlerRecord}
                 >
                   Add Record
                 </button>
@@ -152,7 +153,6 @@ export default function AddCard() {
                   onChange={(el) => setDescription(el.target.value)}
                 ></textarea>
               </div>
-              <p onClick={handlerRecord}>hh</p>
             </div>
           </div>
         </div>
