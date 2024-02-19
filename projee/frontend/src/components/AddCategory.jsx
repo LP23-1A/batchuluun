@@ -6,17 +6,16 @@ const api = "http://localhost:8000/categorys";
 
 export default function AddCategoryInput({ closeCategoryModal }) {
   const [name, setName] = useState("");
-  const [description, setDescription] = useState();
-  const user = JSON.parse(localStorage.getItem("id"));
 
-  console.log(user.id);
+  const user = JSON.parse(localStorage.getItem("id"));
   const handlerInput = async () => {
     let res = await axios.post(api, {
       name: name,
-      description: description,
+      description: "",
       user_id: user.id,
     });
   };
+
   return (
     <div>
       <button
@@ -70,11 +69,6 @@ export default function AddCategoryInput({ closeCategoryModal }) {
                 className="p-1"
               />
             </div>
-            <input
-              type="text"
-              value={description}
-              onChange={(el) => setDescription(el.target.value)}
-            />
             <button onClick={handlerInput} className="btn btn-primary w-80">
               Add category
             </button>

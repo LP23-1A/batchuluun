@@ -7,8 +7,9 @@ export default function AddCard() {
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [data, setData] = useState([]);
+  const user = JSON.parse(localStorage.getItem("id"));
   const api = "http://localhost:8000/transactions";
-  const categoryApi = "http://localhost:8000/categorys";
+  const categoryApi = `http://localhost:8000/categorys?user_id=${user.id}`;
   const handler = async () => {
     const res = await axios.get(categoryApi);
     setData(res.data);
@@ -29,7 +30,6 @@ export default function AddCard() {
         transaction_type: exActive ? "INC" : "EXP",
         description: description,
       });
-      console.log(user_id);
 
       setName("");
       setAmount("");

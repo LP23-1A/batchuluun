@@ -26,19 +26,13 @@ export default function Record() {
   const [add, setAdd] = useState(false);
   const [AddCategory, setAddCategory] = useState(false);
   const [amount, setAmount] = useState(0);
+  const [count, setCount] = useState(30);
   const [input, setInput] = useState("");
   const search = async () => {
     const res = await axios.get(transactionApi);
     localStorage.setItem("alldata", JSON.stringify(res.data));
   };
   const data = JSON.parse(localStorage.getItem("alldata"));
-
-  // const searchCategory = options.filter((option) => {
-  //   option.toLowerCase().includes(value.toLowerCase());
-  // });
-  // const handlerSearch = () => {
-  //   setInput(searchCategory);
-  // };
   const Handler = () => {
     setAdd(true);
   };
@@ -48,6 +42,14 @@ export default function Record() {
   useEffect(() => {
     search();
   });
+  const countPlusHandler = () => {
+    setCount((count) => count + 1);
+    console.log("count");
+  };
+  const countIncrementHandler = () => {
+    setCount((count) => count - 1);
+    console.log("count");
+  };
   return (
     <div className="bg-white w-screen  flex flex-col gap-6  ">
       <div className="">
@@ -102,11 +104,16 @@ export default function Record() {
             </div>
           </div>
           <div className="flex flex-col gap-6">
-            <div className="flex justify-between gap-[560px]">
+            <div className="flex justify-between gap-[540px]">
               <div className="flex gap-3 items-center">
-                <Left />
-                <p>Last 30 Days</p>
-                <Right />
+                <button onClick={countIncrementHandler}>
+                  <Left />
+                </button>
+
+                <p>Last {count} Days</p>
+                <button onClick={countPlusHandler}>
+                  <Right />
+                </button>
               </div>
               <div>
                 <div className="">
