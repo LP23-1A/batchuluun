@@ -5,6 +5,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Stack, styled } from "@mui/material";
 import image from "../../../public/img/pizza.png";
+import axios from "axios";
+import ImgCard from "./Card";
+import { json } from "stream/consumers";
 
 const style = {
   position: "absolute" as "absolute",
@@ -27,12 +30,31 @@ const font = {
   fontSize: "18px",
   fontWeight: "600",
 };
-export default function Order() {
-  const BASE_URL = "http://localhost:8000/category/one";
+const BASE_URL = "http://localhost:8000/category/one";
 
+export default function Order() {
+  const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [count, setCount] = React.useState(1);
-  const handleOpen = () => setOpen(true);
+  const handler = async () => {
+    try {
+      const { data } = await axios.post(BASE_URL, { name: "Soup" });
+      const res = data.result.foodId;
+      // const id = data.result.foodId._id;
+      localStorage.setItem("food", JSON.stringify(res));
+      setData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  React.useEffect(() => {
+    handler();
+  });
+
+  const handleOpen = () => {
+    setOpen(true);
+    console.log(data);
+  };
   const handleClose = () => setOpen(false);
   const countPlusHandler = () => {
     setCount(count + 1);
@@ -44,7 +66,29 @@ export default function Order() {
   };
   return (
     <Stack>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        {data.map((el: any) => (
+          <Box
+            onClick={handleOpen}
+            sx={{ display: "flex", flexDirection: "row" }}
+            key={el.id}
+          >
+            <ImgCard
+              img={el.image}
+              name={el.name}
+              price={el.price}
+              discount={el.discount}
+              count={(el.discount * el.price) / 100}
+            />
+          </Box>
+        ))}
+      </Box>
       <Modal
         open={open}
         onClose={handleClose}

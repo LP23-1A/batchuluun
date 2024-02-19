@@ -8,9 +8,6 @@ import Bg from "../../icon/Bg";
 import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import AllFood from "@/app/components/AllFood";
-import ImgCard from "@/app/components/Card";
-import Cards from "@/app/components/Cards";
-import Menu1 from "@/app/components/Menu";
 import Order from "@/app/components/Order";
 const page = () => {
   // const router = useRouter();
@@ -78,10 +75,9 @@ const page = () => {
         <AllFood name="Хямдралтай" />
       </Stack>
       <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
-        <Cards />
+        <Order />
       </Stack>
       <Footer />
-      <Order />
     </Stack>
   );
 };

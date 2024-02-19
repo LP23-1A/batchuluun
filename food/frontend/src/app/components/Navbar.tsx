@@ -15,6 +15,7 @@ import {
 import { PermIdentitySharp, ShoppingBasketSharp } from "@mui/icons-material";
 import LoginSection from "./LoginSection";
 import SearchAppBar from "./Search";
+import Sags from "./Sags";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -116,7 +117,7 @@ function Navbar() {
               }}
             >
               <ShoppingBasketSharp sx={{ color: "black" }} />
-              <Box sx={{ color: "black" }}>Сагс</Box>
+              <Sags />
             </Stack>
             <Stack
               sx={{
