@@ -3,34 +3,45 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Stack } from "@mui/material";
-import image from "../../../public/img/egg.png";
+import { Stack, styled } from "@mui/material";
+import image from "../../../public/img/pizza.png";
 
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
+  width: "981px",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  //   width: "fit",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
   display: "flex",
   flexDirection: "row",
   gap: "20px",
+  borderRadius: "20px",
 };
 const borderS = {
   bgColor: "#18BA51",
 };
 const font = {
   fontSize: "18px",
+  fontWeight: "600",
 };
-
 export default function Order() {
+  const BASE_URL = "http://localhost:8000/category/one";
+
   const [open, setOpen] = React.useState(false);
+  const [count, setCount] = React.useState(1);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const countPlusHandler = () => {
+    setCount(count + 1);
+  };
+  const countIncrementHandler = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
   return (
     <Stack>
       <Button onClick={handleOpen}>Open modal</Button>
@@ -41,28 +52,61 @@ export default function Order() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <img src={image.src} alt="" />
-          <Box>
+          <img src={image.src} width={"500px"} height={"500px"} alt="" />
+          <Box
+            sx={{
+              padding: "83px 20px 83px 0",
+              display: "flex",
+              flexDirection: "column",
+              gap: "32px",
+            }}
+          >
             <Box>
-              <Typography sx={{ fontSize: "28px", fontWeight: "33px" }}>
+              <Typography sx={{ fontSize: "28px", fontWeight: "700" }}>
                 Main Pizza
               </Typography>
-              <Typography fontSize={"18px"} color={"#18BA51"}>
+              <Typography
+                fontSize={"18px"}
+                color={"#18BA51"}
+                fontWeight={"600"}
+              >
                 34,800
               </Typography>
             </Box>
-            <Box>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <Typography sx={font}>Орц</Typography>
-              <Typography>toms, luuvan, manjin, songino</Typography>
+              <Typography
+                sx={{
+                  bgcolor: "#F6F6F6",
+                  color: "#767676",
+                  borderRadius: "10px",
+                  padding: "6px 10px",
+                }}
+              >
+                Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр
+              </Typography>
             </Box>
-            <Typography sx={font}>Too</Typography>
             <Box>
-              <Button variant="text" color="success">
-                -
-              </Button>
-              <Button>+</Button>
+              <Typography sx={font}>Too</Typography>
+
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Button
+                  onClick={countIncrementHandler}
+                  variant="text"
+                  color="success"
+                >
+                  -
+                </Button>
+                <Typography>{count}</Typography>
+                <Button
+                  onClick={countPlusHandler}
+                  sx={{ width: "30px", height: "30px", background: "green" }}
+                >
+                  +
+                </Button>
+              </Box>
+              <Button>Сагслах</Button>
             </Box>
-            <Button>Сагслах</Button>
           </Box>
         </Box>
       </Modal>

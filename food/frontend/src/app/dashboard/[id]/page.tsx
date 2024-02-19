@@ -80,7 +80,6 @@ const page = () => {
       <Stack sx={{ width: "1200px", margin: "auto" }}>
         <Cards />
       </Stack>
-      <Menu1 />
       <Footer />
       <Order />
     </Stack>
