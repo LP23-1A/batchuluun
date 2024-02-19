@@ -77,7 +77,7 @@ const page = () => {
       >
         <AllFood name="Хямдралтай" />
       </Stack>
-      <Stack sx={{ width: "1200px", margin: "auto" }}>
+      <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
         <Cards />
       </Stack>
       <Footer />
