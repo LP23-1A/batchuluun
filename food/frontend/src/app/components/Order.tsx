@@ -35,7 +35,6 @@ const BASE_URL = "http://localhost:8000/category/one";
 export default function Order() {
   const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
-  const [count, setCount] = React.useState(1);
   const handler = async () => {
     try {
       const { data } = await axios.post(BASE_URL, { name: "Soup" });
@@ -49,25 +48,16 @@ export default function Order() {
   React.useEffect(() => {
     handler();
   });
-  const res = { ...data };
 
   const handleOpen = (id: any) => {
-    data.find((el) => {
+    data.find((el: any) => {
       if (el._id === id) {
         setOpen(true);
-        console.log("clicked", id, el._id);
+        localStorage.setItem("OrderFood", JSON.stringify({ ...el }));
       }
     });
   };
   const handleClose = () => setOpen(false);
-  const countPlusHandler = () => {
-    setCount(count + 1);
-  };
-  const countIncrementHandler = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
   return (
     <Stack>
       <Box
@@ -86,7 +76,7 @@ export default function Order() {
             <ImgCard
               img={el.image}
               name={el.name}
-              price={el.price}
+              price={el.price - (el.discount * el.price) / 100}
               discount={el.discount}
               count={(el.discount * el.price) / 100}
             />
@@ -101,73 +91,6 @@ export default function Order() {
       >
         <OrderModal />
       </Modal>
-      {/* <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          
-          <img src={image.src} width={"500px"} height={"500px"} alt="" />
-          <Box
-            sx={{
-              padding: "83px 20px 83px 0",
-              display: "flex",
-              flexDirection: "column",
-              gap: "32px",
-            }}
-          >
-            <Box>
-              <Typography sx={{ fontSize: "28px", fontWeight: "700" }}>
-                Main Pizza
-              </Typography>
-              <Typography
-                fontSize={"18px"}
-                color={"#18BA51"}
-                fontWeight={"600"}
-              >
-                34,800
-              </Typography>
-            </Box>
-
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <Typography sx={font}>Орц</Typography>
-              <Typography
-                sx={{
-                  bgcolor: "#F6F6F6",
-                  color: "#767676",
-                  borderRadius: "10px",
-                  padding: "6px 10px",
-                }}
-              >
-                Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр
-              </Typography>
-            </Box>
-            <Box>
-              <Typography sx={font}>Too</Typography>
-
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Button
-                  onClick={countIncrementHandler}
-                  variant="text"
-                  color="success"
-                >
-                  -
-                </Button>
-                <Typography>{count}</Typography>
-                <Button
-                  onClick={countPlusHandler}
-                  sx={{ width: "30px", height: "30px", background: "green" }}
-                >
-                  +
-                </Button>
-              </Box>
-              <Button>Сагслах</Button>
-            </Box>
-          </Box>
-        </Box>
-      </Modal> */}
     </Stack>
   );
 }

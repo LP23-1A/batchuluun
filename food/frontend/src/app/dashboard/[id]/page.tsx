@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import AllFood from "@/app/components/AllFood";
 import Order from "@/app/components/Order";
+import FooterBg from "@/app/icon/FooterBg";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {

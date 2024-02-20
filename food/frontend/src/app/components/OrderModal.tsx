@@ -26,22 +26,10 @@ const font = {
   fontSize: "18px",
   fontWeight: "600",
 };
-const OrderModal = (props: any) => {
-  const BASE_URL = "http://localhost:8000/category/one";
-  const [data, setData] = useState([]);
-  const handler = async () => {
-    try {
-      const { data } = await axios.post(BASE_URL, { name: "Soup" });
-      const res = data.result.foodId;
-      localStorage.setItem("food", JSON.stringify(res));
-      setData(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  React.useEffect(() => {
-    handler();
-  });
+const OrderModal = () => {
+  const json: string | null = localStorage.getItem("OrderFood");
+  const data = json && JSON.parse(json);
+
   const [count, setCount] = React.useState(1);
   const countPlusHandler = () => {
     setCount(count + 1);
@@ -51,14 +39,13 @@ const OrderModal = (props: any) => {
       setCount(count - 1);
     }
   };
-  //   const id = JSON.parse(localStorage.getItem("orderId"));
-  //   const orderId = data._id;
-  //   console.log(orderId);
-
+  const sagslah = () => {
+    localStorage.setItem("sags", JSON.stringify({ data }));
+  };
   return (
     <Stack>
       <Box sx={style}>
-        <img src={props.image} width={"500px"} height={"500px"} alt="" />
+        <img src={data.image} width={"500px"} height={500} alt="" />
         <Box
           sx={{
             padding: "83px 20px 83px 0",
@@ -69,7 +56,7 @@ const OrderModal = (props: any) => {
         >
           <Box>
             <Typography sx={{ fontSize: "28px", fontWeight: "700" }}>
-              Main Pizza
+              {data.name}
             </Typography>
             <Typography fontSize={"18px"} color={"#18BA51"} fontWeight={"600"}>
               34,800
@@ -89,26 +76,32 @@ const OrderModal = (props: any) => {
               Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр
             </Typography>
           </Box>
-          <Box>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
             <Typography sx={font}>Too</Typography>
 
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Button
                 onClick={countIncrementHandler}
-                variant="text"
-                color="success"
+                variant="contained"
+                sx={{ width: "30px", height: "30px", background: "green" }}
               >
                 -
               </Button>
               <Typography>{count}</Typography>
               <Button
                 onClick={countPlusHandler}
+                variant="contained"
                 sx={{ width: "30px", height: "30px", background: "green" }}
               >
                 +
               </Button>
             </Box>
-            <Button>Сагслах</Button>
+            <Button
+              sx={{ background: "green", color: "white", width: "400px" }}
+              onClick={sagslah}
+            >
+              Сагслах
+            </Button>
           </Box>
         </Box>
       </Box>

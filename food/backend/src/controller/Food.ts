@@ -1,9 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
-import mongoose from "mongoose";
 import { Request, Response } from "express";
 import { FoodModel } from "../model/Food";
 import { CategoryModel } from "../model/Category";
-import { category } from "../router/Category";
 type FoodType = {
   name: string;
   image: string;
@@ -18,6 +16,7 @@ cloudinary.config({
   api_key: "486584588397562",
   api_secret: "d9FzR6fCPUBqNelusGlFCK0iVvc",
 });
+
 const createFood = async (req: Request, res: Response) => {
   try {
     const cloudinaryRes = await cloudinary.uploader.upload(req.body.image, {
@@ -54,6 +53,7 @@ const createFood = async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 };
+
 const getAllFood = async (req: Request, res: Response) => {
   try {
     const getAllFoods = await FoodModel.find();
@@ -62,9 +62,10 @@ const getAllFood = async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 };
+
 const deleteFood = async (req: Request, res: Response) => {
   try {
-    const { deleteId } = req.params;
+    const deleteId = req.params.id;
     const deleteOneFood = await FoodModel.findByIdAndDelete(deleteId);
     res.status(200).send({ success: true, deleteOneFood });
     console.log("delete");
@@ -72,9 +73,10 @@ const deleteFood = async (req: Request, res: Response) => {
     res.status(500).send(error);
   }
 };
+
 const updateFood = async (req: Request, res: Response) => {
   try {
-    const { updateFood } = req.params;
+    const updateFood = req.params.id;
     const { name } = req.body;
     const updateOneFood = await FoodModel.findByIdAndUpdate(updateFood, {
       name,

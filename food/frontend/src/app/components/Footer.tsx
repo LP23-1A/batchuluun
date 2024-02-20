@@ -4,6 +4,7 @@ import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box, Stack } from "@mui/material";
 import PineconeWhiteLogo from "../icon/PineconeWhiteLogo";
 import Bg from "../icon/Bg";
+import FooterBg from "../icon/FooterBg";
 
 const Footer = () => {
   return (
@@ -16,7 +17,7 @@ const Footer = () => {
         position: "relative",
       }}
     >
-      <Bg />
+      <FooterBg />
       <Stack
         sx={{
           width: "1440px",
