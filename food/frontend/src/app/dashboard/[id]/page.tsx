@@ -77,6 +77,19 @@ const page = () => {
       <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
         <Order />
       </Stack>
+      <Stack
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "100px auto",
+          gap: "50px",
+        }}
+      >
+        <AllFood name="Үндсэн Хоол" />
+      </Stack>
+      <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
+        <Order />
+      </Stack>
       <Footer />
     </Stack>
   );

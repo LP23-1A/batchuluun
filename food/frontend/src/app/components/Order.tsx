@@ -3,11 +3,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Stack, styled } from "@mui/material";
+import { Stack } from "@mui/material";
 import image from "../../../public/img/pizza.png";
 import axios from "axios";
 import ImgCard from "./Card";
-import { json } from "stream/consumers";
+import OrderModal from "./OrderModal";
 
 const style = {
   position: "absolute" as "absolute",
@@ -40,7 +40,6 @@ export default function Order() {
     try {
       const { data } = await axios.post(BASE_URL, { name: "Soup" });
       const res = data.result.foodId;
-      // const id = data.result.foodId._id;
       localStorage.setItem("food", JSON.stringify(res));
       setData(res);
     } catch (error) {
@@ -50,10 +49,15 @@ export default function Order() {
   React.useEffect(() => {
     handler();
   });
+  const res = { ...data };
 
-  const handleOpen = () => {
-    setOpen(true);
-    console.log(data);
+  const handleOpen = (id: any) => {
+    data.find((el) => {
+      if (el._id === id) {
+        setOpen(true);
+        console.log("clicked", id, el._id);
+      }
+    });
   };
   const handleClose = () => setOpen(false);
   const countPlusHandler = () => {
@@ -75,9 +79,9 @@ export default function Order() {
       >
         {data.map((el: any) => (
           <Box
-            onClick={handleOpen}
+            onClick={() => handleOpen(el._id)}
             sx={{ display: "flex", flexDirection: "row" }}
-            key={el.id}
+            key={el._id}
           >
             <ImgCard
               img={el.image}
@@ -95,7 +99,16 @@ export default function Order() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
+        <OrderModal />
+      </Modal>
+      {/* <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <Box sx={style}>
+          
           <img src={image.src} width={"500px"} height={"500px"} alt="" />
           <Box
             sx={{
@@ -117,6 +130,7 @@ export default function Order() {
                 34,800
               </Typography>
             </Box>
+
             <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <Typography sx={font}>Орц</Typography>
               <Typography
@@ -153,7 +167,7 @@ export default function Order() {
             </Box>
           </Box>
         </Box>
-      </Modal>
+      </Modal> */}
     </Stack>
   );
 }
