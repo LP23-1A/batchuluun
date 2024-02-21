@@ -67,8 +67,6 @@ export default function OrderStep() {
       >
         <Typography>Хаяг аа оруулна уу</Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <BasicSelect name={"hgf"} />
-          <BasicSelect />
           <BasicSelect />
         </Box>
         <Box>

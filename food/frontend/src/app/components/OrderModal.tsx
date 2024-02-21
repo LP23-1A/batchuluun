@@ -42,17 +42,15 @@ const OrderModal = () => {
   };
   const sagslah = () => {
     const storage = JSON.parse(localStorage.getItem("sags") as string);
-    let a = [];
-    if (storage === null) {
-      localStorage.setItem("sags", JSON.stringify([data]));
-    } else if (storage.length > 0) {
-      localStorage.removeItem("sags");
-
-      a.push(storage, data);
-      localStorage.setItem("sags", JSON.stringify(a));
+    console.log(storage);
+    if (storage) {
+      storage.push({ ...data });
+      localStorage.setItem("sags", JSON.stringify(storage));
+      return;
     }
-    // a.push(data);
-    console.log(a);
+    localStorage.setItem("sags", JSON.stringify([data]));
+
+    console.log(storage);
 
     // if (storage) {
     //   a.push(JSON.parse(localStorage.getItem("sags") as string));

@@ -1,6 +1,6 @@
 import express from "express";
-import { LogIn, signUp } from "../controller/User";
-const user = express.Router();
-user.route("/signup").post(signUp);
-user.route("/login").post(LogIn);
-export { user };
+import { LogIn, deleteUser, signUp, updateUser } from "../controller/User";
+const auth = express.Router();
+auth.route("/signup").post(signUp).put(updateUser).delete(deleteUser);
+auth.route("/login").post(LogIn);
+export { auth };

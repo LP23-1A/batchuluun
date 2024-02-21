@@ -17,7 +17,7 @@ cloudinary.config({
   api_secret: "d9FzR6fCPUBqNelusGlFCK0iVvc",
 });
 
-const createFood = async (req: Request, res: Response) => {
+export const createFood = async (req: Request, res: Response) => {
   try {
     const cloudinaryRes = await cloudinary.uploader.upload(req.body.image, {
       folder: "food",
@@ -54,7 +54,7 @@ const createFood = async (req: Request, res: Response) => {
   }
 };
 
-const getAllFood = async (req: Request, res: Response) => {
+export const getAllFood = async (req: Request, res: Response) => {
   try {
     const getAllFoods = await FoodModel.find();
     return res.status(200).send({ success: true, getAllFoods });
@@ -63,7 +63,7 @@ const getAllFood = async (req: Request, res: Response) => {
   }
 };
 
-const deleteFood = async (req: Request, res: Response) => {
+export const deleteFood = async (req: Request, res: Response) => {
   try {
     const deleteId = req.params.id;
     const deleteOneFood = await FoodModel.findByIdAndDelete(deleteId);
@@ -74,7 +74,7 @@ const deleteFood = async (req: Request, res: Response) => {
   }
 };
 
-const updateFood = async (req: Request, res: Response) => {
+export const updateFood = async (req: Request, res: Response) => {
   try {
     const updateFood = req.params.id;
     const { name } = req.body;
@@ -83,7 +83,6 @@ const updateFood = async (req: Request, res: Response) => {
     });
     return res.status(200).send({ success: true, updateOneFood });
   } catch (error) {
-    res.status(500).send;
+    res.status(500).send(error);
   }
 };
-export { createFood, getAllFood, deleteFood, updateFood };

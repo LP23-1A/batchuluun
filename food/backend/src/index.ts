@@ -1,6 +1,6 @@
 import express from "express";
 import { connectDatabase } from "./Utils/database";
-import { user } from "./router/User";
+import { auth } from "./router/User";
 import cors from "cors";
 import { food } from "./router/Food";
 import { category } from "./router/Category";
@@ -12,7 +12,7 @@ const start = () => {
   const app = express();
   app.use(cors({ origin: "*" }));
   app.use(express.json());
-  app.use("/user", user);
+  app.use("/user", auth);
   app.use("/food", food);
   app.use("/category", category);
   app.use("/order", order);
