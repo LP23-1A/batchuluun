@@ -10,6 +10,7 @@ import Footer from "@/app/components/Footer";
 import AllFood from "@/app/components/AllFood";
 import Order from "@/app/components/Order";
 import FooterBg from "@/app/icon/FooterBg";
+import OrderStep from "@/app/components/OrderStep";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -92,6 +93,7 @@ const page = () => {
         <Order />
       </Stack>
       <Footer />
+      <OrderStep />
     </Stack>
   );
 };

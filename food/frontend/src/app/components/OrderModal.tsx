@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import image from "../../../public/img/pizza.png";
 import axios from "axios";
+import { log } from "console";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -40,7 +41,25 @@ const OrderModal = () => {
     }
   };
   const sagslah = () => {
-    localStorage.setItem("sags", JSON.stringify({ data }));
+    const storage = JSON.parse(localStorage.getItem("sags") as string);
+    let a = [];
+    if (storage === null) {
+      localStorage.setItem("sags", JSON.stringify([data]));
+    } else if (storage.length > 0) {
+      localStorage.removeItem("sags");
+
+      a.push(storage, data);
+      localStorage.setItem("sags", JSON.stringify(a));
+    }
+    // a.push(data);
+    console.log(a);
+
+    // if (storage) {
+    //   a.push(JSON.parse(localStorage.getItem("sags") as string));
+    //   localStorage.setItem("sags", JSON.stringify({ ...a }));
+    // }
+    // localStorage.setItem("sags", JSON.stringify({ data }));
+    // console.log(a);
   };
   return (
     <Stack>
