@@ -51,13 +51,6 @@ const OrderModal = () => {
     localStorage.setItem("sags", JSON.stringify([data]));
 
     console.log(storage);
-
-    // if (storage) {
-    //   a.push(JSON.parse(localStorage.getItem("sags") as string));
-    //   localStorage.setItem("sags", JSON.stringify({ ...a }));
-    // }
-    // localStorage.setItem("sags", JSON.stringify({ data }));
-    // console.log(a);
   };
   return (
     <Stack>

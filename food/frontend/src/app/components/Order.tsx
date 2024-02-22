@@ -53,12 +53,6 @@ export default function Order() {
     data.find((el: any) => {
       if (el._id === id) {
         setOpen(true);
-        // const storage = JSON.parse(localStorage.getItem("OrderFood") as string);
-        // console.log(storage);
-        // if (storage) {
-        //   storage.push({ ...el });
-        //   return;
-        // }
         localStorage.setItem("OrderFood", JSON.stringify({ ...el }));
       }
     });

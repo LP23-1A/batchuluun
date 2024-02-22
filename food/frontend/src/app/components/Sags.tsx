@@ -31,19 +31,10 @@ export default function Sags() {
   const json: string | null = localStorage.getItem("sags");
   const sags = json && JSON.parse(json);
   const data = sags;
-  console.log(data);
   let a = 0;
-  let price;
-  // // const handler = () => {
-  // //   data.map((el: any) => {});
-  // //   price = a;
-  // // };
-  // React.useEffect(() => {
-  //   handler();
-  // });
-  console.log(price);
-
-  // const price = data.price - (data.discount * data.price) / 100;
+  const Order = () => {
+    localStorage.removeItem("OrderFood" && "food");
+  };
   return (
     <Stack>
       <Typography
@@ -70,44 +61,49 @@ export default function Sags() {
             </Box>
             <Box sx={{ borderBottom: "1px solid" }}></Box>
             <Box>
-              {/* {data.length > 0 &&
+              {data.length > 0 &&
                 data.map((el: any) => {
                   return (
-                    <Box
-                      sx={{
-                        marginTop: "20px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <img
-                        src={el.image}
-                        width={"245px"}
-                        height={"150px"}
-                        alt=""
-                      />
+                    <Box>
                       <Box
                         sx={{
-                          width: "245px",
+                          marginTop: "20px",
                           display: "flex",
-                          flexDirection: "column",
-                          gap: "8px",
+                          justifyContent: "space-between",
                         }}
                       >
-                        <Typography sx={textStyle}>{el.name}</Typography>
-                        <Typography sx={textStyle} color={"#18BA51"}>
-                          {el.price - (el.price * el.discount) / 100}
-                        </Typography>
-                        <Typography color={"#767676"}>
-                          {el.ingeredient}
-                        </Typography>
+                        <img
+                          src={el.image}
+                          width={"245px"}
+                          height={"150px"}
+                          alt=""
+                        />
+                        <Box
+                          sx={{
+                            width: "245px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "8px",
+                          }}
+                        >
+                          <Typography sx={textStyle}>{el.name}</Typography>
+                          <Typography sx={textStyle} color={"#18BA51"}>
+                            {el.price - (el.price * el.discount) / 100}₮
+                          </Typography>
+                          <Typography color={"#767676"}>
+                            {el.ingeredient}
+                          </Typography>
+                        </Box>
                       </Box>
                       <Box
-                        sx={{ borderBottom: "2px solid", marginTop: "20px" }}
+                        sx={{
+                          borderBottom: "1px solid #D6D8DB",
+                          marginTop: "20px",
+                        }}
                       ></Box>
                     </Box>
                   );
-                })} */}
+                })}
             </Box>
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -121,13 +117,19 @@ export default function Sags() {
                     a = a + (el.price - (el.price * el.discount) / 100);
                     return (
                       <Typography color={"#121316"} fontWeight={"700"}>
-                        {a}
+                        {a}₮
                       </Typography>
                     );
                   })}
               </Box>
             </Box>
-            <Button color="success">Захиалах</Button>
+            <Button
+              sx={{ bgcolor: "#18BA51" }}
+              variant="contained"
+              onClick={Order}
+            >
+              Захиалах
+            </Button>
           </Box>
         </Box>
       </Modal>
