@@ -35,9 +35,9 @@ const LoginSection = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(BASE_URL, { ...input });
-      localStorage.setItem("user", JSON.stringify(data));
+      // localStorage.setItem("user1", JSON.stringify(data));
       if (data) {
-        router.push(`/dashboard/${data.email}`);
+        router.push(`/dashboard/${input.email}`);
       } else {
         setError("username or password error");
       }

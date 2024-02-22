@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { UserModel } from "../model/User";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 type SignUpType = {
   name: string;
   email: string;
@@ -30,11 +32,22 @@ export const signUp = async (req: Request, res: Response) => {
 export const LogIn = async (req: Request, res: Response) => {
   try {
     const { email, password }: Required<LogInType> = req.body;
-    const result = await UserModel.findOne({
+    const user = await UserModel.findOne({
       email: email,
-      password: password,
-    });
-    res.status(200).send(result);
+    }).select("+password");
+    if (!user) {
+      return res.status(404).send({ msg: "user not found" });
+    }
+
+    const isValid = bcrypt.compare(password, user.password as string);
+
+    if (!isValid) {
+      return res.status(400).send({ msg: "Email or password incorrect" });
+    }
+
+    const token = jwt.sign({ user }, "MY_SECRET_KEY");
+
+    return res.status(200).send({ success: true, token, user });
   } catch (error) {
     res.status(500).send(error);
   }

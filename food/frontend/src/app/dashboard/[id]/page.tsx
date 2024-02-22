@@ -93,7 +93,7 @@ const page = () => {
         <Order />
       </Stack>
       <Footer />
-      <OrderStep />
+      {/* <OrderStep /> */}
     </Stack>
   );
 };

@@ -31,7 +31,6 @@ function Navbar() {
   ) => {
     setAlignment(newAlignment);
   };
-  const style = {};
   return (
     <AppBar
       position="static"
@@ -69,18 +68,36 @@ function Navbar() {
               exclusive
               onChange={handleChange}
               aria-label="Platform"
-              sx={{ bgcolor: "white" }}
+              sx={{ bgcolor: "none" }}
             >
               <ToggleButton
-                sx={{ border: "none", backgroundColor: "white" }}
+                sx={{
+                  border: "none",
+                  color: "black",
+                  ":hover": { color: "#18BA51" },
+                }}
                 value="web"
               >
                 НҮҮР
               </ToggleButton>
-              <ToggleButton sx={{ border: "none" }} value="android">
+              <ToggleButton
+                sx={{
+                  border: "none",
+                  color: "black",
+                  ":hover": { color: "#18BA51" },
+                }}
+                value="android"
+              >
                 ХООЛНЫ ЦЭС
               </ToggleButton>
-              <ToggleButton sx={{ border: "none" }} value="ios">
+              <ToggleButton
+                sx={{
+                  border: "none",
+                  color: "black",
+                  ":hover": { color: "#18BA51" },
+                }}
+                value="ios"
+              >
                 ХҮРГЭЛТИЙН БҮС
               </ToggleButton>
             </ToggleButtonGroup>

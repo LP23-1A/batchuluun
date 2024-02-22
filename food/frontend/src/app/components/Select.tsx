@@ -6,12 +6,10 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Stack } from "@mui/material";
 
-export default function BasicSelect(): React.ReactNode {
-  const [data, setData] = React.useState({
-    khoroo: "",
-    district: "",
-    apartment: "",
-  });
+export default function BasicSelect({ props }: any): React.ReactNode {
+  const [district, setDistrict] = React.useState("");
+  const [khoroo, setKhoroo] = React.useState("");
+  const [apartment, setApartment] = React.useState("");
   const District = [
     {
       name: "Баянзүрх дүүрэг",
@@ -79,10 +77,9 @@ export default function BasicSelect(): React.ReactNode {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            value={district}
             label="Age"
-            onChange={(e) =>
-              setData((prev: any) => ({ ...prev, district: e.target.value }))
-            }
+            onChange={(el) => setDistrict(el.target.value)}
           >
             {District.length > 0 &&
               District.map((el) => {
@@ -99,10 +96,9 @@ export default function BasicSelect(): React.ReactNode {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            value={khoroo}
             label="Age"
-            onChange={(e) =>
-              setData((prev: any) => ({ ...prev, khoroo: e.target.value }))
-            }
+            onChange={(el) => setKhoroo(el.target.value)}
           >
             {Khoroo.length > 0 &&
               Khoroo.map((el) => {
@@ -119,10 +115,9 @@ export default function BasicSelect(): React.ReactNode {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            value={apartment}
             label="Age"
-            onChange={(e) =>
-              setData((prev: any) => ({ ...prev, apartment: e.target.value }))
-            }
+            onChange={(el) => setApartment(el.target.value)}
           >
             {Apartment.length > 0 &&
               Apartment.map((el) => {
