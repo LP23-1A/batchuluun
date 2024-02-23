@@ -1,16 +1,16 @@
 "use client";
 import { Box, Stack } from "@mui/material";
 import React, { useEffect } from "react";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../../components/Navbar";
 import BigImage from "../../../../public/img/img1.png";
 import SmallImage from "../../../../public/img/img2.png";
-import Bg from "../../icon/Bg";
+import Bg from "../../../icon/Bg";
 import { useRouter } from "next/navigation";
-import Footer from "@/app/components/Footer";
-import AllFood from "@/app/components/AllFood";
-import Order from "@/app/components/Order";
-import FooterBg from "@/app/icon/FooterBg";
-import OrderStep from "@/app/components/OrderStep";
+import Footer from "@/components/Footer";
+import AllFood from "@/components/AllFood";
+import Order from "@/components/Order";
+import FooterBg from "@/icon/FooterBg";
+import OrderStep from "@/components/OrderStep";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -93,7 +93,6 @@ const page = () => {
         <Order />
       </Stack>
       <Footer />
-      {/* <OrderStep /> */}
     </Stack>
   );
 };

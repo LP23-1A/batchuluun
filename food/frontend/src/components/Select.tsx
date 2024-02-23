@@ -5,11 +5,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Stack } from "@mui/material";
+import { OrderContext } from "./OrderStep";
 
-export default function BasicSelect({ props }: any): React.ReactNode {
-  const [district, setDistrict] = React.useState("");
-  const [khoroo, setKhoroo] = React.useState("");
-  const [apartment, setApartment] = React.useState("");
+export default function BasicSelect(): React.ReactNode {
+  const { data, setData }: any = React.useContext(OrderContext);
+  console.log(data);
+
   const District = [
     {
       name: "Баянзүрх дүүрэг",
@@ -67,6 +68,8 @@ export default function BasicSelect({ props }: any): React.ReactNode {
       name: "Зайсан хотхон",
     },
   ];
+  // console.log(data);
+
   return (
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <Box sx={{ minWidth: 120, bgcolor: "#ECEDF0" }}>
@@ -77,9 +80,10 @@ export default function BasicSelect({ props }: any): React.ReactNode {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={district}
-            label="Age"
-            onChange={(el) => setDistrict(el.target.value)}
+            label="Дүүрэг сонгоно уу"
+            onChange={(el) =>
+              setData((prev: {}) => ({ ...prev, district: el.target.value }))
+            }
           >
             {District.length > 0 &&
               District.map((el) => {
@@ -96,9 +100,10 @@ export default function BasicSelect({ props }: any): React.ReactNode {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={khoroo}
-            label="Age"
-            onChange={(el) => setKhoroo(el.target.value)}
+            label="Хороо сонгоно уу"
+            onChange={(el) =>
+              setData((prev: {}) => ({ ...prev, khoroo: el.target.value }))
+            }
           >
             {Khoroo.length > 0 &&
               Khoroo.map((el) => {
@@ -115,9 +120,13 @@ export default function BasicSelect({ props }: any): React.ReactNode {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={apartment}
-            label="Age"
-            onChange={(el) => setApartment(el.target.value)}
+            label="Байр, гудамж сонгоно уу"
+            onChange={(el) =>
+              setData((prev: {}) => ({
+                ...prev,
+                apartment: el.target.value,
+              }))
+            }
           >
             {Apartment.length > 0 &&
               Apartment.map((el) => {

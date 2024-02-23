@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Navbar from "../components/Navbar";
-import LoginSection from "../components/LoginSection";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import LoginSection from "../../components/LoginSection";
+import Footer from "../../components/Footer";
 import { Stack } from "@mui/material";
 
 const page = () => {

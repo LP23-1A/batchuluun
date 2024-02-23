@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Error from "../components/Error";
+import Error from "./Error";
 const LoginSection = () => {
   const [error, setError] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
@@ -130,7 +130,9 @@ const LoginSection = () => {
         <Button
           onClick={submitHandler}
           disabled={input.email === "" || input.password === ""}
-          color="success"
+          sx={{
+            bgcolor: "green ! important",
+          }}
         >
           Нэвтрэх
         </Button>

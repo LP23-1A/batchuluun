@@ -3,11 +3,19 @@ import { orderModel } from "../model/order";
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
-    const { userId, orderNumber, totalPrice, district, khoroo, apartment } =
-      req.body;
+    const {
+      userId,
+      orderNumber,
+      foods,
+      totalPrice,
+      district,
+      khoroo,
+      apartment,
+    } = req.body;
     const result = await orderModel.create({
       userId: userId,
       orderNumber: orderNumber,
+      foods: foods,
       totalPrice: totalPrice,
       district: district,
       khoroo: khoroo,
