@@ -7,10 +7,11 @@ import SmallImage from "../../../../public/img/img2.png";
 import Bg from "../../../icon/Bg";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
-import AllFood from "@/components/AllFood";
 import Order from "@/components/Order";
 import FooterBg from "@/icon/FooterBg";
 import OrderStep from "@/components/OrderStep";
+import Category from "@/components/Category";
+import AllFood from "@/components/AllFood";
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -93,6 +94,7 @@ const page = () => {
         <Order />
       </Stack>
       <Footer />
+      <Category />
     </Stack>
   );
 };

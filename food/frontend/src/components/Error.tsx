@@ -1,13 +1,13 @@
-import { Alert } from "@mui/material";
+import { Alert, Stack } from "@mui/material";
 import React from "react";
 
 const Error = () => {
   return (
-    <div>
+    <Stack>
       <Alert variant="filled" severity="error">
         username or password error.
       </Alert>
-    </div>
+    </Stack>
   );
 };
 

@@ -30,16 +30,16 @@ const font = {
   fontSize: "18px",
   fontWeight: "600",
 };
-const BASE_URL = "http://localhost:8000/category/one";
+const BASE_URL = "http://localhost:8000/food";
 
 export default function Order() {
   const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const handler = async () => {
     try {
-      const { data } = await axios.post(BASE_URL, { name: "Soup" });
-      const res = data.result.foodId;
-      localStorage.setItem("food", JSON.stringify(res));
+      const { data } = await axios.get(BASE_URL);
+      const res = data.getAllFoods;
+      // localStorage.setItem("food", JSON.stringify(res));
       setData(res);
     } catch (error) {
       console.log(error);
@@ -49,6 +49,8 @@ export default function Order() {
   React.useEffect(() => {
     handler();
   });
+  const filterData = data.filter((el: any) => el.discount > 0);
+  console.log(data, filterData);
 
   const handleOpen = (id: any) => {
     data.find((el: any) => {
@@ -68,7 +70,7 @@ export default function Order() {
           justifyContent: "space-between",
         }}
       >
-        {data.map((el: any) => (
+        {filterData.map((el: any) => (
           <Box
             onClick={() => handleOpen(el._id)}
             sx={{ display: "flex", flexDirection: "row" }}
@@ -84,6 +86,7 @@ export default function Order() {
           </Box>
         ))}
       </Box>
+      {/* <Box onClick={filterData}>hh</Box> */}
       <Modal
         open={open}
         onClose={handleClose}

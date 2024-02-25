@@ -3,12 +3,12 @@ import { Request, Response } from "express";
 import { FoodModel } from "../model/Food";
 import { CategoryModel } from "../model/Category";
 type FoodType = {
-  name: string;
+  foodname: string;
   image: string;
   ingeredient: string;
   price: number;
   discount?: number;
-  categoryId: number;
+  categoryName: string;
 };
 
 cloudinary.config({
@@ -23,14 +23,14 @@ export const createFood = async (req: Request, res: Response) => {
       folder: "food",
     });
     const {
-      name,
+      foodname,
       ingeredient,
       price,
       discount,
-      categoryId,
+      categoryName,
     }: Required<FoodType> = req.body;
     const food = await FoodModel.create({
-      name: name,
+      foodname: foodname,
       image: cloudinaryRes.secure_url,
       ingeredient: ingeredient,
       price: price,
@@ -40,7 +40,7 @@ export const createFood = async (req: Request, res: Response) => {
 
     await CategoryModel.findOneAndUpdate(
       {
-        id: categoryId,
+        name: "Main course",
       },
       {
         $push: {

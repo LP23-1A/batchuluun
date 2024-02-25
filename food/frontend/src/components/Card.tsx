@@ -4,17 +4,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, CardActionArea } from "@mui/material";
-import image from "../../../public/img/ice.png";
-import axios from "axios";
 type PropsType = {
   props?: {};
   name?: String;
   price?: String;
 };
-const BaseUrl =
-  "https://www.foodiesfeed.com/wp-content/uploads/2023/07/fresh-fruit-platter.jpg";
 export default function ImgCard(props: any) {
-  const [discount, setDiscount] = React.useState(0);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -46,7 +41,7 @@ export default function ImgCard(props: any) {
               {props.price}₮
             </Typography>
             <Typography fontSize={"18px"}>
-              <del>{props.count}₮</del>
+              <del>{props.count > 0 ? props.count + "₮" : ""}</del>
             </Typography>
           </Box>
 
@@ -55,15 +50,17 @@ export default function ImgCard(props: any) {
               position: "absolute",
               top: "16px",
               left: "197px",
-              border: "1px solid white",
+              // border: "1px solid white",
               paddingY: "4px",
-              paddingX: "16px",
+              paddingX: "20px",
               borderRadius: "15px",
               color: "white",
-              backgroundColor: "#18BA51",
             }}
+            style={{ backgroundColor: props.discount > 0 ? "#18BA51" : "" }}
           >
-            <Typography>{props.discount}%</Typography>
+            <Typography>
+              {props.discount > 0 ? props.discount + "%" : ""}
+            </Typography>
           </Box>
         </CardContent>
       </CardActionArea>

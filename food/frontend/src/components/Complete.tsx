@@ -1,13 +1,13 @@
-import { Alert } from "@mui/material";
+import { Alert, Stack } from "@mui/material";
 import React from "react";
 
 const Complete = () => {
   return (
-    <div>
+    <Stack>
       <Alert variant="filled" severity="success">
         This is a filled success Alert.
       </Alert>
-    </div>
+    </Stack>
   );
 };
 

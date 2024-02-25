@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../icon/PineconeBlackLogo";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import PineconeWhiteLogo from "../icon/PineconeWhiteLogo";
 import Bg from "../icon/Bg";
 import FooterBg from "../icon/FooterBg";
@@ -49,12 +49,12 @@ const Footer = () => {
               flexDirection: "row",
             }}
           >
-            <p>Нүүр</p>
-            <p>Холбоо барих</p>
-            <p>Хоолны цэс</p>
-            <p>Үйлчилгээний нөхцөл</p>
-            <p>Хүргэлтийн бүс</p>
-            <p>Нууцлалын бодлого</p>
+            <Typography>Нүүр</Typography>
+            <Typography>Холбоо барих</Typography>
+            <Typography>Хоолны цэс</Typography>
+            <Typography>Үйлчилгээний нөхцөл</Typography>
+            <Typography>Хүргэлтийн бүс</Typography>
+            <Typography>Нууцлалын бодлого</Typography>
           </Box>
         </Stack>
         <Stack

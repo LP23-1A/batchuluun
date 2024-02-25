@@ -7,6 +7,5 @@ import {
 } from "../controller/Food";
 const food = express.Router();
 food.route("/").get(getAllFood).post(createFood);
-food.route("/:id").delete(deleteFood);
-food.route("/:id").put(updateFood);
+food.route("/:id").delete(deleteFood).put(updateFood);
 export { food };

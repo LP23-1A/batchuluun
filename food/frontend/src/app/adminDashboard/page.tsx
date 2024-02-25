@@ -1,15 +1,16 @@
 "use client";
-import React from "react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Category from "@/components/Category";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+// import { Category } from "@mui/icons-material";
 import { Stack } from "@mui/material";
-import SignUp from "../../components/SignUp";
+import React from "react";
 
 const page = () => {
   return (
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "60px" }}>
       <Navbar />
-      <SignUp />
+      <Category />
       <Footer />
     </Stack>
   );

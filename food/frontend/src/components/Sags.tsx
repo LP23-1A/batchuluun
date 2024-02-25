@@ -135,8 +135,7 @@ export default function Sags() {
               </Box>
             </Box>
             <Button
-              sx={{ bgcolor: "#18BA51" }}
-              variant="contained"
+              sx={{ bgcolor: "#18BA51 ! important", color: "white" }}
               onClick={Order}
             >
               Захиалах

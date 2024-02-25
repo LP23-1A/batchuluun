@@ -18,10 +18,10 @@ export const signUp = async (req: Request, res: Response) => {
     const { name, email, phoneNumber, password }: Required<SignUpType> =
       req.body;
     const result = await UserModel.create({
-      name,
-      email,
-      phoneNumber,
-      password,
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password,
     });
     res.status(201).send(result);
   } catch (error) {
@@ -77,9 +77,12 @@ export const deleteUser = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const updateUserId = req.params.id;
-    const { name } = req.body;
-    const updateOneFood = await UserModel.findByIdAndUpdate(updateUserId);
-    return res.status(200).send({ success: true, updateUserId });
+    const { email, password } = req.body;
+    const updateOneUser = await UserModel.findByIdAndUpdate(updateUserId, {
+      email: email,
+      password: password,
+    });
+    return res.status(200).send({ success: true, updateOneUser });
   } catch (error) {
     res.status(500).send(error);
   }

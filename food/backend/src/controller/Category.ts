@@ -13,6 +13,14 @@ export const createCategory = async (req: Request, res: Response) => {
   }
 };
 
+export const getAllCategory = async (req: Request, res: Response) => {
+  try {
+    const getAllCategory = await CategoryModel.find();
+    res.status(200).send({ success: true, getAllCategory });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 export const getCategory = async (req: Request, res: Response) => {
   try {
     const { name } = req.body;
@@ -26,7 +34,7 @@ export const getCategory = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteFood = async (req: Request, res: Response) => {
+export const deleteCategory = async (req: Request, res: Response) => {
   try {
     const deleteCategoryId = req.params.id;
     const deleteOneCategory = await CategoryModel.findByIdAndDelete(

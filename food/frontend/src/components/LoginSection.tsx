@@ -43,8 +43,9 @@ const LoginSection = () => {
       }
       console.log("ok");
     } catch (error) {
-      // setError("username or password error");
       console.log(error);
+
+      return <Error />;
     }
   };
   const signUp = () => {
@@ -74,6 +75,7 @@ const LoginSection = () => {
               border: "1px solid gray",
               borderBottom: "none",
               borderRadius: "6px",
+              bgcolor: "#F7F7F8",
             }}
             id="filled-multiline-flexible"
             label="Имэйл хаягаа оруулна уу"
@@ -91,7 +93,6 @@ const LoginSection = () => {
           <FormControl
             sx={{
               width: "38ch",
-              bgcolor: "#F7F7F8",
               borderRadius: "1ch",
               border: "none",
             }}
@@ -106,6 +107,7 @@ const LoginSection = () => {
               onChange={(e: any) =>
                 setInput((prev) => ({ ...prev, password: e.target.value }))
               }
+              sx={{ width: "384px", bgcolor: "#F7F7F8" }}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -130,9 +132,11 @@ const LoginSection = () => {
         <Button
           onClick={submitHandler}
           disabled={input.email === "" || input.password === ""}
-          sx={{
-            bgcolor: "green ! important",
+          style={{
+            backgroundColor:
+              input.email === "" || input.password === "" ? "grey" : "#18BA51",
           }}
+          sx={{ color: "white" }}
         >
           Нэвтрэх
         </Button>
