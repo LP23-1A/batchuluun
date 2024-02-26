@@ -8,6 +8,7 @@ import image from "../../../public/img/pizza.png";
 import axios from "axios";
 import ImgCard from "./Card";
 import OrderModal from "./OrderModal";
+import AllFood from "./AllFood";
 
 const style = {
   position: "absolute" as "absolute",
@@ -35,6 +36,7 @@ const BASE_URL = "http://localhost:8000/food";
 export default function Order() {
   const [data, setData] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [add, setAdd] = React.useState(4);
   const handler = async () => {
     try {
       const { data } = await axios.get(BASE_URL);
@@ -50,7 +52,7 @@ export default function Order() {
     handler();
   });
   const filterData = data.filter((el: any) => el.discount > 0);
-  console.log(data, filterData);
+  const AllData = data.filter((el: any) => el.discount === 0);
 
   const handleOpen = (id: any) => {
     data.find((el: any) => {
@@ -60,9 +62,22 @@ export default function Order() {
       }
     });
   };
+  const addFood = () => {
+    setAdd((add) => add + 4);
+  };
   const handleClose = () => setOpen(false);
   return (
     <Stack>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "100px auto",
+          gap: "50px",
+        }}
+      >
+        <AllFood name="Хямдралтай" onclick={addFood} />
+      </Box>
       <Box
         sx={{
           display: "flex",
@@ -78,7 +93,7 @@ export default function Order() {
           >
             <ImgCard
               img={el.image}
-              name={el.name}
+              name={el.foodname}
               price={el.price - (el.discount * el.price) / 100}
               discount={el.discount}
               count={(el.discount * el.price) / 100}
@@ -86,7 +101,41 @@ export default function Order() {
           </Box>
         ))}
       </Box>
-      {/* <Box onClick={filterData}>hh</Box> */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "100px auto",
+          gap: "50px",
+        }}
+      >
+        <AllFood name="Үндсэн хоол" onclick={addFood} />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          gap: "20px",
+          flexWrap: "wrap",
+        }}
+      >
+        {AllData.slice(0, add).map((el: any) => (
+          <Box
+            onClick={() => handleOpen(el._id)}
+            sx={{ display: "flex", flexDirection: "row" }}
+            key={el._id}
+          >
+            <ImgCard
+              img={el.image}
+              name={el.foodname}
+              price={el.price - (el.discount * el.price) / 100}
+              discount={el.discount}
+              count={(el.discount * el.price) / 100}
+            />
+          </Box>
+        ))}
+      </Box>
       <Modal
         open={open}
         onClose={handleClose}

@@ -11,7 +11,6 @@ const page = () => {
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "60px" }}>
       <Navbar />
       <Category />
-      <Footer />
     </Stack>
   );
 };

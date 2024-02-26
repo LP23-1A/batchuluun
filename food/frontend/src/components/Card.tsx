@@ -11,7 +11,7 @@ type PropsType = {
 };
 export default function ImgCard(props: any) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ Width: "345px" }}>
       <CardActionArea>
         <CardMedia
           component="img"

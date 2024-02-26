@@ -2,8 +2,7 @@
 import { Box, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import Navbar from "../../../components/Navbar";
-import BigImage from "../../../../public/img/img1.png";
-import SmallImage from "../../../../public/img/img2.png";
+import image from "../../../../public/img/Group 534.png";
 import Bg from "../../../icon/Bg";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
@@ -12,6 +11,10 @@ import FooterBg from "@/icon/FooterBg";
 import OrderStep from "@/components/OrderStep";
 import Category from "@/components/Category";
 import AllFood from "@/components/AllFood";
+import InformationCard from "@/components/InformationCard";
+const style = {
+  position: "absolute",
+};
 const page = () => {
   // const router = useRouter();
   // useEffect(() => {
@@ -32,7 +35,7 @@ const page = () => {
   // }, []);
   return (
     <Stack>
-      <Navbar />
+      <Navbar name="Хэрэглэгч" />
       <Stack>
         <Bg />
         <Stack
@@ -53,48 +56,23 @@ const page = () => {
             Horem ipsum dolor sit amet, consectetur adipiscing elit.
           </Box>
         </Stack>
-        <Box sx={{ position: "absolute", top: "23%", left: "50%" }}>
-          <img width={"443px"} height={"438px"} src={BigImage.src} alt="" />
-        </Box>
-        <Box sx={{ position: "absolute", top: "38%", left: "60%" }}>
-          <img width={"313px"} height={"313px"} src={SmallImage.src} alt="" />
+        <Box sx={{ position: "absolute", top: "20%", left: "50%" }}>
+          <img src={image.src} width={"588px"} height={"438px"} alt="" />
         </Box>
       </Stack>
+
       <Stack
         sx={{
-          display: "flex",
-          alignItems: "center",
           marginTop: "122px",
         }}
-      ></Stack>
-      <Stack
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "100px auto",
-          gap: "50px",
-        }}
       >
-        <AllFood name="Хямдралтай" />
+        <InformationCard />
       </Stack>
-      <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
-        <Order />
-      </Stack>
-      <Stack
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "100px auto",
-          gap: "50px",
-        }}
-      >
-        <AllFood name="Үндсэн Хоол" />
-      </Stack>
+
       <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
         <Order />
       </Stack>
       <Footer />
-      <Category />
     </Stack>
   );
 };

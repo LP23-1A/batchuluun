@@ -90,22 +90,34 @@ const OrderModal = () => {
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Button
                 onClick={countIncrementHandler}
-                variant="contained"
-                sx={{ width: "30px", height: "30px", background: "green" }}
+                sx={{
+                  width: "30px",
+                  height: "30px",
+                  color: "white",
+                  background: "#18BA51 ! important",
+                }}
               >
                 -
               </Button>
               <Typography>{count}</Typography>
               <Button
                 onClick={countPlusHandler}
-                variant="contained"
-                sx={{ width: "30px", height: "30px", background: "green" }}
+                sx={{
+                  width: "30px",
+                  height: "30px",
+                  color: "white",
+                  background: "#18BA51  ! important",
+                }}
               >
                 +
               </Button>
             </Box>
             <Button
-              sx={{ background: "green", color: "white", width: "400px" }}
+              sx={{
+                background: "#18BA51 ! important",
+                color: "white",
+                width: "400px",
+              }}
               onClick={sagslah}
             >
               Сагслах

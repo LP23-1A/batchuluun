@@ -38,6 +38,7 @@ const LoginSection = () => {
       // localStorage.setItem("user1", JSON.stringify(data));
       if (data) {
         router.push(`/dashboard/${input.email}`);
+        localStorage.setItem("email", JSON.stringify(input.email));
       } else {
         setError("username or password error");
       }

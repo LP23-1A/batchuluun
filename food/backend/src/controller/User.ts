@@ -55,14 +55,22 @@ export const signUp = async (req: Request, res: Response) => {
 
 export const LogIn = async (req: Request, res: Response) => {
   try {
-    const { email, password }: Required<LogInType> = req.body;
+    const { email, password } = req.body;
     const user = await UserModel.findOne({ email: email, password: password });
     res.status(200).send({ success: true, user });
   } catch (error) {
     res.status(500).send(error);
   }
 };
-
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const { email }: Required<LogInType> = req.body;
+    const user = await UserModel.findOne({ email: email });
+    res.status(200).send({ success: true, user });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 export const deleteUser = async (req: Request, res: Response) => {
   try {
     const deleteId = req.params.id;

@@ -15,6 +15,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import React from "react";
 import Complete from "./Complete";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 const style = {
   border: "1px solid gray",
   borderBottom: "none",
@@ -24,6 +25,7 @@ const style = {
 };
 const SignUp = () => {
   const api = "http://localhost:8000/user/signup";
+  const router = useRouter();
   const [showPassword, setShowPassword] = React.useState(false);
   const [input, setInput] = React.useState({
     name: "",
@@ -55,9 +57,8 @@ const SignUp = () => {
     try {
       const { data } = await axios.post(api, { ...input });
       if (data) {
-        return <Complete />;
+        router.push("/login");
       }
-      console.log("ok");
     } catch (error) {
       console.log(error);
     }

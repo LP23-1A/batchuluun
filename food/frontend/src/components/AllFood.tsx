@@ -34,7 +34,13 @@ const AllFood = (props: any) => {
           color: "#18BA51",
         }}
       >
-        <Typography color={"#18BA51"}>Бүгдийг харах</Typography>
+        <Box
+          color={"#18BA51"}
+          onClick={props.onclick}
+          sx={{ cursor: "pointer" }}
+        >
+          Бүгдийг харах
+        </Box>
         <ArrowForwardIos />
       </Box>
     </Stack>

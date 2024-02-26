@@ -15,6 +15,7 @@ const Footer = () => {
         justifyContent: "center",
         alignItems: "center",
         position: "relative",
+        marginTop: "86px",
       }}
     >
       <FooterBg />

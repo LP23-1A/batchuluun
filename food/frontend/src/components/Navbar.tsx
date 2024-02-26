@@ -16,13 +16,15 @@ import { PermIdentitySharp, ShoppingBasketSharp } from "@mui/icons-material";
 import LoginSection from "./LoginSection";
 import SearchAppBar from "./Search";
 import Sags from "./Sags";
+import { useRouter } from "next/navigation";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Navbar() {
+function Navbar(props: any) {
   const [alignment, setAlignment] = React.useState("web");
   const [open, setOpen] = React.useState(false);
+  const router = useRouter();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleChange = (
@@ -31,13 +33,20 @@ function Navbar() {
   ) => {
     setAlignment(newAlignment);
   };
+  const menuHandler = () => {
+    router.push("/menu");
+  };
+  const profileHanddler = () => {
+    router.push("/profile");
+  };
+  const email = JSON.parse(localStorage.getItem("email") as string);
   return (
     <AppBar
       position="static"
       sx={{
         bgcolor: "white",
         boxShadow: "0",
-        width: "1200px",
+        width: "1440px",
         m: "auto",
       }}
     >
@@ -86,6 +95,7 @@ function Navbar() {
                   color: "black",
                   ":hover": { color: "#18BA51" },
                 }}
+                onClick={menuHandler}
                 value="android"
               >
                 ХООЛНЫ ЦЭС
@@ -118,15 +128,23 @@ function Navbar() {
             <Stack
               sx={{
                 display: "flex",
-                gap: "12px",
+                gap: "8px",
                 flexDirection: "row",
                 alignItems: "center",
+                color: "green",
               }}
             >
-              <PermIdentitySharp sx={{ color: "black" }} />
-              <Button sx={{ color: "black" }} onClick={handleOpen}>
-                Нэвтрэх
-              </Button>
+              <PermIdentitySharp sx={{ color: "green" }} />
+              {email ? (
+                <Button sx={{ color: "green" }} onClick={profileHanddler}>
+                  Хэрэглэгч
+                </Button>
+              ) : (
+                <Button sx={{ color: "black" }} onClick={handleOpen}>
+                  Нэвтрэх
+                </Button>
+              )}
+
               <Modal
                 open={open}
                 onClose={handleClose}
