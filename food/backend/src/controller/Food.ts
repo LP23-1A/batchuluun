@@ -40,7 +40,7 @@ export const createFood = async (req: Request, res: Response) => {
 
     await CategoryModel.findOneAndUpdate(
       {
-        name: "Main course",
+        name: categoryName,
       },
       {
         $push: {

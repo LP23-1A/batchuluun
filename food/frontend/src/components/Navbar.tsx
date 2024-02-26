@@ -57,7 +57,6 @@ function Navbar(props: any) {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "0",
           }}
         >
           <Box
