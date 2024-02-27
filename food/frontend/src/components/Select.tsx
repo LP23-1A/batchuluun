@@ -68,7 +68,6 @@ export default function BasicSelect(): React.ReactNode {
       name: "Зайсан хотхон",
     },
   ];
-  // console.log(data);
 
   return (
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>

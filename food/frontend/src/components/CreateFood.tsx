@@ -45,7 +45,6 @@ export default function CreateFood() {
     try {
       const category: any = await axios.get(BASE_URL);
       const Allcategory = category.data.getAllCategory;
-      console.log(category);
 
       setCategory(Allcategory);
     } catch (error) {
@@ -71,7 +70,6 @@ export default function CreateFood() {
   React.useEffect(() => {
     getCategory();
   });
-  console.log(category);
 
   return (
     <Stack>

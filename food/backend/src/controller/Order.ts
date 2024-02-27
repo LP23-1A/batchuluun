@@ -29,7 +29,10 @@ export const createOrder = async (req: Request, res: Response) => {
 
 export const getAllOrder = async (req: Request, res: Response) => {
   try {
-    const getAllOrder = await orderModel.find();
+    const { userId } = req.body;
+    const getAllOrder = await orderModel
+      .findOne({ userId: userId })
+      .populate("userId");
     return res.status(200).send({ success: true, getAllOrder });
   } catch (error) {
     res.status(500).send(error);

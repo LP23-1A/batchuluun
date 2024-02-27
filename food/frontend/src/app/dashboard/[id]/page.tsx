@@ -12,6 +12,7 @@ import OrderStep from "@/components/OrderStep";
 import Category from "@/components/Category";
 import AllFood from "@/components/AllFood";
 import InformationCard from "@/components/InformationCard";
+import Step1 from "@/components/Step";
 const style = {
   position: "absolute",
 };
@@ -73,6 +74,7 @@ const page = () => {
         <Order />
       </Stack>
       <Footer />
+      {/* <Step1 /> */}
     </Stack>
   );
 };

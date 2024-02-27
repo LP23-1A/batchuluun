@@ -43,7 +43,6 @@ export default function Sags() {
   const price = data.filter((el: any) => {
     filterPrice = filterPrice + (el.price - (el.price * el.discount) / 100);
   });
-  console.log(filterPrice);
 
   const handleClose = () => setOpen(false);
   const Order = () => {

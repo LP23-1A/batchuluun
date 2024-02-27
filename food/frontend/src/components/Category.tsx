@@ -2,24 +2,25 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ImgCard from "./Card";
+import { useRouter } from "next/navigation";
 const BASE_URL = "http://localhost:8000/category/one";
+const CATEGORY_URl = "http://localhost:8000/category";
 const Category = () => {
-  const mockData = [
-    {
-      name: "Soup",
-    },
-    {
-      name: "breakfast",
-    },
-    {
-      name: "Main course",
-    },
-    {
-      name: "Desert",
-    },
-  ];
+  let filterData = "Soup";
   const [data, setData] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(mockData[0].name);
+  const [category, setCategory]: any = useState([]);
+  const [activeIndex, setActiveIndex] = useState(filterData);
+  const handlerCategory = async () => {
+    handlerFood();
+
+    try {
+      const getAllCategory = await axios.get(CATEGORY_URl);
+      const category = getAllCategory.data.getAllCategory;
+      setCategory(category);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handlerFood = async () => {
     try {
       const { data } = await axios.post(BASE_URL, { name: activeIndex });
@@ -32,26 +33,27 @@ const Category = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
-    handlerFood();
+    handlerCategory();
   });
+
   return (
     <Stack width={{ width: "1440px", margin: "auto" }}>
       <Box
         sx={{ display: "flex", gap: "26px", paddingX: "120px", margin: "auto" }}
       >
-        {mockData.map((el, index) => {
+        {category.map((el: any, index: number) => {
           return (
             <Button
               sx={{
                 width: "280px",
                 border: "1px solid #D6D8DB",
-                // color: "black",
                 borderRadius: "6px",
               }}
               key={index}
               value={index}
-              onClick={() => setActiveIndex(mockData[0 + index].name)}
+              onClick={() => setActiveIndex(() => (filterData = el.name))}
               style={{
                 backgroundColor: activeIndex === el.name ? "green" : "white",
                 color: activeIndex === el.name ? "white" : "black",

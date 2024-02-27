@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import BasicSelect from "./Select";
 import { Card, Checkbox, TextField } from "@mui/material";
 import axios from "axios";
+import Step1 from "./Step";
+import { useRouter } from "next/navigation";
 
 const steps = ["Select campaign settings", "Create an ad"];
 const textStyle = {
@@ -19,6 +21,7 @@ const textStyle = {
 const API = "http://localhost:8000/order";
 export const OrderContext = React.createContext([]);
 export default function OrderStep() {
+  const router = useRouter();
   const [activeStep, setActiveStep] = React.useState(0);
   const [data, setData] = React.useState({
     district: "",
@@ -48,6 +51,7 @@ export default function OrderStep() {
         totalPrice: orderPrice,
       });
       console.log("ok");
+      router.push("/orderStep/history");
       localStorage.removeItem("sags");
     } catch (error) {
       console.log(error);
@@ -70,35 +74,24 @@ export default function OrderStep() {
           m: "auto",
           bgcolor: "background.paper",
           boxShadow: 40,
+          padding: "0px 160px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
         }}
       >
-        {/* <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const labelProps: {
-            optional?: React.ReactNode;
-          } = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = <Typography>Optional</Typography>;
-          }
-          return (
-            <Step key={label} sx={{ bgcolor: "white" }}>
-              <Box>
-                <StepLabel>{label}</StepLabel>
-              </Box>
-            </Step>
-          );
-        })}
-      </Stepper>
-
-      <React.Fragment>
-        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-          <Box sx={{ flex: "1 1 auto" }} />
-          <Button onClick={handleNext}>
-            {activeStep === steps.length - 1 ? "Finish" : "Next"}
-          </Button>
+        <Box sx={{ display: "flex", gap: "400px" }}>
+          <Step1 step="Алхам 1" name="Хаягийн мэдээлэл оруулах" />
+          <Step1 step="Алхам 2" name="Захиалга баталгаажуулах" />
         </Box>
-      </React.Fragment> */}
-        <Box sx={{ display: "flex", gap: "30px", justifyContent: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "30px",
+            padding: "0px, 160px",
+            justifyContent: "space-between",
+          }}
+        >
           <Card
             sx={{
               width: "432px",

@@ -6,17 +6,20 @@ import ImgCard from "../../components/Card";
 import Navbar from "@/components/Navbar";
 import CreateCategory from "@/components/CreateCategory";
 import CreateFood from "@/components/CreateFood";
+import { Add } from "@mui/icons-material";
 const BASE_URL = "http://localhost:8000/category/one";
 const CATEGORY_URl = "http://localhost:8000/category";
 type categoryType = {
   name: string;
 };
 const Category = () => {
-  let filterCategory: any;
+  let filterCategory: any = "Soup";
   const [data, setData] = useState([]);
   const [category, setCategory]: any = useState([]);
   const [activeIndex, setActiveIndex] = useState(filterCategory);
   const handlerCategory = async () => {
+    handlerFood();
+
     try {
       const getAllCategory = await axios.get(CATEGORY_URl);
       const category = getAllCategory.data.getAllCategory;
@@ -32,7 +35,7 @@ const Category = () => {
       });
       const getData = data.result.foodId;
       if (!getData) {
-        setData([]);
+        setData(data);
       }
       setData(getData);
     } catch (error) {
@@ -41,9 +44,7 @@ const Category = () => {
   };
   useEffect(() => {
     handlerCategory();
-    handlerFood();
   });
-  console.log(filterCategory);
 
   return (
     <Stack width={{ width: "1440px", margin: "auto" }}>
@@ -101,6 +102,8 @@ const Category = () => {
             display: "flex",
             flexDirection: "column",
             gap: "50px",
+            width: "1000px",
+            height: "100vw",
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -119,17 +122,36 @@ const Category = () => {
               gap: "20px",
             }}
           >
-            {data.map((el: any) => (
-              <Box sx={{ display: "flex", flexDirection: "row" }} key={el._id}>
-                <ImgCard
-                  img={el.image}
-                  name={el.foodname}
-                  price={el.price - (el.discount * el.price) / 100}
-                  discount={el.discount}
-                  count={(el.discount * el.price) / 100}
-                />
+            {data.length > 0 ? (
+              data.map((el: any) => (
+                <Box
+                  sx={{ display: "flex", flexDirection: "row" }}
+                  key={el._id}
+                >
+                  <ImgCard
+                    img={el.image}
+                    name={el.foodname}
+                    price={el.price - (el.discount * el.price) / 100}
+                    discount={el.discount}
+                    count={(el.discount * el.price) / 100}
+                  />
+                </Box>
+              ))
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  m: "100px  auto",
+                }}
+              >
+                <Add sx={{ color: "#18BA51", width: "50px", height: "50px" }} />
+                <Typography>Уучлаарай, Таны меню хоосон байна.</Typography>
               </Box>
-            ))}
+            )}
           </Box>
         </Box>
       </Box>

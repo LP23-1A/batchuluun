@@ -22,7 +22,7 @@ const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar(props: any) {
-  const [alignment, setAlignment] = React.useState("web");
+  const [alignment, setAlignment] = React.useState("НҮҮР");
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
   const handleOpen = () => setOpen(true);
@@ -33,13 +33,17 @@ function Navbar(props: any) {
   ) => {
     setAlignment(newAlignment);
   };
+  const email = JSON.parse(localStorage.getItem("email") as string);
+
   const menuHandler = () => {
     router.push("/menu");
   };
   const profileHanddler = () => {
     router.push("/profile");
   };
-  const email = JSON.parse(localStorage.getItem("email") as string);
+  const home = () => {
+    router.push(`/dashboard/${email}`);
+  };
   return (
     <AppBar
       position="static"
@@ -81,31 +85,26 @@ function Navbar(props: any) {
               <ToggleButton
                 sx={{
                   border: "none",
-                  color: "black",
-                  ":hover": { color: "#18BA51" },
                 }}
-                value="web"
+                value={"НҮҮР"}
+                onClick={home}
               >
                 НҮҮР
               </ToggleButton>
               <ToggleButton
                 sx={{
                   border: "none",
-                  color: "black",
-                  ":hover": { color: "#18BA51" },
                 }}
                 onClick={menuHandler}
-                value="android"
+                value="ХООЛНЫ ЦЭС"
               >
                 ХООЛНЫ ЦЭС
               </ToggleButton>
               <ToggleButton
                 sx={{
                   border: "none",
-                  color: "black",
-                  ":hover": { color: "#18BA51" },
                 }}
-                value="ios"
+                value="ХҮРГЭЛТИЙН БҮС"
               >
                 ХҮРГЭЛТИЙН БҮС
               </ToggleButton>

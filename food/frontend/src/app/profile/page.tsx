@@ -64,12 +64,14 @@ const page = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          gap: "20px",
         }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
+            m: "auto",
             borderRadius: "50%",
             width: "120px",
             height: "120px",
@@ -83,7 +85,11 @@ const page = () => {
             }}
           />
         </Box>
-        <Typography></Typography>
+        <Typography
+          sx={{ fontSize: "28px", fontWeight: "700", textAlign: "center" }}
+        >
+          {userInfo.name}
+        </Typography>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <Box sx={style}>
             <Box sx={{ display: "flex", gap: "8px" }}>
