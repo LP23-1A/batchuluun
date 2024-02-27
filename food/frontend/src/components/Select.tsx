@@ -9,7 +9,6 @@ import { OrderContext } from "./OrderStep";
 
 export default function BasicSelect(): React.ReactNode {
   const { data, setData }: any = React.useContext(OrderContext);
-  console.log(data);
 
   const District = [
     {

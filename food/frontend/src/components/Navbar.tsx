@@ -33,7 +33,7 @@ function Navbar(props: any) {
   ) => {
     setAlignment(newAlignment);
   };
-  const email = JSON.parse(localStorage.getItem("email") as string);
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
 
   const menuHandler = () => {
     router.push("/menu");
@@ -42,7 +42,7 @@ function Navbar(props: any) {
     router.push("/profile");
   };
   const home = () => {
-    router.push(`/dashboard/${email}`);
+    router.push(`/dashboard/${userData.user.email}`);
   };
   return (
     <AppBar
@@ -132,15 +132,22 @@ function Navbar(props: any) {
                 color: "green",
               }}
             >
-              <PermIdentitySharp sx={{ color: "green" }} />
-              {email ? (
-                <Button sx={{ color: "green" }} onClick={profileHanddler}>
-                  Хэрэглэгч
-                </Button>
+              {userData ? (
+                <Box>
+                  <PermIdentitySharp sx={{ color: "green" }} />
+
+                  <Button sx={{ color: "green" }} onClick={profileHanddler}>
+                    Хэрэглэгч
+                  </Button>
+                </Box>
               ) : (
-                <Button sx={{ color: "black" }} onClick={handleOpen}>
-                  Нэвтрэх
-                </Button>
+                <Box>
+                  <PermIdentitySharp sx={{ color: "black" }} />
+
+                  <Button sx={{ color: "black" }} onClick={handleOpen}>
+                    Нэвтрэх
+                  </Button>
+                </Box>
               )}
 
               <Modal

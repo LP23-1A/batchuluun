@@ -4,13 +4,14 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import {
   Box,
-  InputAdornment,
+  Button,
+  Card,
+  Modal,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import image from "../../../public/img/profile.jpeg";
-import axios from "axios";
 import {
   Edit,
   ForwardToInbox,
@@ -18,6 +19,7 @@ import {
   Logout,
   PermIdentitySharp,
 } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 const BASE_URL = "http://localhost:8000/user/one";
 type userInfoType = {
   name: string;
@@ -31,6 +33,16 @@ const style = {
   alignItems: "center",
   borderRadius: "6px",
 };
+const styleModal = {
+  position: "absolute" as "absolute",
+  top: "35%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 384,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+};
+
 const iconStyle = {
   width: "50px",
   height: "50px",
@@ -38,22 +50,26 @@ const iconStyle = {
   bgcolor: "white",
   borderRadius: "50%",
 };
+const styleButton = {
+  fontSize: "20px",
+  fontWeight: "600",
+  width: "50%",
+  textAlign: "center",
+  padding: "15px 67px",
+  cursor: "pointer",
+};
 const page = () => {
-  const [userInfo, setUserInfo] = useState<userInfoType>({});
-  const email = JSON.parse(localStorage.getItem("email") as string);
-  const handler = async () => {
-    try {
-      const user = await axios.post(BASE_URL, { email: email });
-      const userInfo = user.data.user;
-      setUserInfo(userInfo);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  useEffect(() => {
-    handler();
-  });
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const userInfo = userData.user;
+  const logOut = () => {
+    router.push("/");
+    localStorage.removeItem("userData");
+  };
   return (
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "60px" }}>
       <Navbar />
@@ -99,11 +115,10 @@ const page = () => {
                 sx={{ borderBottom: "none", width: "280px" }}
                 id="standard-required"
                 label="Таны нэр"
-                defaultValue="УгтахБаяр"
+                defaultValue={userInfo.name}
                 variant="standard"
               />
             </Box>
-
             <Edit sx={{ color: "green" }} />
           </Box>
           <Box sx={style}>
@@ -113,8 +128,8 @@ const page = () => {
                 required
                 sx={{ borderBottom: "none", width: "280px" }}
                 id="standard-required"
-                label="Таны нэр"
-                defaultValue="УгтахБаяр"
+                label="Утасны дугаар"
+                defaultValue={userInfo.phoneNumber}
                 variant="standard"
               />
             </Box>
@@ -128,8 +143,8 @@ const page = () => {
                 required
                 sx={{ borderBottom: "none", width: "280px" }}
                 id="standard-required"
-                label="Таны нэр"
-                defaultValue="УгтахБаяр"
+                label="Имэйл хаяг"
+                defaultValue={userInfo.email}
                 variant="standard"
               />
             </Box>
@@ -137,10 +152,45 @@ const page = () => {
             <Edit sx={{ color: "green" }} />
           </Box>
         </Box>
-        <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <Box
+          sx={{ display: "flex", gap: "8px", alignItems: "center" }}
+          onClick={handleOpen}
+        >
           <Logout sx={iconStyle} />
           <Typography sx={{}}>Гарах</Typography>
         </Box>
+        <Modal open={open}>
+          <Card sx={styleModal}>
+            <Typography
+              sx={{
+                fontSize: "20px",
+                fontWeight: "600",
+                p: 4,
+                textAlign: "center",
+              }}
+            >
+              Та системээс гарахдаа итгэлтэй байна уу?
+            </Typography>
+            <Box sx={{ display: "flex", borderRadius: "6px" }}>
+              <Box
+                sx={styleButton}
+                color={"grey"}
+                bgcolor={"blue ! important"}
+                onClick={logOut}
+              >
+                Тийм
+              </Box>
+              <Box
+                sx={styleButton}
+                color={"white"}
+                bgcolor={"#18BA51 ! important"}
+                onClick={handleClose}
+              >
+                Үгүй
+              </Box>
+            </Box>
+          </Card>
+        </Modal>
       </Box>
       <Footer />
     </Stack>

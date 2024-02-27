@@ -1,9 +1,6 @@
 "use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import BasicSelect from "./Select";
@@ -11,18 +8,15 @@ import { Card, Checkbox, TextField } from "@mui/material";
 import axios from "axios";
 import Step1 from "./Step";
 import { useRouter } from "next/navigation";
-
-const steps = ["Select campaign settings", "Create an ad"];
 const textStyle = {
   fontSize: "18px",
   fontWeight: "600",
 };
-
 const API = "http://localhost:8000/order";
 export const OrderContext = React.createContext([]);
 export default function OrderStep() {
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
   const router = useRouter();
-  const [activeStep, setActiveStep] = React.useState(0);
   const [data, setData] = React.useState({
     district: "",
     khoroo: "",
@@ -33,39 +27,25 @@ export default function OrderStep() {
   const json: string | null = localStorage.getItem("sags");
   const orderData = json && JSON.parse(json);
   let orderPrice = 0;
-
   const price = orderData.filter((el: any) => {
     orderPrice = orderPrice + (el.price - (el.price * el.discount) / 100);
   });
-
   const createOrder = async (e: string | any) => {
-    e.preventDefault();
     try {
-      const create = axios.post(API, {
+      const create = await axios.post(API, {
+        userId: userData.user._id,
+        foods: orderData,
+        totalPrice: orderPrice,
         district: data.district,
         khoroo: data.khoroo,
         apartment: data.apartment,
-        information: data.information,
-        phoneNumber: data.phoneNumber,
-        foods: orderData,
-        totalPrice: orderPrice,
       });
-      console.log("ok");
       router.push("/orderStep/history");
       localStorage.removeItem("sags");
     } catch (error) {
       console.log(error);
     }
   };
-  const isStepOptional = (step: number) => {
-    return step === 1;
-  };
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
   return (
     <OrderContext.Provider value={{ data, setData }}>
       <Box
@@ -131,7 +111,7 @@ export default function OrderStep() {
               <Typography>Төлбөр төлөх</Typography>
               <Box sx={{ display: "flex", gap: "100px" }}>
                 <Box sx={{ display: "flex", gap: "11px" }}>
-                  <Checkbox {...label} defaultChecked color="default" />
+                  <Checkbox defaultChecked color="default" />
                   <Typography
                     sx={{
                       display: "flex",
@@ -143,7 +123,7 @@ export default function OrderStep() {
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", gap: "11px" }}>
-                  <Checkbox {...label} defaultChecked color="default" />
+                  <Checkbox defaultChecked color="default" />
                   <Typography
                     sx={{
                       display: "flex",
