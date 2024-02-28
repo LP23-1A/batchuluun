@@ -29,8 +29,9 @@ const font = {
 };
 const OrderModal = () => {
   const json: string | null = localStorage.getItem("OrderFood");
-  const data = json && JSON.parse(json);
-
+  let totalPrice = 0;
+  const orderData = json && JSON.parse(json);
+  const [data, setData] = useState(orderData);
   const [count, setCount] = React.useState(1);
   const countPlusHandler = () => {
     setCount(count + 1);
@@ -40,6 +41,10 @@ const OrderModal = () => {
       setCount(count - 1);
     }
   };
+
+  // totalPrice = totalPrice + data.price * count;
+  // setData((prev: any) => ({ ...prev, price: totalPrice }));
+
   const sagslah = () => {
     const storage = JSON.parse(localStorage.getItem("sags") as string);
     console.log(storage);
@@ -48,8 +53,10 @@ const OrderModal = () => {
       localStorage.setItem("sags", JSON.stringify(storage));
       return;
     }
-    localStorage.setItem("sags", JSON.stringify([data]));
+    localStorage.setItem("sags", JSON.stringify([...data]));
   };
+  console.log(data);
+
   return (
     <Stack>
       <Box sx={style}>
@@ -67,7 +74,7 @@ const OrderModal = () => {
               {data.name}
             </Typography>
             <Typography fontSize={"18px"} color={"#18BA51"} fontWeight={"600"}>
-              34,800
+              {data.price * count}
             </Typography>
           </Box>
 

@@ -4,7 +4,7 @@ import { Box, Card, Stack, Typography } from "@mui/material";
 import Navbar from "@/components/Navbar";
 import axios from "axios";
 import Step2 from "@/components/Step2";
-const BASE_URL = "http://localhost:8000/order";
+const BASE_URL = "http://localhost:8000/order/allOrder";
 const style = {
   fontSize: "20px",
   fontWeight: "400",
@@ -12,11 +12,19 @@ const style = {
 const history = (props: any) => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   const [data, setData] = useState([]);
+  const [name, setName] = useState([]);
   const handler = async () => {
     try {
-      const order = await axios.post(BASE_URL, { userId: userData.user_id });
-      const allOrder = order.data.result;
+      const order = await axios.post(BASE_URL, { userId: userData.user._id });
+      const allOrder = order.data.getAllOrder;
+      const name = order.data.getAllOrder[0].foods;
       setData(allOrder);
+      if (allOrder) {
+        allOrder.filter((el: any) => {
+          setName(el.foods);
+        });
+      }
+      // setName(name);
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +32,7 @@ const history = (props: any) => {
   useEffect(() => {
     handler();
   });
-  console.log(data);
+  console.log(data, name);
 
   return (
     <Stack>
@@ -47,12 +55,16 @@ const history = (props: any) => {
             }}
           >
             <Typography style={style}>Захиалгын түүх</Typography>
-            <Box>
-              {/* {data.length > 0 &&
-            data.map((el: any) => {
-              return <Step2 step={el.createdDate} />;
-            })} */}
-              <Step2 step="#23790" />
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {data &&
+                data.map((el: any) => {
+                  return (
+                    <Step2
+                      number={el._id.slice(0, 6)}
+                      date={el.createdDate.slice(0, 10)}
+                    />
+                  );
+                })}
             </Box>
           </Box>
         </Card>
@@ -67,7 +79,10 @@ const history = (props: any) => {
           >
             <Typography style={style}>Захиалгын дэлгэрэнгүй</Typography>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography>Main pizza</Typography>
+              {name &&
+                name.map((el: any) => {
+                  return <Typography>{el.foodname}</Typography>;
+                })}
               <Typography>(1)</Typography>
             </Box>
           </Box>

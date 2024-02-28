@@ -8,7 +8,11 @@ const orderSchema = new mongoose.Schema({
   orderNumber: Number,
   foods: [],
   totalPrice: Number,
-  process: ["order", "complete"],
+  process: {
+    type: String,
+    enum: ["order", "complete"],
+    default: "order",
+  },
   createdDate: {
     type: Date,
     default: () => Date.now(),

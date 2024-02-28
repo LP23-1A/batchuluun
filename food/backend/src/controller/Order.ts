@@ -31,7 +31,7 @@ export const getAllOrder = async (req: Request, res: Response) => {
   try {
     const { userId } = req.body;
     const getAllOrder = await orderModel
-      .findOne({ userId: userId })
+      .find({ userId: userId })
       .populate("userId");
     return res.status(200).send({ success: true, getAllOrder });
   } catch (error) {

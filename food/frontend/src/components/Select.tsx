@@ -4,70 +4,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { Stack } from "@mui/material";
+import { Stack, TextField, Typography } from "@mui/material";
 import { OrderContext } from "./OrderStep";
-
+import { khoroo } from "@/utils/Khoroo";
+import { district } from "@/utils/District";
+import { apartment } from "@/utils/Apartment";
 export default function BasicSelect(): React.ReactNode {
   const { data, setData }: any = React.useContext(OrderContext);
-
-  const District = [
-    {
-      name: "Баянзүрх дүүрэг",
-    },
-    {
-      name: "Хан-Уул дүүрэг",
-    },
-    {
-      name: "Баянгол дүүрэг",
-    },
-    {
-      name: "Сонгинохайрхан дүүрэг",
-    },
-    {
-      name: "Чингэлтэй дүүрэг",
-    },
-  ];
-  const Khoroo = [
-    {
-      name: "1-р хороо",
-    },
-    {
-      name: "2-р хороо",
-    },
-    {
-      name: "3-р хороо",
-    },
-    {
-      name: "4-р хороо",
-    },
-    {
-      name: "5-р хороо",
-    },
-    {
-      name: "6-р хороо",
-    },
-    {
-      name: "7-р хороо",
-    },
-  ];
-  const Apartment = [
-    {
-      name: "Нархан хотхон",
-    },
-    {
-      name: "26-р байр",
-    },
-    {
-      name: "Хоймор хотхон",
-    },
-    {
-      name: "45-р байр",
-    },
-    {
-      name: "Зайсан хотхон",
-    },
-  ];
-
   return (
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       <Box sx={{ minWidth: 120, bgcolor: "#ECEDF0" }}>
@@ -83,8 +26,8 @@ export default function BasicSelect(): React.ReactNode {
               setData((prev: {}) => ({ ...prev, district: el.target.value }))
             }
           >
-            {District.length > 0 &&
-              District.map((el) => {
+            {district.length > 0 &&
+              district.map((el) => {
                 return <MenuItem value={el.name}>{el.name}</MenuItem>;
               })}
           </Select>
@@ -103,8 +46,8 @@ export default function BasicSelect(): React.ReactNode {
               setData((prev: {}) => ({ ...prev, khoroo: el.target.value }))
             }
           >
-            {Khoroo.length > 0 &&
-              Khoroo.map((el) => {
+            {khoroo.length > 0 &&
+              khoroo.map((el) => {
                 return <MenuItem value={el.name}>{el.name}</MenuItem>;
               })}
           </Select>
@@ -126,12 +69,34 @@ export default function BasicSelect(): React.ReactNode {
               }))
             }
           >
-            {Apartment.length > 0 &&
-              Apartment.map((el) => {
+            {apartment.length > 0 &&
+              apartment.map((el) => {
                 return <MenuItem value={el.name}>{el.name}</MenuItem>;
               })}
           </Select>
         </FormControl>
+      </Box>
+      <Box>
+        <Typography>Нэмэлт мэдээлэл</Typography>
+        <TextField
+          onChange={(el) =>
+            setData((prev: {}) => ({ ...prev, information: el.target.value }))
+          }
+          id="filled-basic"
+          label="Орц, давхар, орцны код ..."
+          sx={{ width: "384px", bgcolor: "#ECEDF0", marginTop: "10px" }}
+        />
+      </Box>
+      <Box>
+        <Typography>Утасны дугаар*</Typography>
+        <TextField
+          onChange={(el) =>
+            setData((prev: {}) => ({ ...prev, phoneNumber: el.target.value }))
+          }
+          id="filled-basic"
+          label="Утасны дугаараа оруулна уу"
+          sx={{ width: "384px", bgcolor: "#ECEDF0", marginTop: "10px" }}
+        />
       </Box>
     </Stack>
   );

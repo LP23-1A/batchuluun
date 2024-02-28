@@ -31,6 +31,7 @@ export default function OrderStep() {
     orderPrice = orderPrice + (el.price - (el.price * el.discount) / 100);
   });
   const createOrder = async (e: string | any) => {
+    e.preventDefault();
     try {
       const create = await axios.post(API, {
         userId: userData.user._id,
@@ -40,8 +41,8 @@ export default function OrderStep() {
         khoroo: data.khoroo,
         apartment: data.apartment,
       });
-      router.push("/orderStep/history");
       localStorage.removeItem("sags");
+      router.push("/history1");
     } catch (error) {
       console.log(error);
     }
@@ -84,28 +85,6 @@ export default function OrderStep() {
             <Typography>Хаяг аа оруулна уу</Typography>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <BasicSelect />
-            </Box>
-            <Box>
-              <Typography>Нэмэлт мэдээлэл</Typography>
-              <TextField
-                onChange={(el) =>
-                  setData((prev) => ({ ...prev, information: el.target.value }))
-                }
-                id="filled-basic"
-                label="Орц, давхар, орцны код ..."
-                sx={{ width: "384px", bgcolor: "#ECEDF0", marginTop: "10px" }}
-              />
-            </Box>
-            <Box>
-              <Typography>Утасны дугаар*</Typography>
-              <TextField
-                onChange={(el) =>
-                  setData((prev) => ({ ...prev, phoneNumber: el.target.value }))
-                }
-                id="filled-basic"
-                label="Утасны дугаараа оруулна уу"
-                sx={{ width: "384px", bgcolor: "#ECEDF0", marginTop: "10px" }}
-              />
             </Box>
             <Box>
               <Typography>Төлбөр төлөх</Typography>

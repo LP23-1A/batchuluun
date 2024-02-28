@@ -29,39 +29,39 @@ export const signUp = async (req: Request, res: Response) => {
   }
 };
 
-// export const LogIn1 = async (req: Request, res: Response) => {
-//   try {
-//     const { email, password }: Required<LogInType> = req.body;
-//     const user = await UserModel.findOne({
-//       email: email,
-//     }).select("+password");
-//     if (!user) {
-//       return res.status(404).send({ msg: "user not found" });
-//     }
-
-//     const isValid = bcrypt.compare(password, user.password as string);
-
-//     if (!isValid) {
-//       return res.status(400).send({ msg: "Email or password incorrect" });
-//     }
-
-//     const token = jwt.sign({ user }, "MY_SECRET_KEY");
-
-//     return res.status(200).send({ success: true, token, user });
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// };
-
 export const LogIn = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
-    const user = await UserModel.findOne({ email: email, password: password });
-    res.status(200).send({ success: true, user });
+    const { email, password }: Required<LogInType> = req.body;
+    const user = await UserModel.findOne({
+      email: email,
+    }).select("+password");
+    if (!user) {
+      return res.status(404).send({ msg: "user not found" });
+    }
+
+    const isValid = bcrypt.compare(password, user.password as string);
+
+    if (!isValid) {
+      return res.status(400).send({ msg: "Email or password incorrect" });
+    }
+
+    const token = jwt.sign({ email }, "MY_SECRET_KEY");
+
+    return res.status(200).send({ success: true, token, user });
   } catch (error) {
     res.status(500).send(error);
   }
 };
+
+// export const LogIn = async (req: Request, res: Response) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await UserModel.findOne({ email: email, password: password });
+//     res.status(200).send({ success: true, user });
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
 export const getUser = async (req: Request, res: Response) => {
   try {
     const { email }: Required<LogInType> = req.body;

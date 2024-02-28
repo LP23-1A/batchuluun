@@ -27,14 +27,22 @@ const Step2 = (props: any) => {
             }}
           ></Box>
         </Box>
-        <Box>
-          <Typography sx={{ color: "#8B8E95", fontSize: "14px" }}>
-            Захиалга
-            {props.step}
-          </Typography>
-          <Typography sx={{ fontSize: "14px", color: "blue" }}>
-            Хүлээгдэж буй
-          </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "40px",
+          }}
+        >
+          <Box>
+            <Typography sx={{ color: "#8B8E95", fontSize: "14px" }}>
+              Захиалга <span>#{props.number}</span>
+            </Typography>
+            <Typography sx={{ fontSize: "14px", color: "blue" }}>
+              Хүлээгдэж буй
+            </Typography>
+          </Box>
+          <Typography>{props.date}</Typography>
         </Box>
       </Box>
       <></>
