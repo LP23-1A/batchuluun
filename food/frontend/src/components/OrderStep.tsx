@@ -38,8 +38,7 @@ export default function OrderStep() {
         khoroo: data.khoroo,
         apartment: data.apartment,
       });
-      // localStorage.removeItem("sags");
-      router.push("/history1");
+      router.push(`/history1/${userData.user.email}`);
     } catch (error) {
       console.log(error);
     }

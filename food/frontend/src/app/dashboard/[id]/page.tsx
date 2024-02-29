@@ -7,12 +7,7 @@ import Bg from "../../../icon/Bg";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
 import Order from "@/components/Order";
-import FooterBg from "@/icon/FooterBg";
-import OrderStep from "@/components/OrderStep";
-import Category from "@/components/Category";
-import AllFood from "@/components/AllFood";
 import InformationCard from "@/components/InformationCard";
-import Step1 from "@/components/Step";
 const style = {
   position: "absolute",
 };
@@ -64,7 +59,6 @@ const page = () => {
           <img src={image.src} width={"588px"} height={"438px"} alt="" />
         </Box>
       </Stack>
-
       <Stack
         sx={{
           marginTop: "122px",
@@ -72,12 +66,10 @@ const page = () => {
       >
         <InformationCard />
       </Stack>
-
       <Stack sx={{ width: "1200px", top: "10px", margin: "auto" }}>
         <Order />
       </Stack>
       <Footer />
-      {/* <Step1 /> */}
     </Stack>
   );
 };

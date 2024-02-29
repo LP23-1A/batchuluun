@@ -36,10 +36,10 @@ function Navbar(props: any) {
   const userData = JSON.parse(localStorage.getItem("user1") as string);
 
   const menuHandler = () => {
-    router.push("/menu");
+    router.push(`/menu/${userData.user.email}`);
   };
   const profileHanddler = () => {
-    router.push("/profile");
+    router.push(`/profile/${userData.user.email}`);
   };
   const home = () => {
     router.push(`/dashboard/${userData.user.email}`);

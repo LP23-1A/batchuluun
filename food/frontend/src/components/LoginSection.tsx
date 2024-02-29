@@ -36,12 +36,14 @@ const LoginSection = () => {
     try {
       const { data } = await axios.post(BASE_URL, { ...input });
       localStorage.setItem("user1", JSON.stringify(data));
-      if (data) {
+      console.log(data);
+
+      if (data.user.role === "user") {
         router.push(`/dashboard/${data.user.email}`);
         // localStorage.setItem("userData", JSON.stringify({ ...data }));
-      } else {
-        setError("username or password error");
-      }
+      } else if (data.user.role === "admin") {
+        router.push(`/adminDashboard`);
+      } else setError("error");
       console.log("ok");
     } catch (error) {
       console.log(error);
@@ -49,6 +51,7 @@ const LoginSection = () => {
       return <Error />;
     }
   };
+
   const signUp = () => {
     router.push("/signup");
   };

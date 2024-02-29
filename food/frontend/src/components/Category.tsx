@@ -1,19 +1,17 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Modal, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ImgCard from "./Card";
-import { useRouter } from "next/navigation";
-import useSWR from "swr";
+import OrderModal from "./OrderModal";
 const BASE_URL = "http://localhost:8000/category/one";
 const CATEGORY_URl = "http://localhost:8000/category";
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Category = () => {
   let filterData = "Soup";
   const [data, setData] = useState([]);
   const [category, setCategory] = useState([]);
+  const [open, setOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = useState(filterData);
   const handlerCategory = async () => {
-    handlerFood();
     try {
       const getAllCategory = await axios.get(CATEGORY_URl);
       const category = getAllCategory.data.getAllCategory;
@@ -26,19 +24,27 @@ const Category = () => {
     try {
       const { data } = await axios.post(BASE_URL, { name: activeIndex });
       const getData = data.result.foodId;
-      if (!getData) {
-        data;
-      }
       setData(getData);
     } catch (error) {
       console.log(error);
     }
   };
+  const handleOpen = (id: any) => {
+    data.find((el: any) => {
+      if (el._id === id) {
+        setOpen(true);
+        localStorage.setItem("OrderFood", JSON.stringify([el]));
+      }
+    });
+  };
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     handlerCategory();
-  });
-
+  }, []);
+  useEffect(() => {
+    handlerFood();
+  }, [activeIndex]);
   return (
     <Stack width={{ width: "1440px", margin: "auto" }}>
       <Box
@@ -54,7 +60,9 @@ const Category = () => {
               }}
               key={index}
               value={index}
-              onClick={() => setActiveIndex(() => (filterData = el.name))}
+              onClick={() => {
+                setActiveIndex(() => (filterData = el.name));
+              }}
               style={{
                 backgroundColor: activeIndex === el.name ? "green" : "white",
                 color: activeIndex === el.name ? "white" : "black",
@@ -77,7 +85,11 @@ const Category = () => {
         }}
       >
         {data.map((el: any) => (
-          <Box sx={{ display: "flex", flexDirection: "row" }} key={el._id}>
+          <Box
+            sx={{ display: "flex", flexDirection: "row" }}
+            key={el._id}
+            onClick={() => handleOpen(el._id)}
+          >
             <ImgCard
               img={el.image}
               name={el.foodname}
@@ -88,6 +100,14 @@ const Category = () => {
           </Box>
         ))}
       </Box>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <OrderModal />
+      </Modal>
     </Stack>
   );
 };

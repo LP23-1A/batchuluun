@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 import {
   Box,
   Button,
@@ -11,7 +11,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import image from "../../../public/img/profile.jpeg";
+import image from "../../../../public/img/profile.jpeg";
 import {
   Edit,
   ForwardToInbox,
@@ -63,8 +63,7 @@ const page = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const userData = JSON.parse(localStorage.getItem("user1") as string);
   const userInfo = userData.user;
   const logOut = () => {
     router.push("/");

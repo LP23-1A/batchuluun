@@ -50,7 +50,7 @@ export default function Order() {
 
   React.useEffect(() => {
     handler();
-  });
+  }, []);
   const filterData = data.filter((el: any) => el.discount > 0);
   const AllData = data.filter((el: any) => el.discount === 0);
 

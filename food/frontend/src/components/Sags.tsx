@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const style = {
   position: "absolute" as "absolute",
   top: "",
-  left: "60%",
+  left: "50%",
   width: 586,
   bgcolor: "background.paper",
   boxShadow: 24,
@@ -66,6 +66,14 @@ export default function Sags() {
     handleClose();
     router.push("/orderStep");
   };
+  const deleteOrder = (id: any) => {
+    data.find((el: any) => {
+      if (el._id === id) {
+        localStorage.removeItem("sags");
+      }
+    });
+  };
+  console.log(data);
 
   return (
     <Stack>
@@ -118,10 +126,32 @@ export default function Sags() {
                             gap: "8px",
                           }}
                         >
-                          <Typography sx={textStyle}>{el.name}</Typography>
-                          <Typography sx={textStyle} color={"#18BA51"}>
-                            {el.price - (el.price * el.discount) / 100}₮
-                          </Typography>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "8px",
+                              }}
+                            >
+                              <Typography sx={textStyle}>{el.name}</Typography>
+                              <Typography sx={textStyle} color={"#18BA51"}>
+                                {el.price - (el.price * el.discount) / 100}₮
+                              </Typography>
+                            </Box>
+                            <Box
+                              onClick={() => deleteOrder(el._id)}
+                              sx={{ fontSize: "20px", cursor: "pointer" }}
+                            >
+                              x
+                            </Box>
+                          </Box>
+
                           <Typography color={"#767676"}>
                             {el.ingeredient}
                           </Typography>

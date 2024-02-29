@@ -18,10 +18,9 @@ const history = (props: any) => {
     try {
       const order = await axios.post(BASE_URL, { userId: userData.user._id });
       const allOrder = order.data.getAllOrder;
-      const name = order.data.getAllOrder[0].foods;
       setData(allOrder);
       if (allOrder) {
-        allOrder.map((el: any) => {
+        let order = allOrder.filter((el: any) => {
           setName(el.foods);
         });
       }
@@ -79,17 +78,25 @@ const history = (props: any) => {
           >
             <Typography style={style}>Захиалгын дэлгэрэнгүй</Typography>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-              {name &&
-                name.map((el: any) => {
-                  return (
-                    <Box
-                      sx={{ display: "flex", justifyContent: "space-between" }}
-                    >
-                      <Typography>{el.foodname}</Typography>
-                      <Typography>({allOrderPrice.count})</Typography>
-                    </Box>
-                  );
-                })}
+              {data.map((el: any) => {
+                return (
+                  <Box>
+                    {el.foods.map((e: any) => {
+                      return (
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Typography>{e.foodname}</Typography>
+                          <Typography>({allOrderPrice.count})</Typography>
+                        </Box>
+                      );
+                    })}
+                  </Box>
+                );
+              })}
             </Box>
           </Box>
         </Card>

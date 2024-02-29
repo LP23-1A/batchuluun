@@ -18,8 +18,6 @@ const Category = () => {
   const [category, setCategory]: any = useState([]);
   const [activeIndex, setActiveIndex] = useState(filterCategory);
   const handlerCategory = async () => {
-    handlerFood();
-
     try {
       const getAllCategory = await axios.get(CATEGORY_URl);
       const category = getAllCategory.data.getAllCategory;
@@ -44,8 +42,10 @@ const Category = () => {
   };
   useEffect(() => {
     handlerCategory();
-  });
-
+  }, []);
+  useEffect(() => {
+    handlerFood();
+  }, [activeIndex]);
   return (
     <Stack width={{ width: "1440px", margin: "auto" }}>
       <Navbar />
