@@ -17,6 +17,9 @@ const style = {
   position: "absolute",
 };
 const page = () => {
+  localStorage.removeItem("sags");
+  localStorage.removeItem("count");
+  localStorage.removeItem("OrderFood");
   // const router = useRouter();
   // useEffect(() => {
   //   const rawJson: string | null = localStorage.getItem("user");

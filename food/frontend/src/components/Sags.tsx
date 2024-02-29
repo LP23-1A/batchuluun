@@ -11,7 +11,6 @@ const style = {
   top: "",
   left: "60%",
   width: 586,
-
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -24,11 +23,26 @@ const textStyle = {
   fontSize: "18px",
   fontWeight: "600",
 };
+const countStyle = {
+  width: "30px",
+  height: "30px",
+  color: "white",
+  background: "#18BA51 ! important",
+};
 export default function Sags() {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState([]);
-
+  const [count, setCount] = React.useState(1);
+  let totalPrice = 0;
+  const countPlusHandler = () => {
+    setCount(count + 1);
+  };
+  const countIncrementHandler = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
   const handleOpen = () => {
     if (!localStorage.getItem("sags")) {
       data;
@@ -41,12 +55,14 @@ export default function Sags() {
   };
   let filterPrice = 0;
   const price = data.filter((el: any) => {
-    filterPrice = filterPrice + (el.price - (el.price * el.discount) / 100);
+    filterPrice =
+      filterPrice + (el.price - (el.price * el.discount) / 100) * count;
   });
 
   const handleClose = () => setOpen(false);
   const Order = () => {
     localStorage.removeItem("OrderFood" && "food");
+    localStorage.setItem("count", JSON.stringify({ count, filterPrice }));
     handleClose();
     router.push("/orderStep");
   };
@@ -109,6 +125,23 @@ export default function Sags() {
                           <Typography color={"#767676"}>
                             {el.ingeredient}
                           </Typography>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <Button
+                              onClick={countIncrementHandler}
+                              sx={countStyle}
+                            >
+                              -
+                            </Button>
+                            <Typography>{count}</Typography>
+                            <Button onClick={countPlusHandler} sx={countStyle}>
+                              +
+                            </Button>
+                          </Box>
                         </Box>
                       </Box>
                       <Box

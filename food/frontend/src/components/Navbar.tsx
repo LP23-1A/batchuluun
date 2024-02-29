@@ -33,7 +33,7 @@ function Navbar(props: any) {
   ) => {
     setAlignment(newAlignment);
   };
-  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const userData = JSON.parse(localStorage.getItem("user1") as string);
 
   const menuHandler = () => {
     router.push("/menu");

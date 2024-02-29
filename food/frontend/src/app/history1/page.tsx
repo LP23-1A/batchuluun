@@ -10,7 +10,8 @@ const style = {
   fontWeight: "400",
 };
 const history = (props: any) => {
-  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const userData = JSON.parse(localStorage.getItem("user1") as string);
+  const allOrderPrice = JSON.parse(localStorage.getItem("count") as string);
   const [data, setData] = useState([]);
   const [name, setName] = useState([]);
   const handler = async () => {
@@ -20,11 +21,10 @@ const history = (props: any) => {
       const name = order.data.getAllOrder[0].foods;
       setData(allOrder);
       if (allOrder) {
-        allOrder.filter((el: any) => {
+        allOrder.map((el: any) => {
           setName(el.foods);
         });
       }
-      // setName(name);
     } catch (error) {
       console.log(error);
     }
@@ -78,12 +78,18 @@ const history = (props: any) => {
             }}
           >
             <Typography style={style}>Захиалгын дэлгэрэнгүй</Typography>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "40px" }}>
               {name &&
                 name.map((el: any) => {
-                  return <Typography>{el.foodname}</Typography>;
+                  return (
+                    <Box
+                      sx={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <Typography>{el.foodname}</Typography>
+                      <Typography>({allOrderPrice.count})</Typography>
+                    </Box>
+                  );
                 })}
-              <Typography>(1)</Typography>
             </Box>
           </Box>
         </Card>

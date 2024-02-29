@@ -15,7 +15,8 @@ const textStyle = {
 const API = "http://localhost:8000/order";
 export const OrderContext = React.createContext([]);
 export default function OrderStep() {
-  const userData = JSON.parse(localStorage.getItem("userData") as string);
+  const userData = JSON.parse(localStorage.getItem("user1") as string);
+  const allOrderPrice = JSON.parse(localStorage.getItem("count") as string);
   const router = useRouter();
   const [data, setData] = React.useState({
     district: "",
@@ -26,22 +27,18 @@ export default function OrderStep() {
   });
   const json: string | null = localStorage.getItem("sags");
   const orderData = json && JSON.parse(json);
-  let orderPrice = 0;
-  const price = orderData.filter((el: any) => {
-    orderPrice = orderPrice + (el.price - (el.price * el.discount) / 100);
-  });
   const createOrder = async (e: string | any) => {
     e.preventDefault();
     try {
       const create = await axios.post(API, {
         userId: userData.user._id,
         foods: orderData,
-        totalPrice: orderPrice,
+        totalPrice: allOrderPrice.filterPrice,
         district: data.district,
         khoroo: data.khoroo,
         apartment: data.apartment,
       });
-      localStorage.removeItem("sags");
+      // localStorage.removeItem("sags");
       router.push("/history1");
     } catch (error) {
       console.log(error);
@@ -159,7 +156,7 @@ export default function OrderStep() {
                   Нийт төлөх дүн
                 </Typography>
                 <Typography color={"#121316"} fontWeight={"700"}>
-                  {orderPrice}₮
+                  {allOrderPrice.filterPrice}₮
                 </Typography>
               </Box>
               <Button

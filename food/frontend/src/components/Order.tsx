@@ -58,7 +58,7 @@ export default function Order() {
     data.find((el: any) => {
       if (el._id === id) {
         setOpen(true);
-        localStorage.setItem("OrderFood", JSON.stringify({ ...el }));
+        localStorage.setItem("OrderFood", JSON.stringify([el]));
       }
     });
   };

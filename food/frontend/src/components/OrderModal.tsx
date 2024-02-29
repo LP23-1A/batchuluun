@@ -27,111 +27,121 @@ const font = {
   fontSize: "18px",
   fontWeight: "600",
 };
+const countStyle = {
+  width: "30px",
+  height: "30px",
+  color: "white",
+  background: "#18BA51 ! important",
+};
 const OrderModal = () => {
   const json: string | null = localStorage.getItem("OrderFood");
-  let totalPrice = 0;
   const orderData = json && JSON.parse(json);
   const [data, setData] = useState(orderData);
   const [count, setCount] = React.useState(1);
+  let totalPrice = 0;
   const countPlusHandler = () => {
     setCount(count + 1);
+    data.forEach((element: any) => {
+      totalPrice =
+        totalPrice +
+        (element.price - (element.price * element.discount) / 100) *
+          (count + 1);
+    });
+    data.price = totalPrice;
   };
+  console.log(data.price);
+
   const countIncrementHandler = () => {
     if (count > 1) {
       setCount(count - 1);
     }
   };
-
-  // totalPrice = totalPrice + data.price * count;
-  // setData((prev: any) => ({ ...prev, price: totalPrice }));
-
   const sagslah = () => {
     const storage = JSON.parse(localStorage.getItem("sags") as string);
-    console.log(storage);
     if (storage) {
-      storage.push({ ...data });
+      storage.push(...data);
       localStorage.setItem("sags", JSON.stringify(storage));
       return;
     }
     localStorage.setItem("sags", JSON.stringify([...data]));
   };
-  console.log(data);
 
   return (
     <Stack>
-      <Box sx={style}>
-        <img src={data.image} width={"500px"} height={500} alt="" />
-        <Box
-          sx={{
-            padding: "83px 20px 83px 0",
-            display: "flex",
-            flexDirection: "column",
-            gap: "32px",
-          }}
-        >
-          <Box>
-            <Typography sx={{ fontSize: "28px", fontWeight: "700" }}>
-              {data.name}
-            </Typography>
-            <Typography fontSize={"18px"} color={"#18BA51"} fontWeight={"600"}>
-              {data.price * count}
-            </Typography>
-          </Box>
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            <Typography sx={font}>Орц</Typography>
-            <Typography
-              sx={{
-                bgcolor: "#F6F6F6",
-                color: "#767676",
-                borderRadius: "10px",
-                padding: "6px 10px",
-              }}
-            >
-              Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-            <Typography sx={font}>Too</Typography>
-
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Button
-                onClick={countIncrementHandler}
+      {data &&
+        data.map((el: any) => {
+          return (
+            <Box sx={style}>
+              <img src={el.image} width={"500px"} height={500} alt="" />
+              <Box
                 sx={{
-                  width: "30px",
-                  height: "30px",
-                  color: "white",
-                  background: "#18BA51 ! important",
+                  padding: "83px 20px 83px 0",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "32px",
                 }}
               >
-                -
-              </Button>
-              <Typography>{count}</Typography>
-              <Button
-                onClick={countPlusHandler}
-                sx={{
-                  width: "30px",
-                  height: "30px",
-                  color: "white",
-                  background: "#18BA51  ! important",
-                }}
-              >
-                +
-              </Button>
+                <Box>
+                  <Typography sx={{ fontSize: "28px", fontWeight: "700" }}>
+                    {el.name}
+                  </Typography>
+                  <Typography
+                    fontSize={"18px"}
+                    color={"#18BA51"}
+                    fontWeight={"600"}
+                  >
+                    {el.discount > 0
+                      ? el.price - (el.price * el.discount) / 100
+                      : el.price}
+                  </Typography>
+                </Box>
+
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
+                >
+                  <Typography sx={font}>Орц</Typography>
+                  <Typography
+                    sx={{
+                      bgcolor: "#F6F6F6",
+                      color: "#767676",
+                      borderRadius: "10px",
+                      padding: "6px 10px",
+                    }}
+                  >
+                    Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: "32px" }}
+                >
+                  <Typography sx={font}>Too</Typography>
+
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Button onClick={countIncrementHandler} sx={countStyle}>
+                      -
+                    </Button>
+                    <Typography>{count}</Typography>
+                    <Button onClick={countPlusHandler} sx={countStyle}>
+                      +
+                    </Button>
+                  </Box>
+                  <Button
+                    sx={{
+                      background: "#18BA51 ! important",
+                      color: "white",
+                      width: "400px",
+                    }}
+                    onClick={sagslah}
+                  >
+                    Сагслах
+                  </Button>
+                </Box>
+              </Box>
             </Box>
-            <Button
-              sx={{
-                background: "#18BA51 ! important",
-                color: "white",
-                width: "400px",
-              }}
-              onClick={sagslah}
-            >
-              Сагслах
-            </Button>
-          </Box>
-        </Box>
-      </Box>
+          );
+        })}
     </Stack>
   );
 };
