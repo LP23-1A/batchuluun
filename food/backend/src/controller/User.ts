@@ -7,6 +7,7 @@ type SignUpType = {
   email: string;
   phoneNumber: number;
   password: string;
+  role: "admin" | null;
 };
 type LogInType = {
   email: string;
@@ -15,13 +16,15 @@ type LogInType = {
 
 export const signUp = async (req: Request, res: Response) => {
   try {
-    const { name, email, phoneNumber, password }: Required<SignUpType> =
+    console.log(req);
+    const { name, email, phoneNumber, password, role }: Required<SignUpType> =
       req.body;
     const result = await UserModel.create({
       name: name,
       email: email,
       phoneNumber: phoneNumber,
       password: password,
+      role: role,
     });
     res.status(201).send(result);
   } catch (error) {
@@ -35,6 +38,7 @@ export const LogIn = async (req: Request, res: Response) => {
     const user = await UserModel.findOne({
       email: email,
     }).select("+password");
+
     if (!user) {
       return res.status(404).send({ msg: "user not found" });
     }
@@ -45,7 +49,7 @@ export const LogIn = async (req: Request, res: Response) => {
       return res.status(400).send({ msg: "Email or password incorrect" });
     }
 
-    const token = jwt.sign({ email }, "MY_SECRET_KEY");
+    const token = jwt.sign({ user }, "MY_SECRET_KEY");
 
     return res.status(200).send({ success: true, token, user });
   } catch (error) {

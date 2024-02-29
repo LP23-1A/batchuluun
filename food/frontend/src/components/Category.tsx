@@ -3,16 +3,17 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ImgCard from "./Card";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
 const BASE_URL = "http://localhost:8000/category/one";
 const CATEGORY_URl = "http://localhost:8000/category";
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Category = () => {
   let filterData = "Soup";
   const [data, setData] = useState([]);
-  const [category, setCategory]: any = useState([]);
+  const [category, setCategory] = useState([]);
   const [activeIndex, setActiveIndex] = useState(filterData);
   const handlerCategory = async () => {
     handlerFood();
-
     try {
       const getAllCategory = await axios.get(CATEGORY_URl);
       const category = getAllCategory.data.getAllCategory;
@@ -26,7 +27,7 @@ const Category = () => {
       const { data } = await axios.post(BASE_URL, { name: activeIndex });
       const getData = data.result.foodId;
       if (!getData) {
-        setData([]);
+        data;
       }
       setData(getData);
     } catch (error) {
