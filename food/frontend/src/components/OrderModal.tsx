@@ -73,6 +73,7 @@ const OrderModal = () => {
           return (
             <Box sx={style}>
               <img src={el.image} width={"500px"} height={500} alt="" />
+              <Box sx={{ display: "flex" }}>x</Box>
               <Box
                 sx={{
                   padding: "83px 20px 83px 0",

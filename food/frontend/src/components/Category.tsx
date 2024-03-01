@@ -95,7 +95,7 @@ const Category = () => {
               name={el.foodname}
               price={el.price - (el.discount * el.price) / 100}
               discount={el.discount}
-              count={(el.discount * el.price) / 100}
+              count={el.price}
             />
           </Box>
         ))}

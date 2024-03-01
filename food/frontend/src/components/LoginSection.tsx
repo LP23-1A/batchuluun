@@ -35,12 +35,9 @@ const LoginSection = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(BASE_URL, { ...input });
-      localStorage.setItem("user1", JSON.stringify(data));
-      console.log(data);
-
+      localStorage.setItem("user1", JSON.stringify({ ...data }));
       if (data.user.role === "user") {
         router.push(`/dashboard/${data.user.email}`);
-        // localStorage.setItem("userData", JSON.stringify({ ...data }));
       } else if (data.user.role === "admin") {
         router.push(`/adminDashboard`);
       } else setError("error");

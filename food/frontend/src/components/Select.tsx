@@ -13,7 +13,12 @@ export default function BasicSelect(): React.ReactNode {
   const { data, setData }: any = React.useContext(OrderContext);
   return (
     <Stack sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-      <Box sx={{ minWidth: 120, bgcolor: "#ECEDF0" }}>
+      <Box
+        sx={{
+          minWidth: 120,
+          bgcolor: data.district === "" ? "#ECEDF0" : "#18BA51",
+        }}
+      >
         <FormControl sx={{ width: "384px" }}>
           <InputLabel id="demo-simple-select-label">
             Дүүрэг сонгоно уу
@@ -33,7 +38,12 @@ export default function BasicSelect(): React.ReactNode {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 120, bgcolor: "#ECEDF0" }}>
+      <Box
+        sx={{
+          minWidth: 120,
+          bgcolor: data.khoroo === "" ? "#ECEDF0" : "#18BA51",
+        }}
+      >
         <FormControl sx={{ width: "384px" }}>
           <InputLabel id="demo-simple-select-label">
             Хороо сонгоно уу
@@ -53,7 +63,12 @@ export default function BasicSelect(): React.ReactNode {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 120, bgcolor: "#ECEDF0" }}>
+      <Box
+        sx={{
+          minWidth: 120,
+          bgcolor: data.apartment === "" ? "#ECEDF0" : "#18BA51",
+        }}
+      >
         <FormControl sx={{ width: "384px" }}>
           <InputLabel id="demo-simple-select-label">
             Байр, гудамж сонгоно уу

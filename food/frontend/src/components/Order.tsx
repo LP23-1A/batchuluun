@@ -83,9 +83,11 @@ export default function Order() {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          gap: "20px",
+          flexWrap: "wrap",
         }}
       >
-        {filterData.map((el: any) => (
+        {filterData.slice(0, add).map((el: any) => (
           <Box
             onClick={() => handleOpen(el._id)}
             sx={{ display: "flex", flexDirection: "row" }}
@@ -96,7 +98,7 @@ export default function Order() {
               name={el.foodname}
               price={el.price - (el.discount * el.price) / 100}
               discount={el.discount}
-              count={(el.discount * el.price) / 100}
+              count={el.price}
             />
           </Box>
         ))}

@@ -41,7 +41,7 @@ export default function ImgCard(props: any) {
               {props.price}₮
             </Typography>
             <Typography fontSize={"18px"}>
-              <del>{props.count > 0 ? props.count + "₮" : ""}</del>
+              <del>{props.discount > 0 ? props.count + "₮" : ""}</del>
             </Typography>
           </Box>
 

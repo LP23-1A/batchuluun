@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Footer from "@/components/Footer";
 import Order from "@/components/Order";
 import InformationCard from "@/components/InformationCard";
+import AdminHistory from "@/components/AdminHistory";
 const style = {
   position: "absolute",
 };

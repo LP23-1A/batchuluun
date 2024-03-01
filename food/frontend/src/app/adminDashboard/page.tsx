@@ -1,162 +1,172 @@
 "use client";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import ImgCard from "../../components/Card";
 import Navbar from "@/components/Navbar";
-import CreateCategory from "@/components/CreateCategory";
-import CreateFood from "@/components/CreateFood";
-import { Add } from "@mui/icons-material";
-const BASE_URL = "http://localhost:8000/category/one";
-const CATEGORY_URl = "http://localhost:8000/category";
-type categoryType = {
-  name: string;
+import { Box, Card, Pagination, Stack, Typography } from "@mui/material";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+const BASE_URL = "http://localhost:8000/order";
+const bigWidth = {
+  width: "230px",
 };
-const Category = () => {
-  let filterCategory: any = "Soup";
+const smallWidth = {
+  width: "140px",
+};
+
+const paage = () => {
   const [data, setData] = useState([]);
-  const [category, setCategory]: any = useState([]);
-  const [activeIndex, setActiveIndex] = useState(filterCategory);
-  const handlerCategory = async () => {
+  const router = useRouter();
+  const handler = async () => {
     try {
-      const getAllCategory = await axios.get(CATEGORY_URl);
-      const category = getAllCategory.data.getAllCategory;
-      setCategory(category);
+      const getOrder: any = await axios.get(BASE_URL);
+      const data = getOrder.data.getOneOrder;
+      setData(data);
     } catch (error) {
       console.log(error);
     }
   };
-  const handlerFood = async () => {
-    try {
-      const { data } = await axios.post(BASE_URL, {
-        name: activeIndex,
-      });
-      const getData = data.result.foodId;
-      if (!getData) {
-        setData(data);
-      }
-      setData(getData);
-    } catch (error) {
-      console.log(error);
-    }
+  console.log(data);
+  const create = () => {
+    router.push("/createFoodAndCategory");
   };
   useEffect(() => {
-    handlerCategory();
+    handler();
   }, []);
-  useEffect(() => {
-    handlerFood();
-  }, [activeIndex]);
   return (
-    <Stack width={{ width: "1440px", margin: "auto" }}>
+    <Stack>
       <Navbar />
       <Box
         sx={{
+          width: "1160px",
+          margin: "30px auto",
           display: "flex",
-          gap: "20px",
-          paddingX: "120px",
+          flexDirection: "column",
+          gap: "30px",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "40px" }}>
-          <Typography
-            sx={{ fontSize: "22px", fontWeight: "700", marginTop: "26px" }}
-          >
-            Food menu
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "26px",
-            }}
-          >
-            {category.map((el: any, index: number) => {
-              return (
-                <Button
-                  sx={{
-                    width: "258px",
-                    border: "1px solid #D6D8DB",
-                    borderRadius: "6px",
-                  }}
-                  key={index}
-                  value={index}
-                  onClick={() =>
-                    setActiveIndex(() => (filterCategory = el.name))
-                  }
-                  style={{
-                    backgroundColor:
-                      activeIndex === el.name ? "green" : "white",
-                    color: activeIndex === el.name ? "white" : "black",
-                  }}
-                >
-                  {el.name}
-                </Button>
-              );
-            })}
-            <CreateCategory />
-          </Box>
-        </Box>
         <Box
+          onClick={create}
           sx={{
-            bgcolor: "#F7F7F8",
-            padding: "40px 0px 0px 20px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "50px",
-            width: "1000px",
-            height: "100vw",
+            fontSize: "20px",
+            fontWeight: "700",
+            p: "20px 20px",
+            border: "1px, solid, black",
+            bgcolor: "#18BA51",
+            borderRadius: "10px",
+            width: "300px",
+            cursor: "pointer",
           }}
         >
+          create food and category
+        </Box>
+        <Card sx={{ width: "1160px", margin: "auto", p: "20px" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Typography sx={{ fontSize: "22px", fontWeight: "700" }}>
-              breackFast
-            </Typography>
-            <CreateFood />
+            <Box sx={{ fontSize: "20px", fontWeight: "700", p: "20px 20px" }}>
+              Admin dashboard
+            </Box>
           </Box>
 
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "20px",
+              paddingLeft: "20px",
+              bgcolor: "#D6D8DB",
             }}
           >
-            {data.length > 0 ? (
-              data.map((el: any) => (
-                <Box
-                  sx={{ display: "flex", flexDirection: "row" }}
-                  key={el._id}
-                >
-                  <ImgCard
-                    img={el.image}
-                    name={el.foodname}
-                    price={el.price - (el.discount * el.price) / 100}
-                    discount={el.discount}
-                    count={(el.discount * el.price) / 100}
-                  />
-                </Box>
-              ))
-            ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                  m: "100px  auto",
-                }}
-              >
-                <Add sx={{ color: "#18BA51", width: "50px", height: "50px" }} />
-                <Typography>Уучлаарай, Таны меню хоосон байна.</Typography>
-              </Box>
-            )}
+            <Typography style={bigWidth}>Order name </Typography>
+            <Typography style={smallWidth}>Buyer info </Typography>
+            <Typography style={bigWidth}>Payment </Typography>
+            <Typography style={bigWidth}>Address </Typography>
+            <Typography style={smallWidth}>Delivery state</Typography>
           </Box>
-        </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "50px",
+              paddingLeft: "20px",
+            }}
+          >
+            {data.map((el: any) => {
+              return (
+                <Box sx={{ display: "flex", flexDirection: "row" }}>
+                  <Box sx={{ display: "flex", gap: "10px" }} style={bigWidth}>
+                    {el.foods.map((e: any) => {
+                      return (
+                        <img
+                          src={e.image}
+                          width={"40px"}
+                          height={"40px"}
+                          alt=""
+                        />
+                      );
+                    })}
+
+                    <Box>
+                      <Typography>#23790</Typography>
+                      <Typography>Boldoo</Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={smallWidth}>
+                    <Typography>99119911</Typography>
+                    <Typography>Boldoo</Typography>
+                  </Box>
+                  <Box style={bigWidth} sx={{ display: "flex", gap: "10px" }}>
+                    <Box>
+                      {el.foods.map((e: any) => {
+                        return (
+                          <Box>
+                            <Typography>
+                              {e.price - (e.price * e.discount) / 100}₮
+                            </Typography>
+                          </Box>
+                        );
+                      })}
+                      <Typography>{el.createdDate.slice(0, 16)}</Typography>
+                    </Box>
+                    <Typography
+                      sx={{
+                        bgcolor: "#670E13",
+                        padding: "5px 10px",
+                        borderRadius: "5px",
+                        height: "30px",
+                      }}
+                    >
+                      {el.payment}
+                    </Typography>
+                  </Box>
+
+                  <Typography style={bigWidth}>
+                    {el.district} <span>{el.khoroo}</span>
+                    <br />
+                    {el.apartment}
+                  </Typography>
+                  <Box
+                    sx={{
+                      bgcolor: "yellow",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      height: "30px",
+                    }}
+                  >
+                    {el.process}
+                  </Box>
+                </Box>
+              );
+            })}
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "30px",
+            }}
+          >
+            <Pagination count={10}></Pagination>
+          </Box>
+        </Card>
       </Box>
     </Stack>
   );
 };
 
-export default Category;
+export default paage;

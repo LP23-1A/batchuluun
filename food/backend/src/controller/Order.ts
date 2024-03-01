@@ -41,8 +41,7 @@ export const getAllOrder = async (req: Request, res: Response) => {
 
 export const getOneOrder = async (req: Request, res: Response) => {
   try {
-    const orderById = req.params.id;
-    const getOneOrder = await orderModel.findById(orderById);
+    const getOneOrder = await orderModel.find();
     return res.status(200).send({ success: true, getOneOrder });
   } catch (error) {
     res.status(500).send(error);

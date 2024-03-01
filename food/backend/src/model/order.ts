@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
+  userId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
 
   orderNumber: Number,
   foods: [],
@@ -20,6 +22,11 @@ const orderSchema = new mongoose.Schema({
   district: String,
   khoroo: String,
   apartment: String,
+  payment: {
+    type: String,
+    enum: ["Paid", "Not Paid"],
+    default: "Not Paid",
+  },
 });
 const orderModel = mongoose.model("order", orderSchema);
 export { orderModel };
