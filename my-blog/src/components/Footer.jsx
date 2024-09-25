@@ -6,18 +6,8 @@ import TwitterIcon from "@/components/icon/Twitter";
 import { useRouter } from "next/router";
 
 export default function Footer() {
-  const router = useRouter();
-  const contact = () => {
-    router.push("/contact");
-  };
-  const home = () => {
-    router.push("/");
-  };
-  const blog = () => {
-    router.push("/allblog");
-  };
   return (
-    <div className="flex flex-col gap-12 max-sm:gap-0">
+    <div className="flex flex-col gap-12 max-sm:gap-0 px-20">
       <div className="flex justify-between max-sm:flex max-sm:flex-col max-sm:gap-2">
         <div className="flex flex-col gap-4 w-72 max-sm:hidden">
           <h3 className="text-xl">About</h3>
@@ -31,19 +21,7 @@ export default function Footer() {
             <p>Phone : 880 123 456 789</p>
           </div>
         </div>
-        <div className="max-sm:flex max-sm:justify-center">
-          <ul>
-            <li className="cursor-pointer" onClick={home}>
-              Home
-            </li>
-            <li className=" cursor-pointer" onClick={blog}>
-              Blog
-            </li>
-            <li className="cursor-pointer" onClick={contact}>
-              Contact
-            </li>
-          </ul>
-        </div>
+
         <div className="flex gap-7 max-sm:flex max-sm:justify-center">
           <FacebookIcon />
           <InstagramIcon />

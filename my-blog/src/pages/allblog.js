@@ -9,7 +9,7 @@ export default function AllBlogRender() {
         <Navbar />
       </section>
       <section className="px-[350px] max-sm:px-0 max-sm:flex max-sm:mx-auto">
-        <AllBlog />
+        {/* <AllBlog /> */}
       </section>
       <section className="px-[350px] max-sm:px-0 mx-auto">
         <Footer />

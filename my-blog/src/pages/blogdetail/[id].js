@@ -33,10 +33,10 @@ export default function BlogDetail() {
             </div>
             <div className="flex gap-4">
               <div className="flex gap-2">
-                <img
+                {/* <img
                   className="w-8 h-8 rounded-3xl"
                   src={detail.user.profile_image}
-                />
+                /> */}
                 <p className="items-center">{detail.user.name}</p>
               </div>
               <div>{detail.last_comment_at}</div>

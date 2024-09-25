@@ -23,7 +23,7 @@ export default function Hero() {
     <div className="max-sm:hidden">
       <div className="flex overflow-hidden">
         <div
-          className="w-[1216px] h-[600px] bg-cover relative overflow-hidden"
+          className="w-full h-[600px] bg-cover relative overflow-hidden"
           style={{ backgroundImage: `url(${CAROUSEL_DATA[activeIndex].url})` }}
         >
           <div className="w-[598px] p-10 bg-white flex flex-col gap-6 rounded-xl top-[320px] absolute left-[20px]">

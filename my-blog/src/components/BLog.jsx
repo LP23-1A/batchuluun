@@ -1,8 +1,10 @@
+"use client";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-const api = "https://dev.to/api/articles";
+const api =
+  "https://newsapi.org/v2/everything?q=tesla&from=2024-08-25&sortBy=publishedAt&apiKey=b49a6413079a46baad1cb52df8853e59";
 import Link from "next/link";
 
 export default function BlogData() {
@@ -11,80 +13,74 @@ export default function BlogData() {
   const router = useRouter();
   const view = () => {};
   const getData = async () => {
-    let res = await axios.get(api);
-    initData.current = res.data;
-    setData(res.data);
-    console.log(res.data);
+    try {
+      const res = await axios.get(api);
+      setData(res.data.articles);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const reset = () => setData(initData.current);
+  // const reset = () => setData([]);
 
   const filter = (tag) => {
     setData(() =>
       initData.current.filter((el) => el.tag_list.some((c) => c.includes(tag)))
     );
   };
-  const [add, setAdd] = useState(9);
+  const [add, setAdd] = useState(10);
 
   const handler = () => {
     setAdd((add) => add + 3);
   };
   useEffect(() => {
-    getData(api);
+    getData();
   }, []);
   return (
     <div className="flex flex-col gap-8">
       <div className="flex justify-between max-sm:hidden">
-        <div className="flex gap-5">
-          <button className=" text-yellow-400" onClick={reset}>
-            All
-          </button>
-          <button onClick={() => filter("webdev")}>webdev</button>
-          <button onClick={() => filter("discuss")}>discuss</button>
-          <button onClick={() => filter("watercooler")}>watercooler</button>
-          <button onClick={() => filter("top7")}>top7</button>
-
-          <br />
-        </div>
-        <div>
-          <button onClick={view}>View All</button>
-        </div>
+        <div className="flex gap-5"></div>
       </div>
-      <div className="flex flex-wrap gap-5 mt-10 max-sm:flex max-sm:flex-col max-sm:mx-auto">
-        {data.slice(0, add).map((e) => {
-          let key = uuidv4();
+      <div className="flex flex-wrap justify-between gap-y-6 mt-10 max-sm:flex max-sm:flex-col max-sm:mx-auto">
+        {data.slice(1, add).map((e, index) => {
           return (
             <div
               className="border-solid border border-gray-300 w-[392px] rounded-xl py-4 flex "
-              key={key}
+              key={index}
             >
-              <Link href={`/blogdetail/${e.id}`}>
-                <div className="p-4 flex  gap-4 flex-col ">
-                  <div className="w-[360px] h-60 ">
+              <div className="p-4 flex  gap-4 flex-col ">
+                <div className="w-[360px] h-60 ">
+                  {e?.urlToImage ? (
                     <img
-                      src={e.social_image}
+                      src={e?.urlToImage}
                       alt=""
                       className="rounded-xl h-60"
                     />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-1 flex-wrap">
-                      <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit flex gap-2">
-                        {e.tags}
-                      </button>
-                    </div>
-
-                    <h2 className=" text-2xl">{e.description}</h2>
-                  </div>
-                  <div className="flex items-center">
+                  ) : (
                     <img
-                      className="w-8 h-8 rounded-3xl"
-                      src={e.user.profile_image}
+                      src="/download.jpeg"
                       alt=""
+                      className="rounded-xl h-60"
                     />
-                    <p className="flex items-center">{e.published_timestamp}</p>
-                  </div>
+                  )}
                 </div>
-              </Link>
+                <div className="flex flex-col gap-4">
+                  <div className="flex gap-1 flex-wrap">
+                    <button className=" bg-slate-300 text-purple-500 py-1 px-3 rounded-xl w-fit flex gap-2">
+                      {e.source.name}
+                    </button>
+                  </div>
+
+                  <h2 className=" text-2xl">{e.description}</h2>
+                </div>
+                <div className="flex items-center">
+                  <img
+                    className="w-8 h-8 rounded-3xl"
+                    // src={e.user.profile_image}
+                    alt=""
+                  />
+                  <p className="flex items-center">{e.published_timestamp}</p>
+                </div>
+              </div>
             </div>
           );
         })}

@@ -8,16 +8,6 @@ import Close from "./icon/Close";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const router = useRouter();
-  const contact = () => {
-    router.push("/contact");
-  };
-  const home = () => {
-    router.push("/");
-  };
-  const blog = () => {
-    router.push("/allblog");
-  };
   return (
     <div className="flex justify-between py-8 z-50">
       <div className="w-4 h-4 items-center ">
@@ -30,13 +20,6 @@ export default function Navbar() {
         {open && <ResMenu setOpen={setOpen} />}
       </div>
 
-      <div className="text-center max-sm:hidden">
-        <ul className="flex gap-10 text-center items-center">
-          <button onClick={home}>Home</button>
-          <button onClick={blog}>Blog</button>
-          <button onClick={contact}>Contact</button>
-        </ul>
-      </div>
       <div className="py-2 max-sm:hidden">
         <input
           type="text"
